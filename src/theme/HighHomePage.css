@@ -1,0 +1,184 @@
+@media screen and (max-width: 1677px) {
+  .home {
+    min-height: 100vh; /* เต็มหน้าจอ */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 2rem;
+    background: var(--home-linear-gradient);
+    position: relative;
+  }
+
+  .class-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .logo h1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: bold;
+    letter-spacing: 5px;
+    color: var(--home-text-color);
+  }
+
+  .logo h1 img {
+    width: 160px;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 50%;
+    z-index: 2;
+    box-shadow: 0 0 20px var(--home-logoimg-boxshadow);
+  }
+
+  .class-logo {
+    width: clamp(80px, 10vw, 140px);
+    height: auto;
+    margin: 0 10px;
+    animation: float 3s ease-in-out infinite;
+    transition: 0.4s ease;
+  }
+
+  .class-body h2 {
+    font-size: clamp(3rem, 3vw, 2rem);
+    color: var(--home-text2-color);
+
+    margin-top: 20px;
+    font-weight: 400;
+  }
+
+  .class-body h3 {
+    font-size: clamp(2rem, 2vw, 1.2rem);
+    color: var(--home-text2-color);
+    margin-top: 15px;
+    font-weight: 300;
+  }
+
+  .auto-typing {
+    margin-top: 25px;
+    font-size: clamp(1rem, 3vw, 2rem);
+    font-weight: 500;
+    letter-spacing: 1px;
+    min-height: 40px; /* กัน layout กระตุกตอนเปลี่ยนคำ */
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .multiple-text {
+    font-weight: 700;
+    background: var(--home-multiple-text-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* cursor effect ถ้าอยากได้ */
+  .multiple-text::after {
+    content: "|";
+    margin-left: 5px;
+    animation: blink 0.7s infinite;
+    color: var(--home-text-color);
+  }
+
+  .class-social {
+    margin-top: 45px;
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+  }
+
+  .class-social a {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 24px;
+    color: var(--home-text-color);
+
+    /* Liquid Glass */
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.25),
+      rgba(255, 255, 255, 0.05)
+    );
+
+    border: 1px solid rgba(255, 255, 255, 0.3);
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    box-shadow:
+      0 8px 20px rgba(0, 0, 0, 0.15),
+      inset 0 1px 1px rgba(255, 255, 255, 0.4);
+
+    transition: all 0.3s ease;
+  }
+
+  /* Hover effect */
+  .class-social a:hover {
+    transform: scale(1.2);
+    box-shadow: 0 12px 30px rgba(0, 255, 120, 0.3);
+    color: white;
+    text-shadow: 0 0 12px rgba(255, 255, 255, 0.8);
+  }
+
+  /* Click feedback */
+  .class-social a:active {
+    transform: scale(0.95);
+  }
+
+  .class-social a:nth-child(1):hover {
+    background: #000;
+  } /* GitHub */
+    .class-social a:nth-child(2):hover {
+    background: #d10b0b;
+  } /* GitHub */
+  .class-social a:nth-child(3):hover {
+    background: #e4405f;
+  } /* Instagram */
+  .class-social a:nth-child(4):hover {
+    background: #2a35ff;
+  } /* TikTok */ /* SoundCloud */
+  .class-social a:nth-child(5):hover {
+    background: #0a66c2;
+  }
+
+  /* LinkedIn */
+
+  @keyframes blink {
+    0% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  /* Animation */
+  @keyframes float {
+    0% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-8px);
+    }
+    100% {
+      transform: translateY(0px);
+    }
+  }
+}
