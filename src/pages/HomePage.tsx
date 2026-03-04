@@ -1,7 +1,7 @@
 "use client"
 
 import React from 'react';
-import '../theme/HighHomePage.css';
+import '../theme/HighHome.css';
 import Typed from 'typed.js';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import InstagramIcon from '@mui/icons-material/Instagram';

@@ -6,6 +6,8 @@ import '../theme/HighBody.css';
 import HomePage from '../pages/HomePage';
 import AboutPage from '../pages/AboutPage';
 import ProjectPage from '../pages/ProjectPage';
+import SkillPage from '../pages/SkillPage';
+
 
 const Body: React.FC = () => {
     return (
@@ -14,6 +16,7 @@ const Body: React.FC = () => {
             <HomePage />
             <AboutPage />
             <ProjectPage />
+            <SkillPage />
         </main>
 
     )

@@ -1,7 +1,7 @@
 "use client"
 
 import React from 'react';
-import '../theme/HighAboutPage.css';
+import '../theme/HighAbout.css';
 
 const AboutPage: React.FC = () => {
     const [lang, setlang] = React.useState<"en" | "th">('en');

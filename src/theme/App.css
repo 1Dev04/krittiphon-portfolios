@@ -1,4 +1,11 @@
 :root {
+
+  --box-shadow-color: rgba(0, 0, 0, 0.15);
+  --box-shadow-insert: rgba(255, 255, 255, 0.4);
+
+  --hover-effect-boxshadow: rgba(0, 255, 120, 0.3);
+  --hover-effect-color: white;
+  --hover-effect-textshadow: rgba(255, 255, 255, 0.8);
   /* Navbar */
   --nav-text-color: #1f3d1f;
   --nav-text-color2: #129512;
@@ -14,6 +21,7 @@
 
   --nav-hover-box-shadow-color: rgba(0, 120, 0, 0.25);
   --nav-hover-insert-box-shadow-color: rgba(255, 255, 255, 0.3);
+  
 
   /* Home */
   --home-linear-gradient: radial-gradient(
@@ -25,7 +33,14 @@
   --home-text-color: #1b4332;
   --home-text2-color: #2d6a4f;
   --home-multiple-text-gradient: linear-gradient(90deg, #1f3d1f, #2f6b2f);
-  --home-logoimg-boxshadow: #0bbb23;
+  --home-logoimg-boxshadow: #4ffc66;
+
+  --liquid-glass-background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.25),
+      rgba(255, 255, 255, 0.05)
+    );
+  --liquid-glass-border: rgba(255, 255, 255, 0.3);
 
   /* About */
 
@@ -38,8 +53,8 @@
   );
 
 --about-pulse-boxshadow1: #1ED760;
---about-pulse-boxshadow2: rgba(57, 255, 20, 0.7);
---about-magic-cir-color: rgba(6, 105, 41, 0.55);
+--about-pulse-boxshadow2: rgba(36, 219, 70, 0.7);
+--about-magic-cir-color: rgba(5, 152, 56, 0.55);
 
   --about-toggle-color: #1b4332;
 
@@ -50,6 +65,15 @@
 
   /* Projecrt */
   --project-linear-gradient: radial-gradient(
+    circle at 30% 40%,
+    #ceffadd8,
+    #8fcb86f4 90%
+  );
+
+  /* Skill */
+    --about-text-color: #1b4332;
+  --about-text2-color: #2d6a4f;
+  --about-background-color: radial-gradient(
     circle at 30% 40%,
     #ceffadd8,
     #8fcb86f4 90%

@@ -1,0 +1,22 @@
+@media screen and (max-width: 1677px) {
+     .skill {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: 100px 8%;
+    background: var(--project-linear-gradient);
+  }
+
+  .class-skill {
+    flex: 1;
+  }
+
+  .class-skill h1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 48px;
+    color: var(--about-text-color);
+    margin-top: 40px;
+  }
+}

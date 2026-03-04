@@ -108,20 +108,16 @@
     color: var(--home-text-color);
 
     /* Liquid Glass */
-    background: linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.25),
-      rgba(255, 255, 255, 0.05)
-    );
+    background: var(--liquid-glass-background);
 
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    border: 1px solid var(--liquid-glass-border);
 
     backdrop-filter: blur(18px);
     -webkit-backdrop-filter: blur(18px);
 
     box-shadow:
-      0 8px 20px rgba(0, 0, 0, 0.15),
-      inset 0 1px 1px rgba(255, 255, 255, 0.4);
+      0 8px 20px var(--box-shadow-color),
+      inset 0 1px 1px var(--box-shadow-insert);
 
     transition: all 0.3s ease;
   }
@@ -129,9 +125,9 @@
   /* Hover effect */
   .class-social a:hover {
     transform: scale(1.2);
-    box-shadow: 0 12px 30px rgba(0, 255, 120, 0.3);
-    color: white;
-    text-shadow: 0 0 12px rgba(255, 255, 255, 0.8);
+    box-shadow: 0 12px 30px var(--hover-effect-boxshadow);
+    color: var(--hover-effect-color);
+    text-shadow: 0 0 12px var(--hover-effect-textshadow);
   }
 
   /* Click feedback */
