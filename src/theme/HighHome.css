@@ -135,21 +135,6 @@
     transform: scale(0.95);
   }
 
-  .class-social a:nth-child(1):hover {
-    background: #000;
-  } /* GitHub */
-    .class-social a:nth-child(2):hover {
-    background: #d10b0b;
-  } /* GitHub */
-  .class-social a:nth-child(3):hover {
-    background: #e4405f;
-  } /* Instagram */
-  .class-social a:nth-child(4):hover {
-    background: #2a35ff;
-  } /* TikTok */ /* SoundCloud */
-  .class-social a:nth-child(5):hover {
-    background: #0a66c2;
-  }
 
   /* LinkedIn */
 

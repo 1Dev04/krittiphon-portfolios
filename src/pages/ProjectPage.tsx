@@ -18,7 +18,7 @@ const getTranslatedText = (text: string | { en: string; th: string }, lang: "en"
 const ProjectPage: React.FC = () => {
     const [lang, setlang] = React.useState<"en" | "th">('en');
 
-   
+
 
     return (
         <section id="project" className="project">
@@ -37,10 +37,24 @@ const ProjectPage: React.FC = () => {
                                 <div className="project-content">
                                     <div className="project-text">
                                         <h2>{getTranslatedText(item.title, lang)}</h2>
-                                        <span className="project-year">{item.year}</span>
+                                        <span className="project-year">{getTranslatedText(item.year, lang)}</span>
                                     </div>
 
-                                    <p>{getTranslatedText(item.desc, lang)}</p>
+                                    {item.head.length > 0 && (
+                                        <ul className="project-head-list">
+                                            {item.head.map((h, i) => (
+                                                <li key={i}>
+                                                    <strong>{getTranslatedText(h, lang)}</strong>
+                                                    {item.desc[i] && (
+                                                        <span>{getTranslatedText(item.desc[i], lang)}
+                                                        </span>
+                                                    )}
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    )}
+
+
 
                                     <div className="project-actions">
                                         {item.link && (
@@ -56,7 +70,13 @@ const ProjectPage: React.FC = () => {
                                         )}
 
                                         {item.github && (
-                                            <a href={item.github} target="_blank" rel="noopener noreferrer">
+                                            <a
+                                                href={item.github}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                aria-label="GitHub Repository"
+                                                title="GitHub Repository"
+                                            >
                                                 <GitHubIcon />
                                             </a>
                                         )}

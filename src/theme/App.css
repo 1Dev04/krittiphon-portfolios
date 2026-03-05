@@ -11,8 +11,8 @@
   --nav-text-color2: #129512;
   --nav-linear-gradient: linear-gradient(
     135deg,
-    rgba(204, 229, 183, 0.35),
-    rgba(135, 215, 113, 0.25)
+    rgba(184, 253, 128, 0.24),
+    rgba(62, 198, 25, 0.25)
   );
   --nav-line-gradient: linear-gradient(to right, #71d839, #065d29);
   --nav-border-color: rgba(255, 255, 255, 0.3);
