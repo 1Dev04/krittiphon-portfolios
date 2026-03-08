@@ -7,6 +7,8 @@ import HomePage from '../pages/HomePage';
 import AboutPage from '../pages/AboutPage';
 import ProjectPage from '../pages/ProjectPage';
 import SkillPage from '../pages/SkillPage';
+import CertificatePage from '../pages/CertificatePage';
+import ActivitiePage  from '../pages/ActivitePage';
 
 
 const Body: React.FC = () => {
@@ -17,6 +19,8 @@ const Body: React.FC = () => {
             <AboutPage />
             <ProjectPage />
             <SkillPage />
+            <CertificatePage />
+            <ActivitiePage />
         </main>
 
     )
