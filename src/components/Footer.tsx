@@ -2,18 +2,15 @@
 
 import React from "react";
 
-// Font constant — make sure public/index.html loads Cinzel via <link>
 const cinzel = { style: { fontFamily: "'Cinzel', serif" } };
 
 interface FooterProps {
-  recordCount: number; // pass currentCerts.length from parent
+  recordCount?: number; // optional — defaults to 0
 }
 
-const Footer: React.FC<FooterProps> = ({ recordCount }) => {
+const Footer: React.FC<FooterProps> = ({ recordCount = 0 }) => {
   return (
-    // ✅ FIX 1: comment moved inside JSX element, not floating before root tag
     <div
-      // ✅ FIX 4: removed erroneous spaces in tag name and style prop
       style={{
         position: "fixed",
         bottom: 0,
@@ -37,7 +34,6 @@ const Footer: React.FC<FooterProps> = ({ recordCount }) => {
           gap: 10,
           color: "#7c3aed",
           textDecoration: "none",
-          // ✅ FIX 2: cinzel defined locally above — no missing reference
           fontFamily: cinzel.style.fontFamily,
           fontSize: 13,
           letterSpacing: "0.15em",
@@ -55,8 +51,7 @@ const Footer: React.FC<FooterProps> = ({ recordCount }) => {
           letterSpacing: "0.2em",
         }}
       >
-        {/* ✅ FIX 3: currentCerts.length replaced with recordCount prop */}
-        {recordCount} Build By Krittiphon Yoonaitham
+        {recordCount > 0 ? `${recordCount} · ` : ""}Build By Krittiphon Yoonaitham
       </div>
     </div>
   );
