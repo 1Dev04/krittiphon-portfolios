@@ -1,191 +1,185 @@
-
-
 import { useEffect, useState, useRef } from "react";
 import type { MouseEvent as ReactMouseEvent } from "react";
 
-const navItems = [
-  { id: "home",        label: "Home",         rune: "⌂" },
-  { id: "about",       label: "About",        rune: "◈" },
-  { id: "project",     label: "Projects",     rune: "◇" },
-  { id: "skill",       label: "Skills",       rune: "✦" },
-  { id: "certificate", label: "Certificates", rune: "✿" },
-  { id: "activity",    label: "Activities",   rune: "◉" },
-];
+/* ─── Nav items — id must match your <section id="..."> exactly ─── */
+const NAV_ITEMS = [
+  { id: "home",        label: "Home",        rune: "ᚠ", color: "#a78bfa" },
+  { id: "about",       label: "About",       rune: "ᚢ", color: "#67e8f9" },
+  { id: "project",     label: "Projects",    rune: "ᚦ", color: "#86efac" },
+  { id: "skill",       label: "Skills",      rune: "ᚨ", color: "#fda4af" },
+  { id: "certificate", label: "Certificate", rune: "ᚱ", color: "#fcd34d" },
+  { id: "activity",    label: "Activity",    rune: "ᚲ", color: "#fb923c" },
+] as const;
 
-const palette = {
-  home: "#a78bfa", about: "#67e8f9", project: "#86efac",
-  skill: "#fda4af", certificate: "#fcd34d", activity: "#fb923c",
-};
+type NavId  = typeof NAV_ITEMS[number]["id"];
+type Ripple = { id: number; x: number; y: number };
 
+/* ════════════════════════════════════════════════════════════════ */
 export default function Navbar() {
-  const [active, setActive]       = useState<keyof typeof palette>("home");
-  const [scrolled, setScrolled]   = useState(false);
-  const [hovered, setHovered]     = useState<string | null>(null);
-  type Ripple = { id: number; x: number; y: number };
-  const [ripples, setRipples]     = useState<Ripple[]>([]);
-  const [inkPos, setInkPos]       = useState({ left: 0, width: 0 });
-  const menuRef                   = useRef<HTMLDivElement>(null);
-  const itemRefs                  = useRef<Record<string, HTMLAnchorElement | null>>({});
+  const [active,   setActive]   = useState<NavId>("home");
+  const [scrolled, setScrolled] = useState(false);
+  const [hovered,  setHovered]  = useState<NavId | null>(null);
+  const [ripples,  setRipples]  = useState<Ripple[]>([]);
+  const [inkPos,   setInkPos]   = useState({ left: 0, width: 0 });
 
+  const menuRef  = useRef<HTMLDivElement>(null);
+  const itemRefs = useRef<Record<string, HTMLAnchorElement | null>>({});
+
+  /* ── scroll spy ── */
   useEffect(() => {
     const onScroll = () => {
       setScrolled(window.scrollY > 24);
-      navItems.forEach(({ id }) => {
+      for (const { id } of NAV_ITEMS) {
         const el = document.getElementById(id);
         if (el) {
           const r = el.getBoundingClientRect();
-          if (r.top <= 150 && r.bottom >= 150) setActive(id as keyof typeof palette);
+          if (r.top <= 120 && r.bottom >= 120) {
+            setActive(id);
+            break;
+          }
         }
-      });
+      }
     };
     window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  /* ── ink slider ── */
   useEffect(() => {
-    const el = itemRefs.current[active];
+    const el   = itemRefs.current[active];
     const menu = menuRef.current;
-    if (el && menu) {
-      const mr = menu.getBoundingClientRect();
-      const er = el.getBoundingClientRect();
-      setInkPos({ left: er.left - mr.left, width: er.width });
-    }
+    if (!el || !menu) return;
+    const mr = menu.getBoundingClientRect();
+    const er = el.getBoundingClientRect();
+    setInkPos({ left: er.left - mr.left, width: er.width });
   }, [active, scrolled]);
 
+  /* ── ripple ── */
   const fireRipple = (e: ReactMouseEvent<HTMLAnchorElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
-    const id = Date.now() + Math.random();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    setRipples(r => [...r, { id, x, y }]);
-    setTimeout(() => setRipples(r => r.filter(rp => rp.id !== id)), 700);
+    const rp: Ripple = {
+      id: Date.now() + Math.random(),
+      x:  e.clientX - rect.left,
+      y:  e.clientY - rect.top,
+    };
+    setRipples(prev => [...prev, rp]);
+    setTimeout(() => setRipples(prev => prev.filter(r => r.id !== rp.id)), 700);
   };
 
-  const color = palette[active] || "#a78bfa";
+  const activeColor = NAV_ITEMS.find(n => n.id === active)?.color ?? "#a78bfa";
+
+  /* ── transition string helper ── */
+  const T = (props: string[], dur = ".42s", ease = "cubic-bezier(.22,.68,0,1.2)") =>
+    props.map(p => `${p} ${dur} ${ease}`).join(", ");
 
   return (
     <>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
 
-        @keyframes navDrop {
-          from { opacity:0; transform:translateY(-16px) translateX(-50%) scale(.97); }
-          to   { opacity:1; transform:translateY(0)     translateX(-50%) scale(1); }
+        @keyframes navIn {
+          from { opacity:0; transform:translateX(-50%) translateY(-20px) scale(.95); }
+          to   { opacity:1; transform:translateX(-50%) translateY(0)     scale(1);   }
         }
         @keyframes rippleOut {
-          from { transform:scale(0);   opacity:.55; }
-          to   { transform:scale(4);   opacity:0; }
+          from { transform:scale(0); opacity:.5; }
+          to   { transform:scale(5); opacity:0;  }
         }
         @keyframes dotPulse {
           0%,100% { transform:scale(1);   opacity:.7; }
-          50%      { transform:scale(1.6); opacity:1; }
+          50%     { transform:scale(1.8); opacity:1;  }
         }
-        @keyframes shimmerFlow {
-          0%   { background-position: -200% center; }
-          100% { background-position:  200% center; }
+        @keyframes shimmer {
+          0%   { background-position:-200% center; }
+          100% { background-position: 200% center; }
         }
-        @keyframes glassGlow {
-          0%,100% { box-shadow: 0 8px 40px rgba(0,0,0,.55), 0 0 0px transparent; }
-          50%      { box-shadow: 0 8px 40px rgba(0,0,0,.55), 0 0 28px var(--nav-color); }
+        @keyframes glowBreath {
+          0%,100% { opacity:.6; }
+          50%     { opacity:1;  }
         }
-        * { box-sizing: border-box; }
+        * { box-sizing:border-box; }
       `}</style>
 
-      <nav
-        style={{
-          "--nav-color": color + "44",
-          position: "fixed",
-          top: scrolled ? 14 : 0,
-          left: "50%",
-          transform: "translateX(-50%)",
-          zIndex: 9999,
-          width: scrolled ? "auto" : "100%",
-          maxWidth: scrolled ? 780 : "100%",
-          minWidth: scrolled ? 0 : "100%",
-          borderRadius: scrolled ? 999 : 0,
-          padding: scrolled ? "0 28px" : "0 8%",
-          height: scrolled ? 54 : 66,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
+      {/* ── Bar ── */}
+      <div style={{
+        position:  "fixed",
+        top:       scrolled ? 14 : 0,
+        left:      "50%",
+        transform: "translateX(-50%)",
+        zIndex:    9000,
 
-          /* ── Liquid Glass ── */
-          background: "rgba(6, 6, 18, 0.42)",
-          backdropFilter:       "blur(32px) saturate(200%) brightness(1.08)",
-          WebkitBackdropFilter: "blur(32px) saturate(200%) brightness(1.08)",
+        width:    scrolled ? "auto"  : "100%",
+        maxWidth: scrolled ? 840     : "100%",
+        height:   scrolled ? 52      : 64,
+        borderRadius: scrolled ? 999 : 0,
+        padding:  scrolled ? "0 24px" : "0 5%",
 
-          border:       scrolled ? `1px solid ${color}35`     : `none`,
-          borderBottom: scrolled ? `1px solid ${color}35`     : `1px solid rgba(167,139,250,.1)`,
+        display: "flex", alignItems: "center", justifyContent: "center",
 
-          /* Glass highlight on top edge */
-          boxShadow: scrolled
-            ? `0 8px 48px rgba(0,0,0,.6), 0 1px 0 rgba(255,255,255,.07) inset, 0 0 0 0.5px ${color}20`
-            : `0 1px 0 rgba(255,255,255,.05) inset`,
+        /* liquid glass */
+        background:           "rgba(5,5,16,.46)",
+        backdropFilter:       "blur(30px) saturate(190%) brightness(1.07)",
+        WebkitBackdropFilter: "blur(30px) saturate(190%) brightness(1.07)",
 
-          transition: "top .45s cubic-bezier(.22,.68,0,1.2), width .45s cubic-bezier(.22,.68,0,1.2), border-radius .45s, height .35s, border-color .4s, box-shadow .4s, padding .35s",
-          animation: scrolled
-            ? `glassGlow 5s ease-in-out infinite`
-            : "none",
-        } as React.CSSProperties & Record<string, any>}
-      >
+        border:       scrolled ? `1px solid ${activeColor}26`        : "none",
+        borderBottom: scrolled ? "none"                               : "1px solid rgba(167,139,250,.08)",
 
-        {/* Top shimmer (scrolled only) */}
+        boxShadow: scrolled
+          ? `0 10px 50px rgba(0,0,0,.7), inset 0 1px 0 rgba(255,255,255,.08), 0 0 0 .5px ${activeColor}18`
+          : `inset 0 -1px 0 rgba(255,255,255,.04)`,
+
+        animation: scrolled ? "navIn .38s cubic-bezier(.22,.68,0,1.2) both" : "none",
+
+        transition: T(
+          ["top","width","max-width","height","border-radius","border-color","box-shadow","padding"],
+          ".4s"
+        ),
+      } as React.CSSProperties}>
+
+        {/* shimmer edge — pill mode */}
         {scrolled && (
           <div style={{
-            position: "absolute", top: 0, left: "15%", right: "15%", height: 1,
-            background: `linear-gradient(90deg, transparent, ${color}, rgba(255,255,255,.3), ${color}, transparent)`,
+            position: "absolute", top: 0, left: "10%", right: "10%", height: 1.5,
+            borderRadius: 1, pointerEvents: "none",
+            background: `linear-gradient(90deg,transparent,${activeColor},rgba(255,255,255,.22),${activeColor},transparent)`,
             backgroundSize: "200% 100%",
-            animation: "shimmerFlow 3.5s linear infinite",
-            borderRadius: 1,
-            pointerEvents: "none",
+            animation: "shimmer 3.5s linear infinite",
           }}/>
         )}
 
-        {/* Bottom line (full width) */}
+        {/* bottom rule — full-width mode */}
         {!scrolled && (
           <div style={{
             position: "absolute", bottom: 0, left: 0, right: 0, height: 1,
-            background: `linear-gradient(90deg, transparent 0%, ${color}88 50%, transparent 100%)`,
-            transition: "background .4s",
             pointerEvents: "none",
+            background: `linear-gradient(90deg,transparent,${activeColor}55 50%,transparent)`,
+            transition: "background .4s",
           }}/>
         )}
 
-        {/* ── Menu ── */}
-        <div
-          ref={menuRef}
-          style={{
-            position: "relative",
-            display: "flex",
-            alignItems: "center",
-            gap: 2,
-          }}
-        >
-          {/* Ink pill */}
-          <div
-            aria-hidden
-            style={{
-              position: "absolute",
-              top: "50%",
-              left: inkPos.left,
-              width: inkPos.width,
-              height: 36,
-              transform: "translateY(-50%)",
-              borderRadius: 999,
-              background: `linear-gradient(135deg, ${color}28, ${color}14)`,
-              border: `1px solid ${color}55`,
-              backdropFilter: "blur(8px)",
-              boxShadow: `0 0 22px ${color}44, inset 0 1px 0 rgba(255,255,255,.12)`,
-              transition: "left .48s cubic-bezier(.22,.68,0,1.2), width .48s cubic-bezier(.22,.68,0,1.2), background .4s, border-color .4s, box-shadow .4s",
-              pointerEvents: "none",
-              zIndex: 0,
-            }}
-          />
+        {/* ── Menu strip ── */}
+        <div ref={menuRef} style={{ position: "relative", display: "flex", alignItems: "center", gap: 1 }}>
 
-          {navItems.map(({ id, label, rune }) => {
+          {/* sliding ink pill */}
+          <div aria-hidden style={{
+            position: "absolute",
+            top: "50%", left: inkPos.left, width: inkPos.width, height: 35,
+            transform: "translateY(-50%)",
+            borderRadius: 999,
+            background: `linear-gradient(135deg,${activeColor}22,${activeColor}0e)`,
+            border: `1px solid ${activeColor}40`,
+            backdropFilter: "blur(8px)",
+            boxShadow: `0 0 20px ${activeColor}2e, inset 0 1px 0 rgba(255,255,255,.1)`,
+            transition: T(["left","width"], ".46s") + ", " +
+              T(["background","border-color","box-shadow"], ".36s", "ease"),
+            pointerEvents: "none", zIndex: 0,
+          }}/>
+
+          {/* items */}
+          {NAV_ITEMS.map(({ id, label, rune, color }) => {
             const isActive  = active  === id;
             const isHovered = hovered === id;
-            const c         = isActive ? color : isHovered ? "rgba(255,255,255,.7)" : "rgba(255,255,255,.32)";
 
             return (
               <a
@@ -194,63 +188,57 @@ export default function Navbar() {
                 ref={el => { itemRefs.current[id] = el; }}
                 onMouseEnter={() => setHovered(id)}
                 onMouseLeave={() => setHovered(null)}
-                onClick={e => { setActive(id as keyof typeof palette); fireRipple(e); }}
+                onClick={e => { setActive(id); fireRipple(e); }}
                 style={{
-                  position: "relative",
-                  zIndex: 1,
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 5,
-                  padding: "7px 14px",
-                  borderRadius: 999,
-                  textDecoration: "none",
+                  position: "relative", zIndex: 1,
+                  display: "flex", alignItems: "center", gap: 5,
+                  padding: "7px 15px", borderRadius: 999,
+                  textDecoration: "none", overflow: "hidden",
+                  userSelect: "none", cursor: "pointer",
+
                   fontFamily: "'Space Mono', monospace",
-                  fontSize: "clamp(10px, 1.1vw, 12px)",
+                  fontSize:   "clamp(9.5px, 1.05vw, 11.5px)",
                   fontWeight: isActive ? 700 : 400,
-                  color: c,
-                  letterSpacing: isActive ? "0.09em" : "0.04em",
+                  letterSpacing: isActive ? ".09em" : ".04em",
                   whiteSpace: "nowrap",
-                  overflow: "hidden",
-                  userSelect: "none",
-                  transition: "color .3s, letter-spacing .3s",
-                  textShadow: isActive ? `0 0 14px ${color}bb` : "none",
+
+                  color: isActive ? color
+                    : isHovered   ? "rgba(255,255,255,.72)"
+                    :               "rgba(255,255,255,.28)",
+                  textShadow: isActive ? `0 0 18px ${color}cc` : "none",
+
+                  transition: "color .28s ease, letter-spacing .28s ease, text-shadow .28s ease",
                 }}
               >
-                {/* Rune */}
+                {/* rune */}
                 <span style={{
-                  fontSize: 10,
-                  opacity: isActive ? 1 : isHovered ? 0.55 : 0.2,
-                  color: isActive ? color : "inherit",
-                  transition: "opacity .3s",
-                  lineHeight: 1,
+                  fontSize: 9, fontFamily: "serif", lineHeight: 1, letterSpacing: 0,
+                  opacity:  isActive ? 1 : isHovered ? .42 : .16,
+                  color:    isActive ? color : "inherit",
+                  transition: "opacity .28s, color .28s",
                 }}>
                   {rune}
                 </span>
 
                 {label}
 
-                {/* Active dot */}
+                {/* active pulse dot */}
                 {isActive && (
                   <span style={{
-                    width: 4, height: 4, borderRadius: "50%",
-                    background: color,
-                    boxShadow: `0 0 8px ${color}`,
-                    flexShrink: 0,
-                    marginLeft: 1,
+                    width: 4, height: 4, borderRadius: "50%", flexShrink: 0, marginLeft: 2,
+                    background: color, boxShadow: `0 0 8px ${color}`,
                     display: "inline-block",
-                    animation: "dotPulse 2.2s ease-in-out infinite",
+                    animation: "dotPulse 2.5s ease-in-out infinite",
                   }}/>
                 )}
 
-                {/* Click ripple */}
+                {/* click ripples */}
                 {ripples.map(rp => (
                   <span key={rp.id} style={{
                     position: "absolute",
-                    left: rp.x - 10, top: rp.y - 10,
-                    width: 20, height: 20,
-                    borderRadius: "50%",
-                    background: `${color}55`,
-                    pointerEvents: "none",
+                    left: rp.x - 12, top: rp.y - 12,
+                    width: 24, height: 24, borderRadius: "50%",
+                    background: `${color}40`, pointerEvents: "none",
                     animation: "rippleOut .65s ease forwards",
                   }}/>
                 ))}
@@ -258,7 +246,7 @@ export default function Navbar() {
             );
           })}
         </div>
-      </nav>
+      </div>
     </>
   );
 }
