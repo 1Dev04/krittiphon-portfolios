@@ -1,6 +1,5 @@
-
-
 import { useState, useRef, useEffect, useCallback } from "react"
+
 
 const cinzel = { fontFamily: "'Cinzel', serif" }
 const mono = { fontFamily: "'Courier New', monospace" }
@@ -47,135 +46,7 @@ const DEFAULT_FAQS: FAQ[] = [
   },
 ]
 
-// ─── Background: Orbs + Grid + Stars (matching Certificate page) ──────────────
-function CosmicBackground() {
-  return (
-    <div style={{ position: "absolute", inset: 0, overflow: "hidden", pointerEvents: "none", zIndex: 0 }}>
-      <style>{`
-        @keyframes orbPulse {
-          0%, 100% { opacity: 0.55; transform: scale(1); }
-          50%       { opacity: 0.75; transform: scale(1.06); }
-        }
-        @keyframes orbPulse2 {
-          0%, 100% { opacity: 0.35; transform: scale(1); }
-          50%       { opacity: 0.55; transform: scale(1.04); }
-        }
-        @keyframes twinkle {
-          0%, 100% { opacity: 0.15; transform: scale(0.8); }
-          50%       { opacity: 1;    transform: scale(1.5); }
-        }
-      `}</style>
-
-      {/* ── Base deep navy-purple gradient ── */}
-      <div style={{
-        position: "absolute", inset: 0,
-        background: "linear-gradient(135deg, #0d0a2e 0%, #100c38 30%, #0a0824 60%, #0c0930 100%)",
-      }} />
-
-      {/* ── Grid lines ── */}
-      <div style={{
-        position: "absolute", inset: 0,
-        backgroundImage: `
-          linear-gradient(rgba(109,40,217,0.07) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(109,40,217,0.07) 1px, transparent 1px)
-        `,
-        backgroundSize: "72px 72px",
-      }} />
-
-      {/* ── Left large orb (purple) ── */}
-      <div style={{
-        position: "absolute",
-        left: "-8vw", top: "5%",
-        width: "38vw", height: "38vw",
-        maxWidth: 520, maxHeight: 520,
-        borderRadius: "50%",
-        background: "radial-gradient(circle at 40% 40%, rgba(139,92,246,0.38) 0%, rgba(109,40,217,0.18) 45%, transparent 70%)",
-        border: "1px solid rgba(139,92,246,0.18)",
-        animation: "orbPulse 7s ease-in-out infinite",
-        boxShadow: "0 0 80px rgba(109,40,217,0.2) inset, 0 0 120px rgba(109,40,217,0.12)",
-      }} />
-
-      {/* ── Left orb inner ring ── */}
-      <div style={{
-        position: "absolute",
-        left: "-4vw", top: "9%",
-        width: "28vw", height: "28vw",
-        maxWidth: 380, maxHeight: 380,
-        borderRadius: "50%",
-        border: "1px solid rgba(139,92,246,0.12)",
-        animation: "orbPulse 9s 1s ease-in-out infinite",
-      }} />
-
-      {/* ── Right large orb (teal/indigo) ── */}
-      <div style={{
-        position: "absolute",
-        right: "-6vw", top: "-2%",
-        width: "30vw", height: "30vw",
-        maxWidth: 430, maxHeight: 430,
-        borderRadius: "50%",
-        background: "radial-gradient(circle at 60% 35%, rgba(56,189,248,0.18) 0%, rgba(99,102,241,0.22) 40%, rgba(109,40,217,0.3) 65%, transparent 80%)",
-        border: "1px solid rgba(99,102,241,0.2)",
-        animation: "orbPulse2 8s 0.5s ease-in-out infinite",
-        boxShadow: "0 0 100px rgba(99,102,241,0.15) inset",
-      }} />
-
-      {/* ── Right orb outer ring ── */}
-      <div style={{
-        position: "absolute",
-        right: "-10vw", top: "-5%",
-        width: "38vw", height: "38vw",
-        maxWidth: 520, maxHeight: 520,
-        borderRadius: "50%",
-        border: "1px solid rgba(99,102,241,0.1)",
-        animation: "orbPulse2 10s 2s ease-in-out infinite",
-      }} />
-
-      {/* ── Subtle center nebula glow ── */}
-      <div style={{
-        position: "absolute",
-        left: "50%", top: "30%",
-        transform: "translate(-50%, -50%)",
-        width: "60vw", height: "40vw",
-        borderRadius: "50%",
-        background: "radial-gradient(ellipse, rgba(109,40,217,0.06) 0%, transparent 70%)",
-      }} />
-
-      {/* ── Stars ── */}
-      {[
-        { left: "18%",  top: "12%",  s: 2,   d: 0,   c: "#c4b5fd" },
-        { left: "35%",  top: "7%",   s: 1.5, d: 1.2, c: "#7dd3fc" },
-        { left: "52%",  top: "18%",  s: 2.5, d: 2.1, c: "#c4b5fd" },
-        { left: "66%",  top: "10%",  s: 1.5, d: 0.8, c: "#f9a8d4" },
-        { left: "78%",  top: "22%",  s: 2,   d: 3,   c: "#7dd3fc" },
-        { left: "42%",  top: "35%",  s: 1,   d: 1.5, c: "#c4b5fd" },
-        { left: "24%",  top: "45%",  s: 2,   d: 4,   c: "#6ee7b7" },
-        { left: "60%",  top: "50%",  s: 1.5, d: 0.3, c: "#c4b5fd" },
-        { left: "82%",  top: "55%",  s: 2,   d: 2.5, c: "#7dd3fc" },
-        { left: "12%",  top: "60%",  s: 1.5, d: 1.8, c: "#f9a8d4" },
-        { left: "47%",  top: "70%",  s: 2.5, d: 3.5, c: "#c4b5fd" },
-        { left: "30%",  top: "80%",  s: 1,   d: 0.6, c: "#7dd3fc" },
-        { left: "72%",  top: "75%",  s: 2,   d: 4.2, c: "#c4b5fd" },
-        { left: "88%",  top: "82%",  s: 1.5, d: 1.1, c: "#6ee7b7" },
-        { left: "56%",  top: "88%",  s: 2,   d: 2.8, c: "#f9a8d4" },
-        { left: "8%",   top: "30%",  s: 1.5, d: 0.9, c: "#c4b5fd" },
-        { left: "91%",  top: "40%",  s: 1,   d: 3.3, c: "#7dd3fc" },
-        { left: "38%",  top: "92%",  s: 2,   d: 1.7, c: "#c4b5fd" },
-        { left: "74%",  top: "95%",  s: 1.5, d: 0.4, c: "#f9a8d4" },
-        { left: "20%",  top: "96%",  s: 1,   d: 2.2, c: "#7dd3fc" },
-      ].map((star, i) => (
-        <div key={i} style={{
-          position: "absolute",
-          left: star.left, top: star.top,
-          width: star.s, height: star.s,
-          borderRadius: "50%",
-          background: star.c,
-          boxShadow: `0 0 ${star.s * 3}px ${star.c}`,
-          animation: `twinkle ${2.5 + (i % 4) * 0.8}s ${star.d}s ease-in-out infinite`,
-        }} />
-      ))}
-    </div>
-  )
-}
+// background matches ProjectPage exactly — #05050e base, 64px grid, orbF orbs, scan line, star dots
 
 // ─── Portal Canvas Overlay ────────────────────────────────────────────────────
 function PortalOverlay({
@@ -206,7 +77,6 @@ function PortalOverlay({
     const draw = (now: number) => {
       const t = Math.min((now - startTime) / DURATION, 1)
       ctx.clearRect(0, 0, canvas.width, canvas.height)
-
       const vAlpha = Math.sin(t * Math.PI) * 0.6
       const vGrad = ctx.createRadialGradient(x, y, 0, x, y, maxR)
       vGrad.addColorStop(0, `rgba(0,0,0,0)`)
@@ -214,7 +84,6 @@ function PortalOverlay({
       vGrad.addColorStop(1, `rgba(6,4,20,${vAlpha})`)
       ctx.fillStyle = vGrad
       ctx.fillRect(0, 0, canvas.width, canvas.height)
-
       const swirlT = Math.sin(t * Math.PI)
       for (let r = 0; r < 14; r++) {
         const angle = (r / 14) * Math.PI * 2 + t * Math.PI * 5
@@ -231,7 +100,6 @@ function PortalOverlay({
         ctx.stroke()
         ctx.restore()
       }
-
       for (let i = 0; i < 8; i++) {
         const phase = ((i / 8) + t * 1.1) % 1
         const r = (1 - Math.pow(1 - phase, 2.2)) * maxR
@@ -243,7 +111,6 @@ function PortalOverlay({
         ctx.lineWidth = 2.5
         ctx.stroke()
       }
-
       for (let i = 0; i < 5; i++) {
         const wR = (14 + i * 16) + Math.sin(t * Math.PI * 8 + i * 1.2) * 6
         const wA = swirlT * (0.55 - i * 0.09)
@@ -253,7 +120,6 @@ function PortalOverlay({
         ctx.lineWidth = 2
         ctx.stroke()
       }
-
       const coreR = 60 + Math.sin(t * Math.PI * 4) * 18
       const coreGrad = ctx.createRadialGradient(x, y, 0, x, y, coreR)
       coreGrad.addColorStop(0, `rgba(200,180,255,${swirlT})`)
@@ -263,7 +129,6 @@ function PortalOverlay({
       ctx.beginPath()
       ctx.arc(x, y, coreR, 0, Math.PI * 2)
       ctx.fill()
-
       if (t < 1) {
         rafRef.current = requestAnimationFrame(draw)
       } else {
@@ -271,7 +136,6 @@ function PortalOverlay({
         onDone()
       }
     }
-
     rafRef.current = requestAnimationFrame(draw)
     return () => cancelAnimationFrame(rafRef.current)
   }, [active])
@@ -428,8 +292,8 @@ function FAQCarousel({ faqs }: { faqs: FAQ[] }) {
           to   { transform: translateX(-${totalWidth}px) translateZ(0); }
         }
       `}</style>
-      <div style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: 80, background: "linear-gradient(90deg, #0d0a2e, transparent)", zIndex: 2, pointerEvents: "none" }} />
-      <div style={{ position: "absolute", right: 0, top: 0, bottom: 0, width: 80, background: "linear-gradient(270deg, #0d0a2e, transparent)", zIndex: 2, pointerEvents: "none" }} />
+      <div style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: 80, background: "linear-gradient(90deg, rgba(5,5,14,0.95), transparent)", zIndex: 2, pointerEvents: "none" }} />
+      <div style={{ position: "absolute", right: 0, top: 0, bottom: 0, width: 80, background: "linear-gradient(270deg, rgba(5,5,14,0.95), transparent)", zIndex: 2, pointerEvents: "none" }} />
       <div style={{ padding: "0 80px 20px" }}>
         <div style={{
           display: "flex", gap: 20, width: "max-content",
@@ -453,11 +317,15 @@ function FAQCard({ faq, color, onOpen, onClose }: { faq: FAQ; color: string; onO
   return (
     <div onClick={toggle} style={{
       width: 280, flexShrink: 0,
-      background: open ? "linear-gradient(135deg, rgba(15,10,40,0.98), rgba(30,15,60,0.98))" : "linear-gradient(135deg, rgba(10,8,30,0.9), rgba(20,12,50,0.9))",
-      border: `1px solid ${open ? color + "88" : color + "33"}`,
+      background: open
+        ? "linear-gradient(135deg, rgba(15,10,40,0.85), rgba(30,15,60,0.85))"
+        : "linear-gradient(135deg, rgba(10,8,30,0.6), rgba(20,12,50,0.6))",
+      border: `1px solid ${open ? color + "88" : color + "28"}`,
       borderRadius: 16, padding: "22px 20px", cursor: "pointer",
-      transition: "border-color 0.35s ease, box-shadow 0.35s ease",
-      boxShadow: open ? `0 0 30px ${color}22, 0 20px 40px rgba(0,0,0,0.5)` : "0 4px 20px rgba(0,0,0,0.3)",
+      transition: "border-color 0.35s ease, box-shadow 0.35s ease, background 0.35s ease",
+      boxShadow: open ? `0 0 30px ${color}22, 0 20px 40px rgba(0,0,0,0.4)` : "0 4px 20px rgba(0,0,0,0.2)",
+      backdropFilter: "blur(12px)",
+      WebkitBackdropFilter: "blur(12px)",
       userSelect: "none", position: "relative", overflow: "hidden", isolation: "isolate",
     }}>
       <div style={{ position: "absolute", top: 0, left: "15%", right: "15%", height: 1, background: `linear-gradient(90deg, transparent, ${color}88, transparent)`, opacity: open ? 1 : 0.3, transition: "opacity 0.35s ease" }} />
@@ -509,11 +377,11 @@ export default function ActivitiePage({
         position: "relative",
         padding: "80px 0 120px",
         overflow: "hidden",
-        // ── Transparent so CosmicBackground shows through ──
-        background: "transparent",
+        backgroundColor: "#05050e",
+        background: "linear-gradient(180deg,#05050e 0%,#070714 100%)",
+        isolation: "isolate",
       }}
     >
-      {/* ── Keyframe styles ── */}
       <style>{`
         @keyframes sectionReveal {
           from { opacity: 0; transform: translateY(24px) translateZ(0); }
@@ -528,15 +396,55 @@ export default function ActivitiePage({
           50%  { background-position: 100% 50%; }
           100% { background-position: 0% 50%; }
         }
+        @keyframes orbF {
+          0%,100% { transform: translate(0,0); }
+          50%     { transform: translate(14px,-14px); }
+        }
+        @keyframes scan {
+          0%   { top: -5%; }
+          100% { top: 105%; }
+        }
       `}</style>
 
-      {/* ── Cosmic background layer ── */}
-      <CosmicBackground />
+      {/* ── Grid lines (same as Project) ── */}
+      <div style={{ position: "absolute", inset: 0, pointerEvents: "none", zIndex: 0,
+        backgroundImage: `linear-gradient(rgba(167,139,250,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(167,139,250,.025) 1px,transparent 1px)`,
+        backgroundSize: "64px 64px",
+      }}/>
+
+      {/* ── Orbs (same as Project) ── */}
+      <div style={{ position: "absolute", width: 600, height: 600, top: "-20%", right: "-10%",
+        borderRadius: "50%", filter: "blur(90px)",
+        background: "rgba(124,58,237,.12)", animation: "orbF 16s ease-in-out infinite", pointerEvents: "none",
+      }}/>
+      <div style={{ position: "absolute", width: 500, height: 500, bottom: "-5%", left: "-12%",
+        borderRadius: "50%", filter: "blur(80px)",
+        background: "rgba(6,182,212,.09)", animation: "orbF 20s ease-in-out 5s infinite", pointerEvents: "none",
+      }}/>
+
+      {/* ── Scan line (same as Project) ── */}
+      <div style={{ position: "absolute", left: 0, right: 0, height: 2,
+        background: "linear-gradient(90deg,transparent,rgba(167,139,250,.18),transparent)",
+        animation: "scan 11s linear infinite", pointerEvents: "none", zIndex: 2,
+      }}/>
+
+      {/* ── Floating dots (same as Project) ── */}
+      {Array.from({ length: 14 }, (_, i) => (
+        <div key={i} style={{
+          position: "absolute",
+          left: `${(i * 71.3) % 100}%`, top: `${(i * 43.7) % 100}%`,
+          width: (i % 2) + 1, height: (i % 2) + 1,
+          borderRadius: "50%",
+          background: ["#a78bfa","#67e8f9","#86efac","#fda4af","#fcd34d"][i % 5],
+          boxShadow: `0 0 ${(i % 2 + 1) * 4}px ${["#a78bfa","#67e8f9","#86efac","#fda4af","#fcd34d"][i % 5]}`,
+          animation: `orbF ${5 + i % 6}s ease-in-out ${(i * 0.3) % 5}s infinite`,
+          pointerEvents: "none",
+        }}/>
+      ))}
 
       <PortalOverlay active={portalActive} origin={portalOrigin} onDone={handlePortalDone} />
       <ImageModal src={expandedSrc} onClose={() => setExpandedSrc(null)} />
 
-      {/* ── All content sits above background (z-index: 1) ── */}
       <div style={{ position: "relative", zIndex: 1 }}>
 
         {/* Header */}
