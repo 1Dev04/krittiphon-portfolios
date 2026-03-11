@@ -268,7 +268,7 @@ export default function SkillPage() {
         ::-webkit-scrollbar-thumb { background:#a78bfa33; border-radius:3px; }
       `}</style>
 
-            <section id="skill" style={{
+            <section id="skills" style={{
                 minHeight: "100vh",
                 background: "linear-gradient(180deg, #05050e 0%, #080816 100%)",
                 padding: "90px 8% 80px",

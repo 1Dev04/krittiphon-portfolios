@@ -2,27 +2,27 @@ import { useEffect, useState, useRef } from "react";
 import type { MouseEvent as ReactMouseEvent } from "react";
 
 const NAV_ITEMS = [
-  { id: "home",        label: "Home",        rune: "ᚠ", color: "#a78bfa" },
-  { id: "about",       label: "About",       rune: "ᚢ", color: "#67e8f9" },
-  { id: "project",     label: "Projects",    rune: "ᚦ", color: "#86efac" },
-  { id: "skill",       label: "Skills",      rune: "ᚨ", color: "#fda4af" },
-  { id: "certificate", label: "Certificate", rune: "ᚱ", color: "#fcd34d" },
-  { id: "activity",    label: "Activity",    rune: "ᚲ", color: "#fb923c" },
+  { id: "profile",            label: "Profile",            rune: "ᚠ", color: "#a78bfa" },
+  { id: "award-certificates", label: "Award & Certificates", rune: "ᚢ", color: "#67e8f9" },
+  { id: "experiances",        label: "Experiances",        rune: "ᚦ", color: "#86efac" },
+  { id: "projects-reference", label: "Projects Reference", rune: "ᚨ", color: "#fda4af" },
+  { id: "skills",             label: "Skills",             rune: "ᚱ", color: "#fcd34d" },
+  { id: "other-activites",    label: "Other Activites",    rune: "ᚲ", color: "#fb923c" },
 ] as const;
 
 type NavId  = typeof NAV_ITEMS[number]["id"];
 type Ripple = { id: number; x: number; y: number };
 
-const BREAKPOINT = 720; // px — below this → hamburger
+const BREAKPOINT = 720;
 
 export default function Navbar() {
-  const [active,    setActive]   = useState<NavId>("home");
-  const [scrolled,  setScrolled] = useState(false);
-  const [hovered,   setHovered]  = useState<NavId | null>(null);
-  const [ripples,   setRipples]  = useState<Ripple[]>([]);
-  const [inkPos,    setInkPos]   = useState({ left: 0, width: 0 });
-  const [menuOpen,  setMenuOpen] = useState(false);   // mobile drawer
-  const [isMobile,  setIsMobile] = useState(false);   // viewport check
+  const [active,   setActive]   = useState<NavId>("profile");
+  const [scrolled, setScrolled] = useState(false);
+  const [hovered,  setHovered]  = useState<NavId | null>(null);
+  const [ripples,  setRipples]  = useState<Ripple[]>([]);
+  const [inkPos,   setInkPos]   = useState({ left: 0, width: 0 });
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   const menuRef  = useRef<HTMLDivElement>(null);
   const itemRefs = useRef<Record<string, HTMLAnchorElement | null>>({});
@@ -38,6 +38,28 @@ export default function Navbar() {
   /* ── close drawer on resize to desktop ── */
   useEffect(() => { if (!isMobile) setMenuOpen(false); }, [isMobile]);
 
+  /* ── sync active from URL hash on mount ── */
+  useEffect(() => {
+    const hash = window.location.hash.replace("#", "") as NavId;
+    if (hash && NAV_ITEMS.some(n => n.id === hash)) {
+      setActive(hash);
+    }
+  }, []);
+
+  /* ── listen for popstate (back/forward navigation) ── */
+  useEffect(() => {
+    const onPopState = () => {
+      const hash = window.location.hash.replace("#", "") as NavId;
+      if (hash && NAV_ITEMS.some(n => n.id === hash)) {
+        setActive(hash);
+        const el = document.getElementById(hash);
+        el?.scrollIntoView({ behavior: "smooth" });
+      }
+    };
+    window.addEventListener("popstate", onPopState);
+    return () => window.removeEventListener("popstate", onPopState);
+  }, []);
+
   /* ── scroll spy ── */
   useEffect(() => {
     const onScroll = () => {
@@ -46,7 +68,15 @@ export default function Navbar() {
         const el = document.getElementById(id);
         if (el) {
           const r = el.getBoundingClientRect();
-          if (r.top <= 120 && r.bottom >= 120) { setActive(id); break; }
+          if (r.top <= 120 && r.bottom >= 120) {
+            setActive(id);
+            // update URL hash without triggering a page jump
+            const newHash = `#${id}`;
+            if (window.location.hash !== newHash) {
+              window.history.replaceState(null, "", newHash);
+            }
+            break;
+          }
         }
       }
     };
@@ -75,18 +105,26 @@ export default function Navbar() {
   };
 
   const handleNavClick = (id: NavId, e: ReactMouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault(); // prevent default jump
     setActive(id);
     fireRipple(e);
     setMenuOpen(false);
+
+    // push a new history entry with the hash
+    window.history.pushState(null, "", `#${id}`);
+
+    // smooth scroll to the section
+    const target = document.getElementById(id);
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth" });
+    }
   };
 
   const activeColor = NAV_ITEMS.find(n => n.id === active)?.color ?? "#a78bfa";
   const T = (props: string[], dur = ".42s", ease = "cubic-bezier(.22,.68,0,1.2)") =>
     props.map(p => `${p} ${dur} ${ease}`).join(", ");
 
-  /* ══════════════════════════════════════════════════════════════
-     SHARED bar styles
-  ══════════════════════════════════════════════════════════════ */
+  /* ── bar styles ── */
   const barStyle: React.CSSProperties = {
     position:  "fixed",
     top:       scrolled && !isMobile ? 14 : 0,
@@ -155,7 +193,6 @@ export default function Navbar() {
         {/* ══ MOBILE: logo word + hamburger ══ */}
         {isMobile && (
           <>
-            {/* wordmark */}
             <span style={{
               fontFamily:"'Space Mono',monospace", fontWeight:700, fontSize:12,
               letterSpacing:".18em", color: activeColor,
@@ -165,7 +202,6 @@ export default function Navbar() {
               {NAV_ITEMS.find(n => n.id === active)?.rune ?? "ᚠ"}&nbsp;1DEV
             </span>
 
-            {/* hamburger button */}
             <button
               aria-label={menuOpen ? "Close menu" : "Open menu"}
               onClick={() => setMenuOpen(o => !o)}
@@ -318,7 +354,6 @@ export default function Navbar() {
                     animation:`drawerIn .3s ${i * 0.04}s ease both`,
                   }}
                 >
-                  {/* rune badge */}
                   <span style={{
                     width:28, height:28, borderRadius:8, flexShrink:0,
                     display:"flex", alignItems:"center", justifyContent:"center",

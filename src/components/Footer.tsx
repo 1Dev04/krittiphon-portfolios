@@ -1,4 +1,5 @@
 
+
 import React from "react";
 
 const cinzel = { style: { fontFamily: "'Cinzel', serif" } };
@@ -26,7 +27,7 @@ const Footer: React.FC<FooterProps> = ({ recordCount = 0 }) => {
       }}
     >
       <a
-        href="/#home"
+        href="/#profile"
         style={{
           display: "flex",
           alignItems: "center",
@@ -45,12 +46,13 @@ const Footer: React.FC<FooterProps> = ({ recordCount = 0 }) => {
       <div
         style={{
           fontSize: 11,
+          fontWeight: "bold",
           color: "rgba(107,95,160,0.5)",
           fontFamily: "'Courier New', monospace",
           letterSpacing: "0.2em",
         }}
       >
-        {recordCount > 0 ? `${recordCount} · ` : ""}Build By Krittiphon Yoonaitham
+        {recordCount > 0 ? `${recordCount} · ` : ""}V. 1.0.0
       </div>
     </div>
   );

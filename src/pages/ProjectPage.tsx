@@ -305,7 +305,7 @@ const ProjectPage: React.FC = () => {
         *{box-sizing:border-box;margin:0;padding:0}
       `}</style>
 
-      <section id="project" style={{ minHeight: "100vh", background: "linear-gradient(180deg,#05050e 0%,#070714 100%)", padding: "100px 0 80px", position: "relative", overflow: "hidden", fontFamily: "'Space Mono',monospace " , fontSize: "clamp(44px,7vw,80px)"}}>
+      <section id="projects-reference" style={{ minHeight: "100vh", background: "linear-gradient(180deg,#05050e 0%,#070714 100%)", padding: "100px 0 80px", position: "relative", overflow: "hidden", fontFamily: "'Space Mono',monospace " , fontSize: "clamp(44px,7vw,80px)"}}>
         <div style={{ position: "absolute", inset: 0, pointerEvents: "none", backgroundImage: `linear-gradient(rgba(167,139,250,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(167,139,250,.025) 1px,transparent 1px)`, backgroundSize: "64px 64px" }}/>
         <div style={{ position: "absolute", width: 600, height: 600, top: "-20%", right: "-10%", borderRadius: "50%", filter: "blur(90px)", background: "rgba(124,58,237,.12)", animation: "orbF 16s ease-in-out infinite", pointerEvents: "none" }}/>
         <div style={{ position: "absolute", width: 500, height: 500, bottom: "-5%", left: "-12%", borderRadius: "50%", filter: "blur(80px)", background: "rgba(6,182,212,.09)", animation: "orbF 20s ease-in-out 5s infinite", pointerEvents: "none" }}/>
@@ -367,6 +367,8 @@ const ProjectPage: React.FC = () => {
         </div>
 
         <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: 80, background: "linear-gradient(transparent,#05050e)", pointerEvents: "none" }}/>
+      
+            
       </section>
 
       {modal && <Modal item={modal} lang={lang} onClose={() => setModal(null)}/>}

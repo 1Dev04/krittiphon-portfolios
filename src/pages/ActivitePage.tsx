@@ -371,7 +371,7 @@ export default function ActivitiePage({
 
   return (
     <section
-      id="activity"
+      id="other-activites"
       style={{
         minHeight: "100vh",
         position: "relative",
