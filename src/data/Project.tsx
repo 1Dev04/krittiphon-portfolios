@@ -125,7 +125,7 @@ export const projects: ProjectItem[] = [
             }
         ],
         img: "https://res.cloudinary.com/dag73dhpl/image/upload/v1772549606/%E0%B8%AA%E0%B8%B3%E0%B9%80%E0%B8%99%E0%B8%B2%E0%B8%82%E0%B8%AD%E0%B8%87_Season_lpgf0l.png",
-        link: "https://smsmkt.com/",
+        link: "https://drive.google.com/file/d/1oKBXh0VweRcpNrJnKiVO9IPsj8aA9T7V/view?usp=sharing",
         youtube: "",
         github: "",
     },
