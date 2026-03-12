@@ -52,7 +52,7 @@ const Footer: React.FC<FooterProps> = ({ recordCount = 0 }) => {
           letterSpacing: "0.2em",
         }}
       >
-        {recordCount > 0 ? `${recordCount} · ` : ""}V. 1.0.0
+        {recordCount > 0 ? `${recordCount} · ` : ""}V. 2.0.0
       </div>
     </div>
   );
