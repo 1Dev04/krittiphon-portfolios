@@ -185,7 +185,7 @@ export default function Navbar() {
               textShadow: isDark ? `0 0 20px ${activeColor}99` : "none",
               transition:"color .35s, text-shadow .35s",
             }}>
-              {activeItem.rune}&nbsp;FOLIO
+              {activeItem.rune}&nbsp;1DEV
             </span>
 
             <div style={{ display:"flex", alignItems:"center", gap:8 }}>
