@@ -6,8 +6,9 @@ import ProfilePage from '../pages/ProfilePage';
 import AwardAndCertificatePage from '../pages/AwardAndCertificatePage';
 import ExperiancePage from '../pages/Experiance';
 import ProjectPage from '../pages/ProjectPage';
+import ProjectFeaturePage from '../pages/FeatureProject';
 import SkillPage from '../pages/SkillPage';
-import ActivitiePage  from '../pages/ActivitePage';
+import QAPage  from '../pages/QA';
 
 
 const Body: React.FC = () => {
@@ -18,8 +19,9 @@ const Body: React.FC = () => {
             <AwardAndCertificatePage />
             <ExperiancePage />
             <ProjectPage />
+            <ProjectFeaturePage />
             <SkillPage />
-            <ActivitiePage />
+            <QAPage />
         </main>
 
     )

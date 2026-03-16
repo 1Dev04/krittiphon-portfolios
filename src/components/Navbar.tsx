@@ -1,21 +1,34 @@
 import { useEffect, useState, useRef } from "react";
 import type { MouseEvent as ReactMouseEvent } from "react";
+import { useTheme, SUN, MOON, NAV_ITEMS } from "../components/themeContext";
+import type { NavId } from "../components/themeContext";
 
-const NAV_ITEMS = [
-  { id: "profile",            label: "Profile",            rune: "ᚠ", color: "#a78bfa" },
-  { id: "award-certificates", label: "Award & Certificates", rune: "ᚢ", color: "#67e8f9" },
-  { id: "experiances",        label: "Experiances",        rune: "ᚦ", color: "#86efac" },
-  { id: "projects-reference", label: "Projects Reference", rune: "ᚨ", color: "#fda4af" },
-  { id: "skills",             label: "Skills",             rune: "ᚱ", color: "#fcd34d" },
-  { id: "other-activites",    label: "Other Activites",    rune: "ᚲ", color: "#fb923c" },
-] as const;
-
-type NavId  = typeof NAV_ITEMS[number]["id"];
 type Ripple = { id: number; x: number; y: number };
+const BREAKPOINT = 768;
 
-const BREAKPOINT = 720;
+const SunIcon = () => (
+  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round">
+    <circle cx="12" cy="12" r="4.5"/>
+    <line x1="12" y1="2"    x2="12" y2="5.5"/>
+    <line x1="12" y1="18.5" x2="12" y2="22"/>
+    <line x1="4.93" y1="4.93"   x2="7.17" y2="7.17"/>
+    <line x1="16.83" y1="16.83" x2="19.07" y2="19.07"/>
+    <line x1="2"    y1="12" x2="5.5" y2="12"/>
+    <line x1="18.5" y1="12" x2="22"  y2="12"/>
+    <line x1="4.93" y1="19.07"  x2="7.17" y2="16.83"/>
+    <line x1="16.83" y1="7.17"  x2="19.07" y2="4.93"/>
+  </svg>
+);
+const MoonIcon = () => (
+  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+  </svg>
+);
 
 export default function Navbar() {
+  const { isDark, setIsDark } = useTheme();
+  const tk = isDark ? MOON : SUN;
+
   const [active,   setActive]   = useState<NavId>("profile");
   const [scrolled, setScrolled] = useState(false);
   const [hovered,  setHovered]  = useState<NavId | null>(null);
@@ -27,42 +40,37 @@ export default function Navbar() {
   const menuRef  = useRef<HTMLDivElement>(null);
   const itemRefs = useRef<Record<string, HTMLAnchorElement | null>>({});
 
-  /* ── viewport watch ── */
-  useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth < BREAKPOINT);
-    check();
-    window.addEventListener("resize", check);
-    return () => window.removeEventListener("resize", check);
-  }, []);
+  const T = (p: string[], d = ".4s", e = "cubic-bezier(.22,.68,0,1.2)") =>
+    p.map(x => `${x} ${d} ${e}`).join(", ");
+  const getColor = (item: typeof NAV_ITEMS[number]) =>
+    isDark ? item.moonColor : item.sunColor;
 
-  /* ── close drawer on resize to desktop ── */
+  useEffect(() => {
+    const fn = () => setIsMobile(window.innerWidth < BREAKPOINT);
+    fn(); window.addEventListener("resize", fn);
+    return () => window.removeEventListener("resize", fn);
+  }, []);
   useEffect(() => { if (!isMobile) setMenuOpen(false); }, [isMobile]);
 
-  /* ── sync active from URL hash on mount ── */
   useEffect(() => {
-    const hash = window.location.hash.replace("#", "") as NavId;
-    if (hash && NAV_ITEMS.some(n => n.id === hash)) {
-      setActive(hash);
-    }
+    const h = window.location.hash.replace("#", "") as NavId;
+    if (h && NAV_ITEMS.some(n => n.id === h)) setActive(h);
   }, []);
 
-  /* ── listen for popstate (back/forward navigation) ── */
   useEffect(() => {
-    const onPopState = () => {
-      const hash = window.location.hash.replace("#", "") as NavId;
-      if (hash && NAV_ITEMS.some(n => n.id === hash)) {
-        setActive(hash);
-        const el = document.getElementById(hash);
-        el?.scrollIntoView({ behavior: "smooth" });
+    const fn = () => {
+      const h = window.location.hash.replace("#", "") as NavId;
+      if (h && NAV_ITEMS.some(n => n.id === h)) {
+        setActive(h);
+        document.getElementById(h)?.scrollIntoView({ behavior: "smooth" });
       }
     };
-    window.addEventListener("popstate", onPopState);
-    return () => window.removeEventListener("popstate", onPopState);
+    window.addEventListener("popstate", fn);
+    return () => window.removeEventListener("popstate", fn);
   }, []);
 
-  /* ── scroll spy ── */
   useEffect(() => {
-    const onScroll = () => {
+    const fn = () => {
       setScrolled(window.scrollY > 24);
       for (const { id } of NAV_ITEMS) {
         const el = document.getElementById(id);
@@ -70,186 +78,169 @@ export default function Navbar() {
           const r = el.getBoundingClientRect();
           if (r.top <= 120 && r.bottom >= 120) {
             setActive(id);
-            // update URL hash without triggering a page jump
-            const newHash = `#${id}`;
-            if (window.location.hash !== newHash) {
-              window.history.replaceState(null, "", newHash);
-            }
+            const h = `#${id}`;
+            if (window.location.hash !== h) window.history.replaceState(null, "", h);
             break;
           }
         }
       }
     };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll();
-    return () => window.removeEventListener("scroll", onScroll);
+    window.addEventListener("scroll", fn, { passive: true }); fn();
+    return () => window.removeEventListener("scroll", fn);
   }, []);
 
-  /* ── ink slider (desktop only) ── */
   useEffect(() => {
     if (isMobile) return;
-    const el   = itemRefs.current[active];
-    const menu = menuRef.current;
+    const el = itemRefs.current[active], menu = menuRef.current;
     if (!el || !menu) return;
-    const mr = menu.getBoundingClientRect();
-    const er = el.getBoundingClientRect();
+    const mr = menu.getBoundingClientRect(), er = el.getBoundingClientRect();
     setInkPos({ left: er.left - mr.left, width: er.width });
-  }, [active, scrolled, isMobile]);
+  }, [active, scrolled, isMobile, isDark]);
 
-  /* ── ripple ── */
   const fireRipple = (e: ReactMouseEvent<HTMLAnchorElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const rp: Ripple = { id: Date.now() + Math.random(), x: e.clientX - rect.left, y: e.clientY - rect.top };
+    const r = e.currentTarget.getBoundingClientRect();
+    const rp: Ripple = { id: Date.now() + Math.random(), x: e.clientX - r.left, y: e.clientY - r.top };
     setRipples(p => [...p, rp]);
-    setTimeout(() => setRipples(p => p.filter(r => r.id !== rp.id)), 700);
+    setTimeout(() => setRipples(p => p.filter(x => x.id !== rp.id)), 700);
   };
 
   const handleNavClick = (id: NavId, e: ReactMouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault(); // prevent default jump
-    setActive(id);
-    fireRipple(e);
-    setMenuOpen(false);
-
-    // push a new history entry with the hash
+    e.preventDefault(); setActive(id); fireRipple(e); setMenuOpen(false);
     window.history.pushState(null, "", `#${id}`);
-
-    // smooth scroll to the section
-    const target = document.getElementById(id);
-    if (target) {
-      target.scrollIntoView({ behavior: "smooth" });
-    }
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
   };
 
-  const activeColor = NAV_ITEMS.find(n => n.id === active)?.color ?? "#a78bfa";
-  const T = (props: string[], dur = ".42s", ease = "cubic-bezier(.22,.68,0,1.2)") =>
-    props.map(p => `${p} ${dur} ${ease}`).join(", ");
+  const activeItem  = NAV_ITEMS.find(n => n.id === active)!;
+  const activeColor = getColor(activeItem);
 
-  /* ── bar styles ── */
   const barStyle: React.CSSProperties = {
-    position:  "fixed",
-    top:       scrolled && !isMobile ? 14 : 0,
-    left:      "50%",
-    transform: "translateX(-50%)",
-    zIndex:    9000,
-
-    width:        scrolled && !isMobile ? "auto" : "100%",
-    maxWidth:     scrolled && !isMobile ? 840    : "100%",
-    height:       isMobile ? 56 : scrolled ? 52 : 64,
-    borderRadius: scrolled && !isMobile ? 999   : 0,
-    padding:      isMobile ? "0 20px" : scrolled ? "0 24px" : "0 5%",
-
-    display: "flex", alignItems: "center",
+    position: "fixed",
+    top: scrolled && !isMobile ? 12 : 0,
+    left: "50%", transform: "translateX(-50%)", zIndex: 9000,
+    width:        scrolled && !isMobile ? "auto"  : "100%",
+    maxWidth:     scrolled && !isMobile ? 1020    : "100%",
+    height:       isMobile ? 64 : scrolled ? 60 : 72,
+    borderRadius: scrolled && !isMobile ? 999     : 0,
+    padding:      isMobile ? "0 20px" : scrolled ? "0 32px" : "0 4%",
+    display:"flex", alignItems:"center",
     justifyContent: isMobile ? "space-between" : "center",
+    background:           scrolled ? tk.barBgScroll : tk.barBg,
+    backdropFilter:       "blur(28px) saturate(180%)",
+    WebkitBackdropFilter: "blur(28px) saturate(180%)",
+    border:       scrolled && !isMobile ? `1.5px solid ${activeColor}2e` : "none",
+    borderBottom: scrolled && !isMobile ? "none" : `1.5px solid ${tk.borderBottom}`,
+    boxShadow:    scrolled && !isMobile ? tk.shadowScroll : tk.shadow,
+    transition: T(["top","width","max-width","height","border-radius","background","box-shadow","padding"]),
+  };
 
-    background:           "rgba(5,5,16,.46)",
-    backdropFilter:       "blur(30px) saturate(190%) brightness(1.07)",
-    WebkitBackdropFilter: "blur(30px) saturate(190%) brightness(1.07)",
-
-    border:       scrolled && !isMobile ? `1px solid ${activeColor}26` : "none",
-    borderBottom: scrolled && !isMobile ? "none" : "1px solid rgba(167,139,250,.08)",
-
-    boxShadow: scrolled && !isMobile
-      ? `0 10px 50px rgba(0,0,0,.7), inset 0 1px 0 rgba(255,255,255,.08), 0 0 0 .5px ${activeColor}18`
-      : `inset 0 -1px 0 rgba(255,255,255,.04)`,
-
-    transition: T(["top","width","max-width","height","border-radius","border-color","box-shadow","padding"], ".4s"),
+  const toggleStyle: React.CSSProperties = {
+    width:36, height:36, borderRadius:999, flexShrink:0,
+    border:`1.5px solid ${tk.toggleBorder}`,
+    background:tk.toggleBg, cursor:"pointer",
+    display:"flex", alignItems:"center", justifyContent:"center",
+    color:tk.toggleColor,
+    boxShadow: isDark ? `0 0 14px ${tk.toggleColor}44` : "0 1px 4px rgba(0,0,0,0.06)",
+    transition:"all .35s ease",
   };
 
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
-        @keyframes shimmer    { 0%{background-position:-200% center} 100%{background-position:200% center} }
-        @keyframes rippleOut  { from{transform:scale(0);opacity:.5} to{transform:scale(5);opacity:0} }
-        @keyframes dotPulse   { 0%,100%{transform:scale(1);opacity:.7} 50%{transform:scale(1.8);opacity:1} }
-        @keyframes drawerIn   { from{opacity:0;transform:translateY(-8px)} to{opacity:1;transform:translateY(0)} }
-        @keyframes drawerOut  { from{opacity:1;transform:translateY(0)} to{opacity:0;transform:translateY(-8px)} }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+        @keyframes shimmer   { 0%{background-position:-200% center} 100%{background-position:200% center} }
+        @keyframes rippleOut { from{transform:scale(0);opacity:.4} to{transform:scale(6);opacity:0} }
+        @keyframes dotPulse  { 0%,100%{transform:scale(1);opacity:.85} 50%{transform:scale(2.1);opacity:1} }
+        @keyframes drawerIn  { from{opacity:0;transform:translateY(-8px)} to{opacity:1;transform:translateY(0)} }
         * { box-sizing:border-box; }
       `}</style>
 
-      {/* ── Main bar ── */}
       <div style={barStyle}>
 
-        {/* shimmer edge — pill/desktop */}
+        {/* shimmer top — pill */}
         {scrolled && !isMobile && (
           <div style={{
-            position:"absolute", top:0, left:"10%", right:"10%", height:1.5,
+            position:"absolute", top:0, left:"8%", right:"8%", height:1.5,
             borderRadius:1, pointerEvents:"none",
-            background:`linear-gradient(90deg,transparent,${activeColor},rgba(255,255,255,.22),${activeColor},transparent)`,
-            backgroundSize:"200% 100%", animation:"shimmer 3.5s linear infinite",
+            background:`linear-gradient(90deg,transparent,${activeColor}88,${tk.shimmerMid},${activeColor}88,transparent)`,
+            backgroundSize:"200% 100%", animation:"shimmer 4s linear infinite",
           }}/>
         )}
 
-        {/* bottom rule — full-width */}
+        {/* bottom rule */}
         {(!scrolled || isMobile) && (
           <div style={{
-            position:"absolute", bottom:0, left:0, right:0, height:1,
+            position:"absolute", bottom:0, left:0, right:0, height:1.5,
             pointerEvents:"none",
-            background:`linear-gradient(90deg,transparent,${activeColor}55 50%,transparent)`,
+            background:`linear-gradient(90deg,transparent,${activeColor}70 50%,transparent)`,
             transition:"background .4s",
           }}/>
         )}
 
-        {/* ══ MOBILE: logo word + hamburger ══ */}
+        {/* ═══ MOBILE ═══ */}
         {isMobile && (
           <>
             <span style={{
-              fontFamily:"'Space Mono',monospace", fontWeight:700, fontSize:12,
-              letterSpacing:".18em", color: activeColor,
-              textShadow:`0 0 16px ${activeColor}88`,
-              transition:"color .3s, text-shadow .3s",
+              fontFamily:"'Inter',sans-serif", fontWeight:700, fontSize:15,
+              letterSpacing:".14em", color:tk.logoColor, textTransform:"uppercase",
+              textShadow: isDark ? `0 0 20px ${activeColor}99` : "none",
+              transition:"color .35s, text-shadow .35s",
             }}>
-              {NAV_ITEMS.find(n => n.id === active)?.rune ?? "ᚠ"}&nbsp;1DEV
+              {activeItem.rune}&nbsp;FOLIO
             </span>
 
-            <button
-              aria-label={menuOpen ? "Close menu" : "Open menu"}
-              onClick={() => setMenuOpen(o => !o)}
-              style={{
-                background:"transparent", border:"none", cursor:"pointer",
-                padding:8, display:"flex", flexDirection:"column",
-                alignItems:"center", justifyContent:"center", gap:5,
-                width:38, height:38,
-              }}
-            >
-              {[0,1,2].map(i => (
-                <span key={i} style={{
-                  display:"block", width: i===1 && menuOpen ? 14 : 22, height:2,
-                  borderRadius:2,
-                  background: activeColor,
-                  boxShadow:`0 0 8px ${activeColor}88`,
-                  transformOrigin:"center",
-                  transform:
-                    menuOpen && i===0 ? "translateY(7px) rotate(45deg)" :
-                    menuOpen && i===1 ? "scaleX(0)" :
-                    menuOpen && i===2 ? "translateY(-7px) rotate(-45deg)" :
-                    "none",
-                  transition:"transform .3s cubic-bezier(.22,.68,0,1.2), width .3s, background .3s",
-                  opacity: i===1 && !menuOpen ? .55 : 1,
-                }}/>
-              ))}
-            </button>
+            <div style={{ display:"flex", alignItems:"center", gap:8 }}>
+              <button style={toggleStyle} onClick={() => setIsDark(d => !d)} aria-label="Toggle theme">
+                {isDark ? <SunIcon/> : <MoonIcon/>}
+              </button>
+              <button
+                aria-label={menuOpen ? "Close" : "Menu"}
+                onClick={() => setMenuOpen(o => !o)}
+                style={{ background:"transparent", border:"none", cursor:"pointer",
+                  padding:6, display:"flex", flexDirection:"column",
+                  alignItems:"center", justifyContent:"center", gap:5.5,
+                  width:40, height:40 }}
+              >
+                {[0,1,2].map(i => (
+                  <span key={i} style={{
+                    display:"block",
+                    width: i===1 ? (menuOpen ? 13 : 22) : 22,
+                    height:2.5, borderRadius:2,
+                    background: tk.textActive,
+                    boxShadow: isDark ? `0 0 8px ${activeColor}bb` : "none",
+                    transformOrigin:"center",
+                    transform:
+                      menuOpen && i===0 ? "translateY(8px) rotate(45deg)" :
+                      menuOpen && i===1 ? "scaleX(0)" :
+                      menuOpen && i===2 ? "translateY(-8px) rotate(-45deg)" : "none",
+                    transition:"transform .3s cubic-bezier(.22,.68,0,1.2), width .3s",
+                    opacity: i===1 && !menuOpen ? .38 : 1,
+                  }}/>
+                ))}
+              </button>
+            </div>
           </>
         )}
 
-        {/* ══ DESKTOP: full menu strip ══ */}
+        {/* ═══ DESKTOP ═══ */}
         {!isMobile && (
-          <div ref={menuRef} style={{ position:"relative", display:"flex", alignItems:"center", gap:1 }}>
+          <div ref={menuRef} style={{ position:"relative", display:"flex", alignItems:"center", gap:2 }}>
 
             {/* ink pill */}
             <div aria-hidden style={{
-              position:"absolute", top:"50%", left:inkPos.left, width:inkPos.width, height:35,
+              position:"absolute", top:"50%", left:inkPos.left, width:inkPos.width, height:42,
               transform:"translateY(-50%)", borderRadius:999,
-              background:`linear-gradient(135deg,${activeColor}22,${activeColor}0e)`,
-              border:`1px solid ${activeColor}40`, backdropFilter:"blur(8px)",
-              boxShadow:`0 0 20px ${activeColor}2e, inset 0 1px 0 rgba(255,255,255,.1)`,
-              transition: T(["left","width"],".46s") + ", " + T(["background","border-color","box-shadow"],".36s","ease"),
+              background:tk.inkBg,
+              border:`1.5px solid ${tk.inkBorder}`,
+              boxShadow:tk.inkShadow,
+              transition: T(["left","width"],".46s") + ", " + T(["background","border-color"],".3s","ease"),
               pointerEvents:"none", zIndex:0,
             }}/>
 
-            {NAV_ITEMS.map(({ id, label, rune, color }) => {
-              const isActive  = active  === id;
-              const isHovered = hovered === id;
+            {NAV_ITEMS.map(item => {
+              const { id, label, rune } = item;
+              const color    = getColor(item);
+              const isActive = active === id;
+              const isHov    = hovered === id;
               return (
                 <a key={id} href={`#${id}`}
                   ref={el => { itemRefs.current[id] = el; }}
@@ -258,118 +249,124 @@ export default function Navbar() {
                   onClick={e => handleNavClick(id, e)}
                   style={{
                     position:"relative", zIndex:1,
-                    display:"flex", alignItems:"center", gap:5,
-                    padding:"7px 15px", borderRadius:999,
+                    display:"flex", alignItems:"center", gap:6,
+                    padding:"10px 18px", borderRadius:999,
                     textDecoration:"none", overflow:"hidden",
                     userSelect:"none", cursor:"pointer",
-                    fontFamily:"'Space Mono',monospace",
-                    fontSize:"clamp(9.5px,1.05vw,11.5px)",
-                    fontWeight: isActive ? 700 : 400,
-                    letterSpacing: isActive ? ".09em" : ".04em",
+                    fontFamily:"'Inter',sans-serif",
+                    fontSize:"clamp(13px,1.1vw,14.5px)",
+                    fontWeight: isActive ? 600 : 500,
+                    letterSpacing:".01em",
                     whiteSpace:"nowrap",
-                    color: isActive ? color : isHovered ? "rgba(255,255,255,.72)" : "rgba(255,255,255,.28)",
-                    textShadow: isActive ? `0 0 18px ${color}cc` : "none",
-                    transition:"color .28s ease, letter-spacing .28s ease, text-shadow .28s ease",
+                    color: isActive ? (isDark ? tk.textActive : color) : isHov ? tk.textHover : tk.textNormal,
+                    textShadow: isActive && isDark ? `0 0 22px ${color}cc` : "none",
+                    transition:"color .25s ease",
                   }}
                 >
-                  <span style={{ fontSize:9, fontFamily:"serif", lineHeight:1, letterSpacing:0,
-                    opacity: isActive ? 1 : isHovered ? .42 : .16,
-                    color: isActive ? color : "inherit", transition:"opacity .28s, color .28s",
+                  <span style={{
+                    fontSize:9, lineHeight:1, fontFamily:"serif",
+                    color: isActive ? color : "inherit",
+                    opacity: isActive ? 1 : isHov ? .55 : isDark ? .32 : .30,
+                    transition:"opacity .25s, color .25s",
                   }}>{rune}</span>
 
                   {label}
 
                   {isActive && (
                     <span style={{
-                      width:4, height:4, borderRadius:"50%", flexShrink:0, marginLeft:2,
-                      background:color, boxShadow:`0 0 8px ${color}`,
-                      display:"inline-block", animation:"dotPulse 2.5s ease-in-out infinite",
+                      width:5, height:5, borderRadius:"50%", flexShrink:0,
+                      background:color, boxShadow:tk.dotShadow(color),
+                      display:"inline-block",
+                      animation:"dotPulse 2.8s ease-in-out infinite",
                     }}/>
                   )}
 
                   {ripples.map(rp => (
                     <span key={rp.id} style={{
-                      position:"absolute", left:rp.x-12, top:rp.y-12,
-                      width:24, height:24, borderRadius:"50%",
-                      background:`${color}40`, pointerEvents:"none",
-                      animation:"rippleOut .65s ease forwards",
+                      position:"absolute", left:rp.x-14, top:rp.y-14,
+                      width:28, height:28, borderRadius:"50%",
+                      background:`${color}2a`, pointerEvents:"none",
+                      animation:"rippleOut .7s ease forwards",
                     }}/>
                   ))}
                 </a>
               );
             })}
+
+            <div style={{
+              width:1.5, height:26, margin:"0 8px",
+              background: isDark ? "rgba(139,92,246,0.18)" : "rgba(30,100,60,0.18)",
+              borderRadius:2, flexShrink:0,
+            }}/>
+
+            <button style={toggleStyle} onClick={() => setIsDark(d => !d)} aria-label="Toggle theme">
+              {isDark ? <SunIcon/> : <MoonIcon/>}
+            </button>
           </div>
         )}
       </div>
 
-      {/* ══ MOBILE DRAWER ══ */}
+      {/* ═══ MOBILE DRAWER ═══ */}
       {isMobile && menuOpen && (
         <>
-          {/* backdrop */}
-          <div
-            onClick={() => setMenuOpen(false)}
-            style={{
-              position:"fixed", inset:0, zIndex:8998,
-              background:"rgba(2,2,12,.55)",
-              backdropFilter:"blur(6px)",
-              animation:"drawerIn .25s ease both",
-            }}
-          />
-
-          {/* drawer panel */}
+          <div onClick={() => setMenuOpen(false)} style={{
+            position:"fixed", inset:0, zIndex:8998,
+            background:tk.backdropBg, backdropFilter:"blur(8px)",
+            animation:"drawerIn .22s ease both",
+          }}/>
           <div style={{
-            position:"fixed", top:56, left:0, right:0, zIndex:8999,
-            background:"rgba(5,5,16,.96)",
-            borderBottom:`1px solid ${activeColor}33`,
-            boxShadow:`0 24px 60px rgba(0,0,0,.7), inset 0 1px 0 rgba(255,255,255,.06)`,
-            backdropFilter:"blur(30px) saturate(180%)",
-            WebkitBackdropFilter:"blur(30px) saturate(180%)",
-            padding:"12px 0 20px",
+            position:"fixed", top:64, left:0, right:0, zIndex:8999,
+            background:tk.drawerBg,
+            borderBottom:`1.5px solid ${activeColor}22`,
+            boxShadow: isDark
+              ? "0 28px 64px rgba(0,0,0,.82), inset 0 1px 0 rgba(139,92,246,.07)"
+              : "0 20px 56px rgba(20,60,35,.10), inset 0 1px 0 rgba(255,255,255,.95)",
+            backdropFilter:"blur(32px) saturate(200%)",
+            WebkitBackdropFilter:"blur(32px) saturate(200%)",
+            padding:"8px 0 18px",
             animation:"drawerIn .28s cubic-bezier(.22,.68,0,1.2) both",
           }}>
-            {/* shimmer top */}
             <div style={{
-              position:"absolute", top:0, left:"8%", right:"8%", height:1,
-              background:`linear-gradient(90deg,transparent,${activeColor}88,transparent)`,
+              position:"absolute", top:0, left:"6%", right:"6%", height:1.5,
+              background:`linear-gradient(90deg,transparent,${activeColor}70,transparent)`,
               pointerEvents:"none",
             }}/>
-
-            {NAV_ITEMS.map(({ id, label, rune, color }, i) => {
+            {NAV_ITEMS.map((item, i) => {
+              const { id, label, rune } = item;
+              const color    = getColor(item);
               const isActive = active === id;
               return (
                 <a key={id} href={`#${id}`}
                   onClick={e => handleNavClick(id, e)}
                   style={{
                     display:"flex", alignItems:"center", gap:14,
-                    padding:"13px 28px",
+                    padding:"15px 24px",
                     textDecoration:"none", userSelect:"none",
-                    fontFamily:"'Space Mono',monospace",
-                    fontSize:12, fontWeight: isActive ? 700 : 400,
-                    letterSpacing: isActive ? ".1em" : ".05em",
-                    color: isActive ? color : "rgba(255,255,255,.38)",
-                    textShadow: isActive ? `0 0 16px ${color}aa` : "none",
-                    borderLeft: isActive ? `2px solid ${color}` : "2px solid transparent",
-                    background: isActive ? `linear-gradient(90deg,${color}0c,transparent)` : "transparent",
+                    fontFamily:"'Inter',sans-serif",
+                    fontSize:14, fontWeight: isActive ? 600 : 500,
+                    color: isActive ? (isDark ? tk.textActive : color) : tk.textNormal,
+                    textShadow: isActive && isDark ? `0 0 18px ${color}99` : "none",
+                    borderLeft: isActive ? `3px solid ${color}` : "3px solid transparent",
+                    background: isActive ? `linear-gradient(90deg,${color}0e,transparent)` : "transparent",
                     transition:"all .22s ease",
-                    animation:`drawerIn .3s ${i * 0.04}s ease both`,
+                    animation:`drawerIn .28s ${i * 0.04}s ease both`,
                   }}
                 >
                   <span style={{
-                    width:28, height:28, borderRadius:8, flexShrink:0,
+                    width:38, height:38, borderRadius:10, flexShrink:0,
                     display:"flex", alignItems:"center", justifyContent:"center",
-                    background: isActive ? `${color}18` : "rgba(255,255,255,.04)",
-                    border:`1px solid ${isActive ? color + "44" : "rgba(255,255,255,.08)"}`,
-                    fontSize:13, fontFamily:"serif", color: isActive ? color : "rgba(255,255,255,.25)",
+                    fontSize:15, fontFamily:"serif",
+                    background: isActive ? `${color}14` : isDark ? "rgba(139,92,246,0.05)" : "rgba(30,100,60,0.05)",
+                    border:`1.5px solid ${isActive ? color+"44" : isDark ? "rgba(139,92,246,.12)" : "rgba(30,100,60,.12)"}`,
+                    color: isActive ? color : tk.textNormal,
                     transition:"all .22s ease",
                   }}>{rune}</span>
-
-                  {label}
-
+                  <span style={{ flex:1 }}>{label}</span>
                   {isActive && (
                     <span style={{
-                      marginLeft:"auto", width:5, height:5, borderRadius:"50%",
-                      background:color, boxShadow:`0 0 8px ${color}`,
-                      animation:"dotPulse 2.5s ease-in-out infinite",
+                      width:7, height:7, borderRadius:"50%",
+                      background:color, boxShadow:tk.dotShadow(color),
+                      animation:"dotPulse 2.8s ease-in-out infinite", flexShrink:0,
                     }}/>
                   )}
                 </a>
