@@ -194,7 +194,7 @@ const ABCSHOP = {
     icon: "🐱",
     tag: "SENIOR PROJECT",
     description: "ABCat Shop คือ Full-Stack Mobile Application พัฒนาด้วย Flutter + AI ที่ช่วยแนะนำขนาดเสื้อผ้าสำหรับแมว โดยใช้ YOLO สำหรับ Detect แมว และ GPT-4.1 mini / Gemini 2.5 Flash สำหรับ Analysis ขนาด ครบวงจรตั้งแต่ Frontend (Flutter) ถึง Backend (FastAPI) และ DevOps (Jenkins + Render)",
-    planningImg: "https://res.cloudinary.com/dag73dhpl/image/upload/v1773637701/%E0%B8%9C%E0%B8%B9%E0%B9%89%E0%B8%9E%E0%B8%B1%E0%B8%92%E0%B8%99%E0%B8%B2_gjhkpa.png",
+    planningImg: "https://res.cloudinary.com/dag73dhpl/image/upload/v1773725640/%E0%B8%9C%E0%B8%B9%E0%B9%89%E0%B8%9E%E0%B8%B1%E0%B8%92%E0%B8%99%E0%B8%B2_1_efrywh.png",
     youtubeUrl: "https://www.youtube.com/watch?v=YOUR_VIDEO_ID",
     stats: [
         { value: "70+", label: "วันพัฒนา", sub: "ม.ค. – มี.ค. 2569" },
