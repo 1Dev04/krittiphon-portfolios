@@ -87,7 +87,8 @@ export const NAV_ITEMS = [
   { id: "profile",            label: "Profile",              rune: "ᚠ", sunColor: "#1a5c38", moonColor: "#a78bfa" },
   { id: "award-certificates", label: "Award & Certificates", rune: "ᚢ", sunColor: "#1a5c38", moonColor: "#67e8f9" },
   { id: "experiances",        label: "Experiences",          rune: "ᚦ", sunColor: "#1a5c38", moonColor: "#c084fc" },
-  { id: "projects-reference", label: "Projects",     rune: "ᚨ", sunColor: "#1a5c38", moonColor: "#f0abfc" }, // ✅ แก้
+  { id: "projects-reference", label: "Projects",     rune: "ᚨ", sunColor: "#1a5c38", moonColor: "#f0abfc" },
+  { id: "feature-project", label: "Feature Project",     rune: "ᚨ", sunColor: "#1a5c38", moonColor: "#beabfcff" }, // ✅ แก้
   { id: "skills",             label: "Skills",               rune: "ᚱ", sunColor: "#1a5c38", moonColor: "#818cf8" },
   { id: "other-activites",    label: "QA",                   rune: "ᚲ", sunColor: "#1a5c38", moonColor: "#7dd3fc" }, // ✅ แก้
 ] as const;

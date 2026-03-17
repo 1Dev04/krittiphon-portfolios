@@ -24,7 +24,6 @@ interface ExpTheme {
   statBg: string;
   statBorder: (c: string) => string;
   statTopLine: (c: string) => string;
-  statNumber: (c: string) => string;
   statLabel: (c: string) => string;
   statSub: string;
   tlHeaderColor: (c: string) => string;
@@ -59,143 +58,142 @@ interface ExpTheme {
   toggleInactiveColor: string;
 }
 
+/* ══ ☀️ SUN — Natural Green Throne ══ */
 const SUN_EXP: ExpTheme = {
-  pageBg: "linear-gradient(160deg,#f5f7f4 0%,#eef4ee 50%,#f0f5f0 100%)",
-  gridLine: "rgba(45,106,79,0.04)",
-  orbA: "rgba(45,106,79,0.10)",
-  orbB: "rgba(82,183,136,0.07)",
-  orbC: "rgba(27,67,50,0.05)",
-  scanLine: "rgba(45,106,79,0.06)",
-  bottomFade: "linear-gradient(transparent,#eef4ee)",
-  eyebrowColor: "#2d6a4f",
-  eyebrowLine: "rgba(45,106,79,0.35)",
-  headingColor: "#1a3d28",
-  headingFont: "'Lora',serif",
+  pageBg:        "linear-gradient(160deg,#f5f7f4 0%,#eef4ee 50%,#f0f5f0 100%)",
+  gridLine:      "rgba(45,106,79,0.04)",
+  orbA:          "rgba(45,106,79,0.10)",
+  orbB:          "rgba(82,183,136,0.07)",
+  orbC:          "rgba(27,67,50,0.05)",
+  scanLine:      "rgba(45,106,79,0.06)",
+  bottomFade:    "linear-gradient(transparent,#eef4ee)",
+  eyebrowColor:  "#2d6a4f",
+  eyebrowLine:   "rgba(45,106,79,0.35)",
+  headingColor:  "#1a3d28",
+  headingFont:   "'Lora',serif",
   headingShadow: "0 1px 0 rgba(255,255,255,0.9),0 2px 12px rgba(45,106,79,0.15)",
-  headingSub: "rgba(20,50,30,0.48)",
-  badgeBg: (c) => `${c}12`,
-  badgeBorder: (c) => `${c}50`,
-  badgeGlow: (c) => `0 0 20px ${c}18,0 4px 20px rgba(20,60,35,0.09)`,
-  badgeTitle: "#1a3d28",
-  badgePeriod: (c) => c,
+  headingSub:    "rgba(20,50,30,0.48)",
+  badgeBg:       (c) => `${c}12`,
+  badgeBorder:   (c) => `${c}50`,
+  badgeGlow:     (c) => `0 0 20px ${c}18,0 4px 20px rgba(20,60,35,0.09)`,
+  badgeTitle:    "#1a3d28",
+  badgePeriod:   (c) => c,
   badgePeriodBg: (c) => `${c}16`,
-  statBg: "rgba(255,255,255,0.82)",
-  statBorder: (c) => `${c}28`,
-  statTopLine: (c) => `linear-gradient(90deg,transparent,${c}88,transparent)`,
-  statNumber: (c) => `linear-gradient(135deg,#1a3d28,${c})`,
-  statLabel: (c) => c,
-  statSub: "rgba(20,50,30,0.44)",
+  statBg:        "rgba(255,255,255,0.82)",
+  statBorder:    (c) => `${c}28`,
+  statTopLine:   (c) => `linear-gradient(90deg,transparent,${c}88,transparent)`,
+  statLabel:     (c) => c,
+  statSub:       "rgba(20,50,30,0.44)",
   tlHeaderColor: (c) => c,
-  tlLine: (c) => `linear-gradient(90deg,transparent,${c}55)`,
-  cardBg: "rgba(255,255,255,0.82)",
-  cardBgHov: "rgba(255,255,255,0.97)",
+  tlLine:        (c) => `linear-gradient(90deg,transparent,${c}55)`,
+  cardBg:        "rgba(255,255,255,0.82)",
+  cardBgHov:     "rgba(255,255,255,0.97)",
   cardBgSuccess: (c) => `linear-gradient(135deg,${c}10,rgba(255,255,255,0.88))`,
-  cardBorder: (hov, suc, c) => hov || suc ? `${c}55` : `${c}28`,
-  cardShadow: (hov, suc, c) =>
+  cardBorder:    (hov, suc, c) => hov || suc ? `${c}55` : `${c}28`,
+  cardShadow:    (hov, suc, c) =>
     hov ? `0 0 32px ${c}22,0 12px 40px rgba(20,60,35,0.11),inset 0 1px 0 rgba(255,255,255,.85)`
-      : suc ? `0 0 20px ${c}18,0 4px 20px rgba(20,60,35,0.09)`
-        : `0 2px 16px rgba(20,60,35,0.07),inset 0 1px 0 rgba(255,255,255,.65)`,
-  cardMonthColor: (c) => c,
+        : suc ? `0 0 20px ${c}18,0 4px 20px rgba(20,60,35,0.09)`
+              : `0 2px 16px rgba(20,60,35,0.07),inset 0 1px 0 rgba(255,255,255,.65)`,
+  cardMonthColor:  (c) => c,
   cardMonthShadow: (hov, c) => hov ? `0 0 14px ${c}88` : `0 0 6px ${c}44`,
-  cardYear: "rgba(20,50,30,0.32)",
-  cardNumBg: (c) => `${c}16`,
-  cardNumBorder: (c) => `${c}44`,
-  cardNumColor: (c) => c,
-  cardDivider: (c) => `linear-gradient(90deg,${c}66,transparent)`,
-  taskNormal: "rgba(20,50,30,0.62)",
-  taskHighlight: (c) => c,
-  taskHighBg: (c) => `${c}0e`,
-  taskHighBorder: (c) => `${c}38`,
-  techBg: (c) => `${c}12`,
-  techBorder: (c) => `${c}44`,
-  techLabel: (c) => c,
-  techCat: "rgba(20,50,30,0.34)",
-  toggleWrap: "rgba(255,255,255,0.80)",
-  toggleWrapBorder: "rgba(45,106,79,0.22)",
-  toggleWrapShadow: "0 4px 20px rgba(20,60,35,0.10)",
-  toggleActiveBg: (c) => `linear-gradient(135deg,${c}28,${c}14)`,
+  cardYear:        "rgba(20,50,30,0.32)",
+  cardNumBg:       (c) => `${c}16`,
+  cardNumBorder:   (c) => `${c}44`,
+  cardNumColor:    (c) => c,
+  cardDivider:     (c) => `linear-gradient(90deg,${c}66,transparent)`,
+  taskNormal:      "rgba(20,50,30,0.62)",
+  taskHighlight:   (c) => c,
+  taskHighBg:      (c) => `${c}0e`,
+  taskHighBorder:  (c) => `${c}38`,
+  techBg:          (c) => `${c}12`,
+  techBorder:      (c) => `${c}44`,
+  techLabel:       (c) => c,
+  techCat:         "rgba(20,50,30,0.34)",
+  toggleWrap:         "rgba(255,255,255,0.80)",
+  toggleWrapBorder:   "rgba(45,106,79,0.22)",
+  toggleWrapShadow:   "0 4px 20px rgba(20,60,35,0.10)",
+  toggleActiveBg:     (c) => `linear-gradient(135deg,${c}28,${c}14)`,
   toggleActiveBorder: (c) => `${c}66`,
-  toggleActiveColor: "#1a3d28",
+  toggleActiveColor:  "#1a3d28",
   toggleActiveShadow: (c) => `0 0 14px ${c}33`,
-  toggleInactiveColor: "rgba(20,50,30,0.30)",
+  toggleInactiveColor:"rgba(20,50,30,0.30)",
 };
 
+/* ══ 🌙 MOON — Galaxy Magic Purple ══ */
 const MOON_EXP: ExpTheme = {
-  pageBg: "radial-gradient(ellipse at 20% 50%,#0f0528 0%,#060414 40%,#020210 100%)",
-  gridLine: "rgba(167,139,250,0.025)",
-  orbA: "rgba(124,58,237,0.20)",
-  orbB: "rgba(6,182,212,0.13)",
-  orbC: "rgba(253,164,175,0.10)",
-  scanLine: "rgba(167,139,250,0.22)",
-  bottomFade: "linear-gradient(transparent,#020210)",
-  eyebrowColor: "#a78bfa",
-  eyebrowLine: "rgba(167,139,250,0.42)",
-  headingColor: "#e9d5ff",
-  headingFont: "'Cinzel',serif",
+  pageBg:        "radial-gradient(ellipse at 20% 50%,#0f0528 0%,#060414 40%,#020210 100%)",
+  gridLine:      "rgba(167,139,250,0.025)",
+  orbA:          "rgba(124,58,237,0.20)",
+  orbB:          "rgba(167,139,250,0.14)",   // ← purple (was cyan)
+  orbC:          "rgba(192,132,252,0.10)",   // ← purple (was pink)
+  scanLine:      "rgba(167,139,250,0.22)",
+  bottomFade:    "linear-gradient(transparent,#020210)",
+  eyebrowColor:  "#a78bfa",
+  eyebrowLine:   "rgba(167,139,250,0.42)",
+  headingColor:  "#e9d5ff",
+  headingFont:   "'Cinzel',serif",
   headingShadow: "0 0 32px rgba(167,139,250,0.55),0 2px 8px rgba(0,0,0,0.5)",
-  headingSub: "rgba(255,255,255,0.34)",
-  badgeBg: (c) => `${c}12`,
-  badgeBorder: (c) => `${c}55`,
-  badgeGlow: (c) => `0 0 32px ${c}28,0 0 64px ${c}12`,
-  badgeTitle: "#e2d9f3",
-  badgePeriod: (c) => c,
+  headingSub:    "rgba(255,255,255,0.34)",
+  badgeBg:       (c) => `${c}12`,
+  badgeBorder:   (c) => `${c}55`,
+  badgeGlow:     (c) => `0 0 32px ${c}28,0 0 64px ${c}12`,
+  badgeTitle:    "#e2d9f3",
+  badgePeriod:   (c) => c,
   badgePeriodBg: (c) => `${c}1a`,
-  statBg: "rgba(255,255,255,0.04)",
-  statBorder: (c) => `${c}30`,
-  statTopLine: (c) => `linear-gradient(90deg,transparent,${c}99,transparent)`,
-  statNumber: (c) => `linear-gradient(135deg,#f1f5f9,${c})`,
-  statLabel: (c) => c,
-  statSub: "rgba(255,255,255,0.38)",
+  statBg:        "rgba(255,255,255,0.04)",
+  statBorder:    (c) => `${c}30`,
+  statTopLine:   (c) => `linear-gradient(90deg,transparent,${c}99,transparent)`,
+  statLabel:     (c) => c,
+  statSub:       "rgba(255,255,255,0.38)",
   tlHeaderColor: (c) => c,
-  tlLine: (c) => `linear-gradient(90deg,transparent,${c}55)`,
-  cardBg: "rgba(255,255,255,0.04)",
-  cardBgHov: "linear-gradient(135deg,rgba(255,255,255,.10),rgba(255,255,255,.04))",
+  tlLine:        (c) => `linear-gradient(90deg,transparent,${c}55)`,
+  cardBg:        "rgba(255,255,255,0.04)",
+  cardBgHov:     "linear-gradient(135deg,rgba(255,255,255,.10),rgba(255,255,255,.04))",
   cardBgSuccess: (c) => `linear-gradient(135deg,${c}12,rgba(255,255,255,.04))`,
-  cardBorder: (hov, suc, c) => hov || suc ? `${c}77` : `${c}2e`,
-  cardShadow: (hov, suc, c) =>
+  cardBorder:    (hov, suc, c) => hov || suc ? `${c}77` : `${c}2e`,
+  cardShadow:    (hov, suc, c) =>
     hov ? `0 0 44px ${c}38,0 16px 48px rgba(0,0,0,.65),inset 0 1px 0 rgba(255,255,255,.08)`
-      : suc ? `0 0 32px ${c}44,0 8px 32px rgba(0,0,0,.55)`
-        : `0 4px 24px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.04)`,
-  cardMonthColor: (c) => c,
+        : suc ? `0 0 32px ${c}44,0 8px 32px rgba(0,0,0,.55)`
+              : `0 4px 24px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.04)`,
+  cardMonthColor:  (c) => c,
   cardMonthShadow: (hov, c) => hov ? `0 0 22px ${c}cc` : `0 0 12px ${c}66`,
-  cardYear: "rgba(255,255,255,0.32)",
-  cardNumBg: (c) => `${c}1a`,
-  cardNumBorder: (c) => `${c}55`,
-  cardNumColor: (c) => c,
-  cardDivider: (c) => `linear-gradient(90deg,${c}66,transparent)`,
-  taskNormal: "rgba(255,255,255,0.60)",
-  taskHighlight: (c) => c,
-  taskHighBg: (c) => `${c}0f`,
-  taskHighBorder: (c) => `${c}38`,
-  techBg: (c) => `${c}14`,
-  techBorder: (c) => `${c}50`,
-  techLabel: (c) => c,
-  techCat: "rgba(255,255,255,0.28)",
-  toggleWrap: "rgba(255,255,255,0.05)",
-  toggleWrapBorder: "rgba(167,139,250,0.25)",
-  toggleWrapShadow: "0 4px 24px rgba(124,58,237,0.18)",
-  toggleActiveBg: (c) => `linear-gradient(135deg,${c}32,${c}18)`,
+  cardYear:        "rgba(255,255,255,0.32)",
+  cardNumBg:       (c) => `${c}1a`,
+  cardNumBorder:   (c) => `${c}55`,
+  cardNumColor:    (c) => c,
+  cardDivider:     (c) => `linear-gradient(90deg,${c}66,transparent)`,
+  taskNormal:      "rgba(255,255,255,0.60)",
+  taskHighlight:   (c) => c,
+  taskHighBg:      (c) => `${c}0f`,
+  taskHighBorder:  (c) => `${c}38`,
+  techBg:          (c) => `${c}14`,
+  techBorder:      (c) => `${c}50`,
+  techLabel:       (c) => c,
+  techCat:         "rgba(255,255,255,0.28)",
+  toggleWrap:         "rgba(255,255,255,0.05)",
+  toggleWrapBorder:   "rgba(167,139,250,0.25)",
+  toggleWrapShadow:   "0 4px 24px rgba(124,58,237,0.18)",
+  toggleActiveBg:     (c) => `linear-gradient(135deg,${c}32,${c}18)`,
   toggleActiveBorder: (c) => `${c}77`,
-  toggleActiveColor: "#e2d9f3",
+  toggleActiveColor:  "#e2d9f3",
   toggleActiveShadow: (c) => `0 0 18px ${c}44`,
-  toggleInactiveColor: "rgba(255,255,255,0.28)",
+  toggleInactiveColor:"rgba(255,255,255,0.28)",
 };
 
+/* ══ DATA ══ */
 const CLICKNEXT = {
   name: "Clicknext Co., Ltd.",
   role_en: "Full Stack Developer Intern",
   role_th: "นักศึกษาฝึกงาน Full Stack Developer",
   period_en: "May – October 2025",
   period_th: "พฤษภาคม – ตุลาคม 2568",
-  accentColor: "#a78bfa",
-  accentGlow: "#7c3aed",
   icon: "⚡",
   tag_en: "INTERNSHIP",
   tag_th: "สหกิจศึกษา",
   stats: [
-    { value:"126", label_en:"Work Days",   label_th:"วันทำงาน",     sub_en:"6-month co-op",                   sub_th:"ตลอด 6 เดือนสหกิจ"                },
+    { value:"126", label_en:"Work Days",   label_th:"วันทำงาน",     sub_en:"6-month co-op",                   sub_th:"ตลอด 6 เดือนสหกิจ" },
     { value:"26",  label_en:"Dev Modules", label_th:"ส่วนที่พัฒนา", sub_en:"BackOffice, Portal & SMS Monitor", sub_th:"BackOffice, Portal & SMS Monitor" },
-    { value:"20",  label_en:"WFH Days",    label_th:"วัน WFH",      sub_en:"Remote work efficiency",          sub_th:"ทำงานระยะไกลอย่างมีประสิทธิภาพ"   },
+    { value:"20",  label_en:"WFH Days",    label_th:"วัน WFH",      sub_en:"Remote work efficiency",          sub_th:"ทำงานระยะไกลอย่างมีประสิทธิภาพ" },
   ],
   tech: [
     { label:"NestJS",          cat:"Backend",  color:"#e11d48" },
@@ -214,67 +212,75 @@ const CLICKNEXT = {
     { label:"reCaptcha",       cat:"Tools",    color:"#6366f1" },
   ],
   months: [
-    { month_en:"May",       month_th:"พฤษภาคม",   year:"2025", num:"01", color:"#a78bfa", glow:"#7c3aed", icon:"🚀",
-      tasks:[
-        { en:"1–11 May — Orientation & study company codebase",                             th:"1–11 พ.ค. — Orientation & ศึกษา Codebase บริษัท" },
-        { en:"12 May — Start first feature: Domain Whitelist",                              th:"12 พ.ค. — เริ่มพัฒนา Domain Whitelist Feature แรก" },
-        { en:"12–30 May — Full Domain Whitelist CRUD (List, Add, Edit, Delete)",            th:"12–30 พ.ค. — พัฒนา Domain Whitelist ครบทุกฟีเจอร์" },
-        { en:"20 May — Create ER Diagram & Data Dictionary",                                th:"20 พ.ค. — สร้าง ER Diagram & Data Dictionary ระบบ" },
-        { en:"28 May — Design Sequence Diagram for Domain Whitelist",                       th:"28 พ.ค. — ออกแบบ Sequence Diagram Domain Whitelist" },
-        { en:"30 May — Review REST API & PHP Codebase",                                     th:"30 พ.ค. — ทบทวน REST API & PHP Codebase เพิ่มเติม" },
-      ]
-    },
-    { month_en:"June",      month_th:"มิถุนายน",   year:"2025", num:"02", color:"#67e8f9", glow:"#0891b2", icon:"🔐",
-      tasks:[
-        { en:"2–6 Jun — Deploy Domain Whitelist to staging, fix Add/Update logic",          th:"2–6 มิ.ย. — Deploy Domain Whitelist สู่ Staging" },
-        { en:"9–10 Jun — Sender Log — List & Filter",                                       th:"9–10 มิ.ย. — พัฒนา Sender Log — List & Filter" },
-        { en:"11–14 Jun — Improve Sender Log to full spec",                                 th:"11–14 มิ.ย. — ปรับปรุง Sender Log ให้ครบ spec" },
-        { en:"18–20 Jun — Authentication with Microsoft (OAuth2)",                          th:"18–20 มิ.ย. — พัฒนา Authentication with Microsoft (OAuth2)" },
-        { en:"23 Jun — Connect Microsoft Auth Flow on Backend",                             th:"23 มิ.ย. — ต่อ Microsoft Auth Flow ฝั่ง Backend" },
-        { en:"24–30 Jun — Start Company Setting General Page",                              th:"24–30 มิ.ย. — เริ่ม Company Setting General Page" },
-      ]
-    },
-    { month_en:"July",      month_th:"กรกฎาคม",   year:"2025", num:"03", color:"#86efac", glow:"#16a34a", icon:"🏢",
-      tasks:[
-        { en:"1–7 Jul — Improve Company Setting (General, Contact Owner)",                  th:"1–7 ก.ค. — ปรับปรุง Company Setting" },
-        { en:"8–11 Jul — Fix Domain Whitelist feedback + update Sequence Diagram",          th:"8–11 ก.ค. — แก้ไข Domain Whitelist + อัปเดต Sequence Diagram" },
-        { en:"14–18 Jul — Develop Company Address CRUD",                                    th:"14–18 ก.ค. — พัฒนา Company Address CRUD" },
-        { en:"21–25 Jul — Data Masking for sensitive data",                                 th:"21–25 ก.ค. — พัฒนา Data Masking สำหรับข้อมูลสำคัญ" },
-        { en:"28–31 Jul — Review & QA all Company Settings",                                th:"28–31 ก.ค. — Review & QA Company Setting ทั้งหมด" },
-      ]
-    },
-    { month_en:"August",    month_th:"สิงหาคม",    year:"2025", num:"04", color:"#fda4af", glow:"#e11d48", icon:"🛡️",
-      tasks:[
-        { en:"1–8 Aug — 2FA Phone Verification & Trust Device",                             th:"1–8 ส.ค. — พัฒนา 2FA Phone Verification & Trust Device" },
-        { en:"11–15 Aug — Build Portal Setting Pages from scratch",                         th:"11–15 ส.ค. — สร้าง Portal Setting Pages ใหม่ทั้งหมด" },
-        { en:"18–22 Aug — Roles Setting & Permissions",                                     th:"18–22 ส.ค. — ปรับ Roles Setting & Permissions" },
-        { en:"22–25 Aug — Logs Setting (Filter, Export)",                                   th:"22–25 ส.ค. — พัฒนา Logs Setting (Filter, Export)" },
-        { en:"26–27 Aug — Start Tracking URL Feature",                                      th:"26–27 ส.ค. — เริ่ม Tracking URL Feature" },
-        { en:"28–29 Aug — Unit Testing Template Message",                                   th:"28–29 ส.ค. — Unit Testing Template Message" },
-      ]
-    },
-    { month_en:"September", month_th:"กันยายน",    year:"2025", num:"05", color:"#fcd34d", glow:"#d97706", icon:"📊",
-      tasks:[
-        { en:"1–5 Sep — Study NestJS & NuxtJS (new stack)",                                 th:"1–5 ก.ย. — ศึกษา NestJS & NuxtJS (เปลี่ยน Stack ใหม่)" },
-        { en:"8–12 Sep — SMS Monitor Dashboard",                                            th:"8–12 ก.ย. — พัฒนา SMS Monitor Dashboard" },
-        { en:"15–19 Sep — Top 20 API Request Chart & Table",                                th:"15–19 ก.ย. — Top 20 API Request Chart & Table" },
-        { en:"22–25 Sep — Portal Setting Whitelist/Blacklist CRUD",                         th:"22–25 ก.ย. — Portal Setting Whitelist/Blacklist CRUD" },
-        { en:"26–29 Sep — Postpaid Monthly Report + Flow Diagram",                          th:"26–29 ก.ย. — Postpaid Monthly Report + Flow Diagram" },
-        { en:"30 Sep — Review & Demo before final month",                                   th:"30 ก.ย. — Review & Demo ก่อนเดือนสุดท้าย" },
-      ]
-    },
-    { month_en:"October",   month_th:"ตุลาคม",     year:"2025", num:"06", color:"#fb923c", glow:"#ea580c", icon:"🎯",
-      tasks:[
-        { en:"1–3 Oct — User Management (List, Create, Edit, Delete)",                      th:"1–3 ต.ค. — User Management (List, Create, Edit, Delete)" },
-        { en:"6–10 Oct — Log Authentication History",                                       th:"6–10 ต.ค. — Log Authentication History" },
-        { en:"13–15 Oct — Login with Microsoft integration (Portal)",                       th:"13–15 ต.ค. — Login with Microsoft integration (Portal)" },
-        { en:"16–17 Oct — reCaptcha Integration on Login page",                             th:"16–17 ต.ค. — reCaptcha Integration หน้า Login" },
-        { en:"20–24 Oct — Complete Flow Diagrams for all features",                         th:"20–24 ต.ค. — จัดทำ Flow Diagram ครบถ้วนทุก Feature" },
-        { en:"🎉 31 Oct — Final co-op day — full handover completed", highlight: true,      th:"🎉 31 ต.ค. — วันสุดท้ายสหกิจ — ส่งมอบงานครบถ้วน" },
-      ]
-    },
+    { month_en:"May",       month_th:"พฤษภาคม",   year:"2025", num:"01", color:"#a78bfa", glow:"#7c3aed", icon:"🚀", tasks:[
+      { en:"1–11 May — Orientation & study company codebase",                          th:"1–11 พ.ค. — Orientation & ศึกษา Codebase บริษัท" },
+      { en:"12 May — Start first feature: Domain Whitelist",                           th:"12 พ.ค. — เริ่มพัฒนา Domain Whitelist Feature แรก" },
+      { en:"12–30 May — Full Domain Whitelist CRUD (List, Add, Edit, Delete)",         th:"12–30 พ.ค. — พัฒนา Domain Whitelist ครบทุกฟีเจอร์" },
+      { en:"20 May — Create ER Diagram & Data Dictionary",                             th:"20 พ.ค. — สร้าง ER Diagram & Data Dictionary ระบบ" },
+      { en:"28 May — Design Sequence Diagram for Domain Whitelist",                    th:"28 พ.ค. — ออกแบบ Sequence Diagram Domain Whitelist" },
+      { en:"30 May — Review REST API & PHP Codebase",                                  th:"30 พ.ค. — ทบทวน REST API & PHP Codebase เพิ่มเติม" },
+    ]},
+    { month_en:"June",      month_th:"มิถุนายน",   year:"2025", num:"02", color:"#67e8f9", glow:"#0891b2", icon:"🔐", tasks:[
+      { en:"2–6 Jun — Deploy Domain Whitelist to staging, fix Add/Update logic",       th:"2–6 มิ.ย. — Deploy Domain Whitelist สู่ Staging" },
+      { en:"9–10 Jun — Sender Log — List & Filter",                                    th:"9–10 มิ.ย. — พัฒนา Sender Log — List & Filter" },
+      { en:"11–14 Jun — Improve Sender Log to full spec",                              th:"11–14 มิ.ย. — ปรับปรุง Sender Log ให้ครบ spec" },
+      { en:"18–20 Jun — Authentication with Microsoft (OAuth2)",                       th:"18–20 มิ.ย. — พัฒนา Authentication with Microsoft (OAuth2)" },
+      { en:"23 Jun — Connect Microsoft Auth Flow on Backend",                          th:"23 มิ.ย. — ต่อ Microsoft Auth Flow ฝั่ง Backend" },
+      { en:"24–30 Jun — Start Company Setting General Page",                           th:"24–30 มิ.ย. — เริ่ม Company Setting General Page" },
+    ]},
+    { month_en:"July",      month_th:"กรกฎาคม",   year:"2025", num:"03", color:"#86efac", glow:"#16a34a", icon:"🏢", tasks:[
+      { en:"1–7 Jul — Improve Company Setting (General, Contact Owner)",               th:"1–7 ก.ค. — ปรับปรุง Company Setting" },
+      { en:"8–11 Jul — Fix Domain Whitelist feedback + update Sequence Diagram",       th:"8–11 ก.ค. — แก้ไข Domain Whitelist + อัปเดต Sequence Diagram" },
+      { en:"14–18 Jul — Develop Company Address CRUD",                                 th:"14–18 ก.ค. — พัฒนา Company Address CRUD" },
+      { en:"21–25 Jul — Data Masking for sensitive data",                              th:"21–25 ก.ค. — พัฒนา Data Masking สำหรับข้อมูลสำคัญ" },
+      { en:"28–31 Jul — Review & QA all Company Settings",                             th:"28–31 ก.ค. — Review & QA Company Setting ทั้งหมด" },
+    ]},
+    { month_en:"August",    month_th:"สิงหาคม",    year:"2025", num:"04", color:"#fda4af", glow:"#e11d48", icon:"🛡️", tasks:[
+      { en:"1–8 Aug — 2FA Phone Verification & Trust Device",                          th:"1–8 ส.ค. — พัฒนา 2FA Phone Verification & Trust Device" },
+      { en:"11–15 Aug — Build Portal Setting Pages from scratch",                      th:"11–15 ส.ค. — สร้าง Portal Setting Pages ใหม่ทั้งหมด" },
+      { en:"18–22 Aug — Roles Setting & Permissions",                                  th:"18–22 ส.ค. — ปรับ Roles Setting & Permissions" },
+      { en:"22–25 Aug — Logs Setting (Filter, Export)",                                th:"22–25 ส.ค. — พัฒนา Logs Setting (Filter, Export)" },
+      { en:"26–27 Aug — Start Tracking URL Feature",                                   th:"26–27 ส.ค. — เริ่ม Tracking URL Feature" },
+      { en:"28–29 Aug — Unit Testing Template Message",                                th:"28–29 ส.ค. — Unit Testing Template Message" },
+    ]},
+    { month_en:"September", month_th:"กันยายน",    year:"2025", num:"05", color:"#fcd34d", glow:"#d97706", icon:"📊", tasks:[
+      { en:"1–5 Sep — Study NestJS & NuxtJS (new stack)",                              th:"1–5 ก.ย. — ศึกษา NestJS & NuxtJS (เปลี่ยน Stack ใหม่)" },
+      { en:"8–12 Sep — SMS Monitor Dashboard",                                         th:"8–12 ก.ย. — พัฒนา SMS Monitor Dashboard" },
+      { en:"15–19 Sep — Top 20 API Request Chart & Table",                             th:"15–19 ก.ย. — Top 20 API Request Chart & Table" },
+      { en:"22–25 Sep — Portal Setting Whitelist/Blacklist CRUD",                      th:"22–25 ก.ย. — Portal Setting Whitelist/Blacklist CRUD" },
+      { en:"26–29 Sep — Postpaid Monthly Report + Flow Diagram",                       th:"26–29 ก.ย. — Postpaid Monthly Report + Flow Diagram" },
+      { en:"30 Sep — Review & Demo before final month",                                th:"30 ก.ย. — Review & Demo ก่อนเดือนสุดท้าย" },
+    ]},
+    { month_en:"October",   month_th:"ตุลาคม",     year:"2025", num:"06", color:"#fb923c", glow:"#ea580c", icon:"🎯", tasks:[
+      { en:"1–3 Oct — User Management (List, Create, Edit, Delete)",                   th:"1–3 ต.ค. — User Management (List, Create, Edit, Delete)" },
+      { en:"6–10 Oct — Log Authentication History",                                    th:"6–10 ต.ค. — Log Authentication History" },
+      { en:"13–15 Oct — Login with Microsoft integration (Portal)",                    th:"13–15 ต.ค. — Login with Microsoft integration (Portal)" },
+      { en:"16–17 Oct — reCaptcha Integration on Login page",                          th:"16–17 ต.ค. — reCaptcha Integration หน้า Login" },
+      { en:"20–24 Oct — Complete Flow Diagrams for all features",                      th:"20–24 ต.ค. — จัดทำ Flow Diagram ครบถ้วนทุก Feature" },
+      { en:"🎉 31 Oct — Final co-op day — full handover completed", highlight: true,   th:"🎉 31 ต.ค. — วันสุดท้ายสหกิจ — ส่งมอบงานครบถ้วน" },
+    ]},
   ],
 };
+
+/* ══ HOOKS ══ */
+
+/* ── Theme-aware month accent colors ── */
+const MONTH_COLORS_SUN = [
+  { color:"#2d6a4f", glow:"#1a3d28" },  // May
+  { color:"#40916c", glow:"#2d6a4f" },  // June
+  { color:"#52b788", glow:"#40916c" },  // July
+  { color:"#1a5c38", glow:"#0f3320" },  // August
+  { color:"#74c69d", glow:"#52b788" },  // September
+  { color:"#b7e4c7", glow:"#74c69d" },  // October
+];
+const MONTH_COLORS_MOON = [
+  { color:"#a78bfa", glow:"#7c3aed" },
+  { color:"#67e8f9", glow:"#0891b2" },
+  { color:"#86efac", glow:"#16a34a" },
+  { color:"#fda4af", glow:"#e11d48" },
+  { color:"#fcd34d", glow:"#d97706" },
+  { color:"#fb923c", glow:"#ea580c" },
+];
 
 function useVisible(threshold = 0.1) {
   const ref = useRef<HTMLDivElement>(null);
@@ -290,10 +296,10 @@ function useVisible(threshold = 0.1) {
   return { ref, visible };
 }
 
+/* ══ LANG TOGGLE ══ */
 function LangToggle({ lang, setLang, tk, accentColor }: {
   lang: Lang; setLang: (l: Lang) => void; tk: ExpTheme; accentColor: string;
 }) {
-  const isEN = lang === "EN";
   return (
     <div style={{ display:"inline-flex", alignItems:"center", gap:3, background:tk.toggleWrap, border:`1px solid ${tk.toggleWrapBorder}`, borderRadius:999, padding:"5px 6px", backdropFilter:"blur(16px)", WebkitBackdropFilter:"blur(16px)", boxShadow:tk.toggleWrapShadow, position:"relative" }}>
       {(["EN","TH"] as Lang[]).map(l => {
@@ -302,11 +308,11 @@ function LangToggle({ lang, setLang, tk, accentColor }: {
           <button key={l} onClick={() => setLang(l)} style={{ fontFamily:"'Space Mono',monospace", fontSize:11, fontWeight:700, letterSpacing:".14em", color:active?tk.toggleActiveColor:tk.toggleInactiveColor, background:active?tk.toggleActiveBg(accentColor):"transparent", border:active?`1px solid ${tk.toggleActiveBorder(accentColor)}`:"1px solid transparent", borderRadius:999, padding:"6px 18px", cursor:"pointer", boxShadow:active?tk.toggleActiveShadow(accentColor):"none", transform:active?"scale(1.05)":"scale(1)", transition:"all .32s cubic-bezier(.22,.68,0,1.2)" }}>{l}</button>
         );
       })}
-      <div style={{ position:"absolute", bottom:6, left:isEN?"8px":"calc(50% + 4px)", width:"calc(50% - 12px)", height:2, borderRadius:2, background:`linear-gradient(90deg,transparent,${accentColor},transparent)`, transition:"left .35s cubic-bezier(.22,.68,0,1.2),background .4s", pointerEvents:"none" }} />
     </div>
   );
 }
 
+/* ══ TIMELINE CARD ══ */
 function TimelineCard({ item, isMobile, visible, lang, tk }: {
   item: typeof CLICKNEXT.months[0]; isMobile: boolean; visible: boolean; lang: Lang; tk: ExpTheme;
 }) {
@@ -355,6 +361,7 @@ function TimelineCard({ item, isMobile, visible, lang, tk }: {
   );
 }
 
+/* ══ TIMELINE ITEM ══ */
 function TimelineItem({ item, index, isMobile, isLast, lang, tk }: {
   item: typeof CLICKNEXT.months[0]; index: number; isMobile: boolean; isLast: boolean; lang: Lang; tk: ExpTheme;
 }) {
@@ -392,10 +399,12 @@ function TimelineItem({ item, index, isMobile, isLast, lang, tk }: {
   );
 }
 
+/* ══ MAIN ══ */
 export default function ExperiancePage() {
   const { isDark } = useTheme();
   const tk = isDark ? MOON_EXP : SUN_EXP;
   const project = CLICKNEXT;
+  const accent = isDark ? "#a78bfa" : "#2d6a4f"; // purple moon / green sun
 
   const [lang, setLang]         = useState<Lang>("EN");
   const [switching, setSw]      = useState(false);
@@ -406,8 +415,7 @@ export default function ExperiancePage() {
 
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < 768);
-    check();
-    window.addEventListener("resize", check);
+    check(); window.addEventListener("resize", check);
     return () => window.removeEventListener("resize", check);
   }, []);
 
@@ -424,10 +432,7 @@ export default function ExperiancePage() {
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Space+Mono:wght@400;700&family=Lora:ital,wght@0,600;1,600&family=Sarabun:wght@400;500;600;700&display=swap');
         @keyframes expOrbDrift  { 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(20px,-20px) scale(1.05)} }
-
-        /* ✅ แก้กระตุก — transform แทน top ทำให้ GPU handle ไม่ repaint layout */
         @keyframes expScan      { 0%{transform:translateY(-100vh)} 100%{transform:translateY(100vh)} }
-
         @keyframes expNodeIn    { 0%{transform:scale(0) rotate(-180deg);opacity:0} 70%{transform:scale(1.15) rotate(10deg)} 100%{transform:scale(1) rotate(0);opacity:1} }
         @keyframes expTaskIn    { from{opacity:0;transform:translateX(-12px)} to{opacity:1;transform:translateX(0)} }
         @keyframes expTechReveal{ from{opacity:0;transform:scale(.8) translateY(10px)} to{opacity:1;transform:scale(1) translateY(0)} }
@@ -436,12 +441,8 @@ export default function ExperiancePage() {
         * { box-sizing:border-box; margin:0; padding:0; }
       `}</style>
 
-      <section id="experiances" style={{
-        minHeight:"100vh", background:tk.pageBg,
-        position:"relative", overflowX:"hidden",
-        padding:isMobile?"80px 0 60px":"100px 0 80px",
-        transition:"background .5s ease",
-      }}>
+      <section id="experiances" style={{ minHeight:"100vh", background:tk.pageBg, position:"relative", overflowX:"hidden", padding:isMobile?"80px 0 60px":"100px 0 80px", transition:"background .5s ease" }}>
+
         <div style={{ position:"absolute", inset:0, pointerEvents:"none", backgroundImage:`linear-gradient(${tk.gridLine} 1px,transparent 1px),linear-gradient(90deg,${tk.gridLine} 1px,transparent 1px)`, backgroundSize:"80px 80px" }} />
 
         {([
@@ -452,24 +453,26 @@ export default function ExperiancePage() {
           <div key={i} style={{ position:"absolute", width:o.w, height:o.h, top:o.t, left:o.l, right:o.r, borderRadius:"50%", filter:"blur(90px)", background:o.bg, animation:`expOrbDrift ${o.d} ease-in-out ${o.dl} infinite`, pointerEvents:"none", transition:"background .5s" }} />
         ))}
 
-        {/* ✅ Scanline — top:0 + transform animation ไม่กระตุก + will-change */}
+        {/* scanline — GPU transform, no jank */}
         <div style={{ position:"absolute", top:0, left:0, right:0, height:2, background:`linear-gradient(90deg,transparent,${tk.scanLine},transparent)`, animation:"expScan 10s linear infinite", pointerEvents:"none", zIndex:2, opacity:isDark?1:.5, willChange:"transform" }} />
 
-        {isDark && Array.from({ length: 18 }, (_, i) => {
-          const colors = ["#a78bfa","#67e8f9","#86efac","#fda4af","#fcd34d","#fb923c"];
-          const c = colors[i % 6];
+        {/* particles — dark only, purple palette */}
+        {isDark && Array.from({ length:18 }, (_,i) => {
+          const colors = ["#a78bfa","#c084fc","#818cf8","#e879f9","#f0abfc","#ddd6fe"];
+          const c = colors[i%6];
           return <div key={i} style={{ position:"absolute", left:`${(i*47.3)%100}%`, top:`${(i*31.7)%100}%`, width:(i%3)+1, height:(i%3)+1, borderRadius:"50%", background:c, boxShadow:`0 0 ${(i%3+2)*3}px ${c}`, animation:`expOrbDrift ${5+i%5}s ease-in-out ${(i*.3)%5}s infinite`, pointerEvents:"none", opacity:.65 }} />;
         })}
 
         <div style={{ position:"relative", zIndex:3, maxWidth:1080, margin:"0 auto", padding:isMobile?"0 16px":"0 clamp(20px,5%,60px)", opacity:switching?.4:1, transition:"opacity .22s" }}>
 
+          {/* HEADER */}
           <div ref={headerRef} style={{ textAlign:"center", marginBottom:isMobile?40:56, opacity:headerVisible?1:0, transform:headerVisible?"none":"translateY(-24px)", transition:"opacity .8s ease,transform .8s cubic-bezier(.22,.68,0,1.2)" }}>
             <div style={{ display:"flex", alignItems:"center", justifyContent:"center", gap:14, marginBottom:14 }}>
               <div style={{ height:1, width:isMobile?40:80, background:`linear-gradient(90deg,transparent,${tk.eyebrowLine})` }} />
               <span style={{ fontSize:10, color:tk.eyebrowColor, letterSpacing:".45em", fontFamily:"'Space Mono',monospace", transition:"color .5s" }}>✦ JOURNEY ✦</span>
               <div style={{ height:1, width:isMobile?40:80, background:`linear-gradient(90deg,${tk.eyebrowLine},transparent)` }} />
             </div>
-            <h1 style={{ fontFamily:tk.headingFont, fontStyle:isDark?"normal":"italic", fontSize:isMobile?"clamp(26px,8vw,38px)":"clamp(32px,4.5vw,52px)", fontWeight:900, letterSpacing:".08em", color:tk.headingColor, textShadow:tk.headingShadow, lineHeight:1.1, marginBottom:8, transition:"color .5s,text-shadow .5s,font-family .4s" }}>
+            <h1 style={{ fontFamily:tk.headingFont, fontStyle:isDark?"normal":"italic", fontSize:isMobile?"clamp(26px,8vw,38px)":"clamp(32px,4.5vw,52px)", fontWeight:900, letterSpacing:".08em", color:tk.headingColor, textShadow:tk.headingShadow, lineHeight:1.1, marginBottom:8, transition:"color .5s,text-shadow .5s" }}>
               {t("EXPERIENCES","ประสบการณ์")}
             </h1>
             <p style={{ fontFamily:"'Sarabun',sans-serif", fontSize:13, color:tk.headingSub, letterSpacing:".02em", transition:"color .5s" }}>
@@ -477,56 +480,63 @@ export default function ExperiancePage() {
             </p>
           </div>
 
+          {/* BADGE */}
           <div style={{ display:"flex", alignItems:"center", justifyContent:"center", marginBottom:isMobile?36:48, animation:"expFadeUp .5s ease both" }}>
-            <div style={{ display:"inline-flex", alignItems:"center", gap:12, padding:isMobile?"12px 20px":"14px 28px", borderRadius:999, background:tk.badgeBg(project.accentColor), border:`1.5px solid ${tk.badgeBorder(project.accentColor)}`, backdropFilter:"blur(12px)", boxShadow:tk.badgeGlow(project.accentColor), flexWrap:isMobile?"wrap":"nowrap", justifyContent:"center" }}>
+            <div style={{ display:"inline-flex", alignItems:"center", gap:12, padding:isMobile?"12px 20px":"14px 28px", borderRadius:999, background:tk.badgeBg(accent), border:`1.5px solid ${tk.badgeBorder(accent)}`, backdropFilter:"blur(12px)", boxShadow:tk.badgeGlow(accent), flexWrap:isMobile?"wrap":"nowrap", justifyContent:"center" }}>
               <span style={{ fontSize:20 }}>{project.icon}</span>
               <div>
                 <div style={{ fontFamily:"'Cinzel',serif", fontSize:isMobile?12:14, color:tk.badgeTitle, fontWeight:700, letterSpacing:".06em", transition:"color .5s" }}>{project.name}</div>
-                <div style={{ fontFamily:"'Space Mono',monospace", fontSize:10, color:tk.badgePeriod(project.accentColor), letterSpacing:".14em" }}>{t(project.role_en,project.role_th)}</div>
+                <div style={{ fontFamily:"'Space Mono',monospace", fontSize:10, color:tk.badgePeriod(accent), letterSpacing:".14em" }}>{t(project.role_en,project.role_th)}</div>
               </div>
-              <div style={{ padding:"3px 12px", borderRadius:999, background:tk.badgePeriodBg(project.accentColor), border:`1px solid ${tk.badgeBorder(project.accentColor)}`, fontSize:10, color:tk.badgePeriod(project.accentColor), fontFamily:"'Space Mono',monospace", letterSpacing:".1em" }}>
+              <div style={{ padding:"3px 12px", borderRadius:999, background:tk.badgePeriodBg(accent), border:`1px solid ${tk.badgeBorder(accent)}`, fontSize:10, color:tk.badgePeriod(accent), fontFamily:"'Space Mono',monospace", letterSpacing:".1em" }}>
                 {t(project.period_en,project.period_th)}
               </div>
             </div>
           </div>
 
+          {/* STATS */}
           <div style={{ display:"grid", gridTemplateColumns:isMobile?"1fr":"repeat(3,1fr)", gap:isMobile?12:20, marginBottom:isMobile?48:68 }}>
             {project.stats.map((s,i) => (
-              <div key={i} style={{ textAlign:"center", padding:isMobile?"20px 14px":"26px 18px", borderRadius:18, background:tk.statBg, border:`1.5px solid ${tk.statBorder(project.accentColor)}`, backdropFilter:"blur(14px)", position:"relative", overflow:"hidden", animation:`expFadeUp .5s ${i*.1}s ease both`, transition:"background .5s,border-color .5s" }}>
-                <div style={{ position:"absolute", top:0, left:"20%", right:"20%", height:1.5, background:tk.statTopLine(project.accentColor) }} />
-                <div style={{ fontFamily:"'Cinzel',serif", fontSize:isMobile?38:46, fontWeight:900, lineHeight:1, color:project.accentColor, textShadow:isDark?`0 0 20px ${project.accentColor}88`:`0 0 12px ${project.accentColor}44`, marginBottom:6, transition:"color .5s,text-shadow .5s" }}>{s.value}</div>
-                <div style={{ fontFamily:"'Cinzel',serif", fontSize:13, color:tk.statLabel(project.accentColor), fontWeight:700, letterSpacing:".08em", marginBottom:4, transition:"color .5s" }}>{t(s.label_en,s.label_th)}</div>
+              <div key={i} style={{ textAlign:"center", padding:isMobile?"20px 14px":"26px 18px", borderRadius:18, background:tk.statBg, border:`1.5px solid ${tk.statBorder(accent)}`, backdropFilter:"blur(14px)", position:"relative", overflow:"hidden", animation:`expFadeUp .5s ${i*.1}s ease both`, transition:"background .5s,border-color .5s" }}>
+                <div style={{ position:"absolute", top:0, left:"20%", right:"20%", height:1.5, background:tk.statTopLine(accent) }} />
+                <div style={{ fontFamily:"'Cinzel',serif", fontSize:isMobile?38:46, fontWeight:900, lineHeight:1, color:accent, textShadow:isDark?`0 0 20px ${accent}88`:`0 0 12px ${accent}44`, marginBottom:6, transition:"color .5s,text-shadow .5s" }}>{s.value}</div>
+                <div style={{ fontFamily:"'Cinzel',serif", fontSize:13, color:tk.statLabel(accent), fontWeight:700, letterSpacing:".08em", marginBottom:4, transition:"color .5s" }}>{t(s.label_en,s.label_th)}</div>
                 <div style={{ fontFamily:"'Sarabun',sans-serif", fontSize:12, color:tk.statSub, fontStyle:"italic", transition:"color .5s" }}>{t(s.sub_en,s.sub_th)}</div>
               </div>
             ))}
           </div>
 
+          {/* TIMELINE HEADER */}
           <div style={{ display:"flex", alignItems:"center", gap:14, marginBottom:isMobile?30:44 }}>
-            <div style={{ flex:1, height:1, background:tk.tlLine(project.accentColor) }} />
-            <span style={{ fontFamily:"'Cinzel',serif", fontSize:11, color:tk.tlHeaderColor(project.accentColor), letterSpacing:".28em", fontWeight:700, whiteSpace:"nowrap", transition:"color .5s" }}>
+            <div style={{ flex:1, height:1, background:tk.tlLine(accent) }} />
+            <span style={{ fontFamily:"'Cinzel',serif", fontSize:11, color:tk.tlHeaderColor(accent), letterSpacing:".28em", fontWeight:700, whiteSpace:"nowrap", transition:"color .5s" }}>
               🗓 {t(`TIMELINE · ${project.name}`,`ไทม์ไลน์ · ${project.name}`)}
             </span>
-            <div style={{ flex:1, height:1, background:`linear-gradient(90deg,${project.accentColor}44,transparent)` }} />
+            <div style={{ flex:1, height:1, background:`linear-gradient(90deg,${accent}44,transparent)` }} />
           </div>
 
+          {/* TIMELINE */}
           <div style={{ position:"relative" }}>
             {!isMobile && (
-              <div style={{ position:"absolute", left:"50%", top:28, bottom:28, width:2, transform:"translateX(-50%)", background:`linear-gradient(180deg,${project.months.map(m=>m.color+"55").join(",")})`, animation:"expLineGrow 1.2s ease both", zIndex:1 }} />
+              <div style={{ position:"absolute", left:"50%", top:28, bottom:28, width:2, transform:"translateX(-50%)", background:`linear-gradient(180deg,${(isDark?MONTH_COLORS_MOON:MONTH_COLORS_SUN).map(m=>m.color+"55").join(",")})`, animation:"expLineGrow 1.2s ease both", zIndex:1 }} />
             )}
             <div style={{ display:"flex", flexDirection:"column", gap:isMobile?0:32 }}>
-              {project.months.map((item,i) => (
-                <TimelineItem key={i} item={item} index={i} isMobile={isMobile} isLast={i===project.months.length-1} lang={lang} tk={tk} />
-              ))}
+              {project.months.map((item,i) => {
+                const mc = isDark ? MONTH_COLORS_MOON[i] : MONTH_COLORS_SUN[i];
+                const themedItem = { ...item, color: mc.color, glow: mc.glow };
+                return <TimelineItem key={i} item={themedItem} index={i} isMobile={isMobile} isLast={i===project.months.length-1} lang={lang} tk={tk} />;
+              })}
             </div>
           </div>
 
+          {/* TECH */}
           <div ref={techRef} style={{ marginTop:isMobile?48:68 }}>
             <div style={{ display:"flex", alignItems:"center", gap:14, marginBottom:28 }}>
-              <div style={{ flex:1, height:1, background:tk.tlLine(project.accentColor) }} />
-              <span style={{ fontFamily:"'Cinzel',serif", fontSize:11, color:tk.tlHeaderColor(project.accentColor), letterSpacing:".28em", fontWeight:700, transition:"color .5s" }}>
+              <div style={{ flex:1, height:1, background:tk.tlLine(accent) }} />
+              <span style={{ fontFamily:"'Cinzel',serif", fontSize:11, color:tk.tlHeaderColor(accent), letterSpacing:".28em", fontWeight:700, transition:"color .5s" }}>
                 ⚙ {t("TECH STACK","เทคโนโลยีที่ใช้")}
               </span>
-              <div style={{ flex:1, height:1, background:`linear-gradient(90deg,${project.accentColor}44,transparent)` }} />
+              <div style={{ flex:1, height:1, background:`linear-gradient(90deg,${accent}44,transparent)` }} />
             </div>
             <div style={{ display:"flex", flexWrap:"wrap", gap:isMobile?8:12, justifyContent:"center" }}>
               {project.tech.map((tech,i) => (
@@ -539,6 +549,7 @@ export default function ExperiancePage() {
             </div>
           </div>
 
+          {/* LANG TOGGLE */}
           <div style={{ display:"flex", justifyContent:"center", marginTop:isMobile?48:64 }}>
             <div style={{ display:"flex", flexDirection:"column", alignItems:"center", gap:12 }}>
               <div style={{ display:"flex", alignItems:"center", gap:14 }}>
@@ -546,7 +557,7 @@ export default function ExperiancePage() {
                 <span style={{ fontFamily:"'Space Mono',monospace", fontSize:9, letterSpacing:".22em", color:isDark?"rgba(167,139,250,0.35)":"rgba(45,106,79,0.32)" }}>LANGUAGE</span>
                 <div style={{ height:1, width:60, background:`linear-gradient(90deg,${tk.eyebrowLine},transparent)` }} />
               </div>
-              <LangToggle lang={lang} setLang={switchLang} tk={tk} accentColor={project.accentColor} />
+              <LangToggle lang={lang} setLang={switchLang} tk={tk} accentColor={accent} />
               <p style={{ fontFamily:"'Space Mono',monospace", fontSize:9, letterSpacing:".16em", color:isDark?"rgba(167,139,250,0.32)":"rgba(45,106,79,0.30)", margin:0 }}>
                 {lang==="TH" ? "กำลังแสดง: ภาษาไทย" : "Currently showing: English"}
               </p>

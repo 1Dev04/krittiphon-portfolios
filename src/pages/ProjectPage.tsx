@@ -20,7 +20,6 @@ interface PTheme {
   orbA: string; orbB: string;
   scanLine: string;
   bottomFade: string;
-  // title
   eyebrow: string;
   eyebrowLine: string;
   titleColor: string;
@@ -28,7 +27,6 @@ interface PTheme {
   titleFont: string;
   titleDivider: string;
   titleSub: string;
-  // card front
   cardFrontBg: string;
   cardFrontBorder: (c: string) => string;
   cardFrontShadow: string;
@@ -36,20 +34,16 @@ interface PTheme {
   cardImgFade: string;
   cardHeading: string;
   cardSubText: string;
-  // card back
   cardBackBg: string;
   cardBackBorder: (c: string) => string;
   cardBackShadow: (c: string) => string;
   cardBackGlow: (c: string) => string;
   cardBackSubText: string;
-  // dots
   dotInactive: string;
-  // arrows
   arrowBg: string; arrowBgHov: string;
   arrowBorder: string; arrowBorderHov: string;
   arrowColor: string; arrowColorHov: string;
   arrowShadow: string; arrowShadowHov: string;
-  // lang toggle
   toggleWrap: string;
   toggleWrapBorder: string;
   toggleWrapShadow: string;
@@ -58,140 +52,139 @@ interface PTheme {
   toggleActiveColor: string;
   toggleActiveShadow: (c: string) => string;
   toggleInactiveColor: string;
-  // modal
   modalBg: string;
   modalBorder: (c: string) => string;
   modalShadow: (c: string) => string;
   modalImgFade: string;
   modalTitleGrad: (c: string) => string;
   modalText: string;
-  // edges
   fadeLeft: string; fadeRight: string;
   showDots: boolean;
 }
 
 // ─────────────────────────────────────────────
-// ☀️ Natural / Sun
+// ☀️ Natural / Sun — Natural Green Throne
 // ─────────────────────────────────────────────
 const SUN_P: PTheme = {
-  pageBg: "linear-gradient(160deg,#f5f7f4 0%,#eef4ee 50%,#f0f5f0 100%)",
-  gridLine: "rgba(45,106,79,0.04)",
-  orbA: "rgba(45,106,79,0.10)",
-  orbB: "rgba(82,183,136,0.07)",
-  scanLine: "rgba(45,106,79,0.06)",
-  bottomFade: "linear-gradient(transparent,#eef4ee)",
-  eyebrow: "#2d6a4f",
+  pageBg:      "linear-gradient(160deg,#f5f7f4 0%,#eef4ee 50%,#f0f5f0 100%)",
+  gridLine:    "rgba(45,106,79,0.04)",
+  orbA:        "rgba(45,106,79,0.10)",
+  orbB:        "rgba(82,183,136,0.07)",
+  scanLine:    "rgba(45,106,79,0.06)",
+  bottomFade:  "linear-gradient(transparent,#eef4ee)",
+  eyebrow:     "#2d6a4f",
   eyebrowLine: "rgba(45,106,79,0.35)",
-  titleColor: "#1a3d28",
+  titleColor:  "#1a3d28",
   titleShadow: "0 1px 0 rgba(255,255,255,0.9),0 2px 12px rgba(45,106,79,0.15)",
-  titleFont: "'Lora',serif",
-  titleDivider: "rgba(45,106,79,0.35)",
-  titleSub: "rgba(20,50,30,0.42)",
-  // card front — white glass
-  cardFrontBg: "rgba(255,255,255,0.85)",
-  cardFrontBorder: (c) => `${c}44`,
-  cardFrontShadow: "0 8px 40px rgba(20,60,35,0.10),inset 0 1px 0 rgba(255,255,255,0.9)",
-  cardTopLine: (c) => `linear-gradient(90deg,transparent,${c}cc,transparent)`,
-  cardImgFade: "linear-gradient(to top,rgba(248,252,249,1) 0%,rgba(248,252,249,0.1) 55%,transparent 100%)",
-  cardHeading: "#1a3d28",
-  cardSubText: "rgba(20,50,30,0.50)",
+  titleFont:   "'Lora',serif",
+  titleDivider:"rgba(45,106,79,0.35)",
+  titleSub:    "rgba(20,50,30,0.42)",
+  // card front — green tinted glass
+  cardFrontBg:     "rgba(240,248,243,0.88)",
+  cardFrontBorder: (c) => `${c}55`,
+  cardFrontShadow: "0 8px 40px rgba(20,60,35,0.13),inset 0 1px 0 rgba(255,255,255,0.85)",
+  cardTopLine:     (c) => `linear-gradient(90deg,transparent,${c}cc,transparent)`,
+  cardImgFade:     "linear-gradient(to top,rgba(240,248,243,1) 0%,rgba(240,248,243,0.1) 55%,transparent 100%)",
+  cardHeading:     "#1a3d28",
+  cardSubText:     "rgba(20,50,30,0.55)",
   // card back
-  cardBackBg: "linear-gradient(145deg,rgba(240,248,243,0.98),rgba(235,245,240,0.99))",
-  cardBackBorder: (c) => `${c}66`,
-  cardBackShadow: (c) => `0 0 50px ${c}22,inset 0 1px 0 rgba(255,255,255,0.9)`,
-  cardBackGlow: (c) => `radial-gradient(ellipse 65% 45% at 50% 0%,${c}12 0%,transparent 70%)`,
-  cardBackSubText: "rgba(20,50,30,0.55)",
-  dotInactive: "rgba(45,106,79,0.18)",
+  cardBackBg:      "linear-gradient(145deg,rgba(232,245,238,0.98),rgba(225,242,232,0.99))",
+  cardBackBorder:  (c) => `${c}77`,
+  cardBackShadow:  (c) => `0 0 50px ${c}22,inset 0 1px 0 rgba(255,255,255,0.9)`,
+  cardBackGlow:    (c) => `radial-gradient(ellipse 65% 45% at 50% 0%,${c}12 0%,transparent 70%)`,
+  cardBackSubText: "rgba(20,50,30,0.60)",
+  dotInactive:     "rgba(45,106,79,0.18)",
   // arrows
-  arrowBg: "rgba(255,255,255,0.90)",
-  arrowBgHov: "rgba(45,106,79,0.14)",
-  arrowBorder: "rgba(45,106,79,0.22)",
+  arrowBg:        "rgba(255,255,255,0.90)",
+  arrowBgHov:     "rgba(45,106,79,0.14)",
+  arrowBorder:    "rgba(45,106,79,0.22)",
   arrowBorderHov: "rgba(45,106,79,0.55)",
-  arrowColor: "rgba(45,106,79,0.75)",
-  arrowColorHov: "#1a3d28",
-  arrowShadow: "0 2px 16px rgba(45,106,79,0.12)",
+  arrowColor:     "rgba(45,106,79,0.75)",
+  arrowColorHov:  "#1a3d28",
+  arrowShadow:    "0 2px 16px rgba(45,106,79,0.12)",
   arrowShadowHov: "0 4px 28px rgba(45,106,79,0.22)",
-  // lang toggle — pill
-  toggleWrap: "rgba(255,255,255,0.75)",
-  toggleWrapBorder: "rgba(45,106,79,0.22)",
-  toggleWrapShadow: "0 4px 20px rgba(20,60,35,0.10)",
-  toggleActiveBg: (c) => `linear-gradient(135deg,${c}28,${c}14)`,
-  toggleActiveBorder: (c) => `${c}66`,
-  toggleActiveColor: "#1a3d28",
+  // lang toggle — matches Experience style
+  toggleWrap:         "rgba(232,244,237,0.92)",
+  toggleWrapBorder:   "rgba(45,106,79,0.35)",
+  toggleWrapShadow:   "0 4px 20px rgba(20,60,35,0.14),inset 0 1px 0 rgba(255,255,255,0.80)",
+  toggleActiveBg:     (c) => `linear-gradient(135deg,${c}38,${c}22)`,
+  toggleActiveBorder: (c) => `${c}88`,
+  toggleActiveColor:  "#1a3d28",
   toggleActiveShadow: (c) => `0 0 16px ${c}33`,
-  toggleInactiveColor: "rgba(20,50,30,0.32)",
+  toggleInactiveColor:"rgba(20,50,30,0.32)",
   // modal
-  modalBg: "linear-gradient(160deg,rgba(248,252,249,0.99),rgba(240,248,243,0.99))",
-  modalBorder: (c) => `${c}55`,
-  modalShadow: (c) => `0 0 80px ${c}22,0 40px 100px rgba(20,60,35,0.15),inset 0 1px 0 rgba(255,255,255,0.9)`,
-  modalImgFade: "linear-gradient(to top,rgba(248,252,249,1) 0%,rgba(248,252,249,0.2) 55%,transparent 100%)",
+  modalBg:        "linear-gradient(160deg,rgba(242,250,245,0.99),rgba(232,245,238,0.99))",
+  modalBorder:    (c) => `${c}55`,
+  modalShadow:    (c) => `0 0 80px ${c}22,0 40px 100px rgba(20,60,35,0.15),inset 0 1px 0 rgba(255,255,255,0.9)`,
+  modalImgFade:   "linear-gradient(to top,rgba(242,250,245,1) 0%,rgba(242,250,245,0.2) 55%,transparent 100%)",
   modalTitleGrad: (c) => `linear-gradient(135deg,#1a3d28,${c} 60%)`,
-  modalText: "rgba(20,50,30,0.52)",
-  fadeLeft: "linear-gradient(90deg,rgba(238,244,238,0.98),transparent)",
-  fadeRight: "linear-gradient(270deg,rgba(238,244,238,0.98),transparent)",
-  showDots: false,
+  modalText:      "rgba(20,50,30,0.58)",
+  // fade edges — match pageBg
+  fadeLeft:  "linear-gradient(90deg,rgba(235,242,236,0.98),transparent)",
+  fadeRight: "linear-gradient(270deg,rgba(235,242,236,0.98),transparent)",
+  showDots:  false,
 };
 
 // ─────────────────────────────────────────────
-// 🌙 Galaxy / Moon
+// 🌙 Galaxy / Moon — Purple Violet
 // ─────────────────────────────────────────────
 const MOON_P: PTheme = {
-  pageBg: "linear-gradient(180deg,#05050e 0%,#070714 100%)",
-  gridLine: "rgba(167,139,250,0.025)",
-  orbA: "rgba(124,58,237,0.12)",
-  orbB: "rgba(6,182,212,0.09)",
-  scanLine: "rgba(167,139,250,0.20)",
-  bottomFade: "linear-gradient(transparent,#05050e)",
-  eyebrow: "#a78bfa",
+  pageBg:      "linear-gradient(180deg,#05050e 0%,#070714 100%)",
+  gridLine:    "rgba(167,139,250,0.025)",
+  orbA:        "rgba(124,58,237,0.12)",
+  orbB:        "rgba(167,139,250,0.10)",   // ✅ purple (was cyan rgba(6,182,212,0.09))
+  scanLine:    "rgba(167,139,250,0.20)",
+  bottomFade:  "linear-gradient(transparent,#05050e)",
+  eyebrow:     "#a78bfa",
   eyebrowLine: "rgba(167,139,250,0.35)",
-  titleColor: "#e9d5ff",
+  titleColor:  "#e9d5ff",
   titleShadow: "0 0 32px rgba(167,139,250,0.55),0 2px 8px rgba(0,0,0,0.5)",
-  titleFont: "'Cinzel',serif",
-  titleDivider: "rgba(167,139,250,0.35)",
-  titleSub: "rgba(255,255,255,0.22)",
+  titleFont:   "'Cinzel',serif",
+  titleDivider:"rgba(167,139,250,0.35)",
+  titleSub:    "rgba(255,255,255,0.22)",
   // card front — dark glass
-  cardFrontBg: "linear-gradient(165deg,rgba(255,255,255,.06),rgba(255,255,255,.02))",
+  cardFrontBg:     "linear-gradient(165deg,rgba(255,255,255,.06),rgba(255,255,255,.02))",
   cardFrontBorder: (c) => `${c}30`,
   cardFrontShadow: "0 8px 40px rgba(0,0,0,.60),inset 0 1px 0 rgba(255,255,255,.07)",
-  cardTopLine: (c) => `linear-gradient(90deg,transparent,${c}cc,transparent)`,
-  cardImgFade: "linear-gradient(to top,rgba(5,5,14,.97) 0%,rgba(5,5,14,.1) 55%,transparent 100%)",
-  cardHeading: "#e2e8f0",
-  cardSubText: "rgba(255,255,255,.40)",
+  cardTopLine:     (c) => `linear-gradient(90deg,transparent,${c}cc,transparent)`,
+  cardImgFade:     "linear-gradient(to top,rgba(5,5,14,.97) 0%,rgba(5,5,14,.1) 55%,transparent 100%)",
+  cardHeading:     "#e2e8f0",
+  cardSubText:     "rgba(255,255,255,.40)",
   // card back
-  cardBackBg: "linear-gradient(145deg,rgba(10,10,28,.98),rgba(5,5,18,.99))",
-  cardBackBorder: (c) => `${c}55`,
-  cardBackShadow: (c) => `0 0 50px ${c}22,inset 0 1px 0 rgba(255,255,255,.08)`,
-  cardBackGlow: (c) => `radial-gradient(ellipse 65% 45% at 50% 0%,${c}0e 0%,transparent 70%)`,
+  cardBackBg:      "linear-gradient(145deg,rgba(10,10,28,.98),rgba(5,5,18,.99))",
+  cardBackBorder:  (c) => `${c}55`,
+  cardBackShadow:  (c) => `0 0 50px ${c}22,inset 0 1px 0 rgba(255,255,255,.08)`,
+  cardBackGlow:    (c) => `radial-gradient(ellipse 65% 45% at 50% 0%,${c}0e 0%,transparent 70%)`,
   cardBackSubText: "rgba(255,255,255,.42)",
-  dotInactive: "rgba(167,139,250,.20)",
+  dotInactive:     "rgba(167,139,250,.20)",
   // arrows
-  arrowBg: "rgba(8,8,24,.88)",
-  arrowBgHov: "rgba(167,139,250,.20)",
-  arrowBorder: "rgba(167,139,250,.28)",
+  arrowBg:        "rgba(8,8,24,.88)",
+  arrowBgHov:     "rgba(167,139,250,.20)",
+  arrowBorder:    "rgba(167,139,250,.28)",
   arrowBorderHov: "rgba(167,139,250,.55)",
-  arrowColor: "rgba(167,139,250,.75)",
-  arrowColorHov: "#c4b5fd",
-  arrowShadow: "0 0 16px rgba(124,58,237,.18)",
+  arrowColor:     "rgba(167,139,250,.75)",
+  arrowColorHov:  "#c4b5fd",
+  arrowShadow:    "0 0 16px rgba(124,58,237,.18)",
   arrowShadowHov: "0 0 28px rgba(124,58,237,.45)",
   // lang toggle
-  toggleWrap: "rgba(255,255,255,.05)",
-  toggleWrapBorder: "rgba(167,139,250,.22)",
-  toggleWrapShadow: "0 4px 24px rgba(124,58,237,.15)",
-  toggleActiveBg: (c) => `linear-gradient(135deg,${c}30,${c}18)`,
-  toggleActiveBorder: (c) => `${c}66`,
-  toggleActiveColor: "#c4b5fd",
+  toggleWrap:         "rgba(255,255,255,.05)",
+  toggleWrapBorder:   "rgba(167,139,250,.25)",
+  toggleWrapShadow:   "0 4px 24px rgba(124,58,237,.18)",
+  toggleActiveBg:     (c) => `linear-gradient(135deg,${c}32,${c}18)`,
+  toggleActiveBorder: (c) => `${c}77`,
+  toggleActiveColor:  "#e2d9f3",
   toggleActiveShadow: (c) => `0 0 18px ${c}44`,
-  toggleInactiveColor: "rgba(255,255,255,.28)",
+  toggleInactiveColor:"rgba(255,255,255,.28)",
   // modal
-  modalBg: "linear-gradient(160deg,rgba(11,11,27,.99),rgba(5,5,16,.99))",
-  modalBorder: (c) => `${c}55`,
-  modalShadow: (c) => `0 0 80px ${c}33,0 40px 100px rgba(0,0,0,.85),inset 0 1px 0 rgba(255,255,255,.08)`,
-  modalImgFade: "linear-gradient(to top,rgba(5,5,16,1) 0%,rgba(5,5,16,.2) 55%,transparent 100%)",
+  modalBg:        "linear-gradient(160deg,rgba(11,11,27,.99),rgba(5,5,16,.99))",
+  modalBorder:    (c) => `${c}55`,
+  modalShadow:    (c) => `0 0 80px ${c}33,0 40px 100px rgba(0,0,0,.85),inset 0 1px 0 rgba(255,255,255,.08)`,
+  modalImgFade:   "linear-gradient(to top,rgba(5,5,16,1) 0%,rgba(5,5,16,.2) 55%,transparent 100%)",
   modalTitleGrad: (c) => `linear-gradient(135deg,#f1f5f9,${c} 60%)`,
-  modalText: "rgba(255,255,255,.48)",
-  fadeLeft: "linear-gradient(90deg,rgba(5,5,14,.98),transparent)",
+  modalText:      "rgba(255,255,255,.48)",
+  fadeLeft:  "linear-gradient(90deg,rgba(5,5,14,.98),transparent)",
   fadeRight: "linear-gradient(270deg,rgba(5,5,14,.98),transparent)",
-  showDots: true,
+  showDots:  true,
 };
 
 // ─────────────────────────────────────────────
@@ -260,7 +253,6 @@ function FlipCard({ item, lang, index, onOpen, isDragging, tk }: {
   const downX = useRef(0);
   const isTH = lang === "th";
 
-  // button base style factory
   const btnBase = (accent: string, variant: "solid" | "ghost") => ({
     flex: variant === "solid" ? 2 : 1,
     padding: "6px 0", borderRadius: 999, cursor: "pointer",
@@ -290,7 +282,6 @@ function FlipCard({ item, lang, index, onOpen, isDragging, tk }: {
         transform: flipped ? "rotateY(180deg)" : "rotateY(0deg)",
         transition:"transform .7s cubic-bezier(.22,.68,0,1.2)",
       }}>
-
         {/* ── FRONT ── */}
         <div style={{
           position:"absolute", inset:0, backfaceVisibility:"hidden", borderRadius:20,
@@ -300,24 +291,17 @@ function FlipCard({ item, lang, index, onOpen, isDragging, tk }: {
           display:"flex", flexDirection:"column",
           transition:"background .5s,border-color .5s",
         }}>
-          {/* top shine */}
           <div style={{ position:"absolute", top:0, left:"8%", right:"8%", height:1.5, background:tk.cardTopLine(c), borderRadius:2 }} />
-
-          {/* image */}
           <div style={{ height:185, overflow:"hidden", flexShrink:0, background:"#080818", position:"relative" }}>
             <img src={item.img} alt="" style={{ width:"100%", height:"100%", objectFit:"cover", filter:"brightness(.6)", pointerEvents:"none", userSelect:"none" }} />
             <div style={{ position:"absolute", inset:0, background:tk.cardImgFade, transition:"background .5s" }} />
-            {/* rune badge */}
             <div style={{ position:"absolute", top:10, left:10, width:28, height:28, borderRadius:8, background:"rgba(0,0,0,.6)", border:`1px solid ${c}33`, display:"flex", alignItems:"center", justifyContent:"center", fontSize:13, color:`${c}88`, fontFamily:"serif" }}>
               {RUNES[index % 10]}
             </div>
-            {/* year badge */}
             <div style={{ position:"absolute", top:10, right:10, background:`${c}18`, border:`1px solid ${c}44`, borderRadius:999, padding:"3px 9px", fontSize:9, color:c, fontFamily:"'Space Mono',monospace", backdropFilter:"blur(8px)" }}>
               {gl(item.year, lang)}
             </div>
           </div>
-
-          {/* body */}
           <div style={{ padding:"14px 16px 16px", flex:1, display:"flex", flexDirection:"column", gap:8 }}>
             <h2 style={{ margin:0, fontSize:12.5, fontWeight:700, color:tk.cardHeading, fontFamily:isTH?"'Sarabun',sans-serif":"'Space Mono',monospace", lineHeight:1.45, display:"-webkit-box", WebkitLineClamp:2, WebkitBoxOrient:"vertical", overflow:"hidden", transition:"color .5s" }}>
               {gl(item.title, lang)}
@@ -329,12 +313,8 @@ function FlipCard({ item, lang, index, onOpen, isDragging, tk }: {
                 : "Click to explore →"}
             </p>
             <div style={{ display:"flex", gap:8 }}>
-              <button onClick={e => { e.stopPropagation(); onOpen(item); }} style={btnBase(c,"solid")}>
-                ⊕ DETAIL
-              </button>
-              <button onClick={e => { e.stopPropagation(); setFlipped(f => !f); }} style={btnBase(c,"ghost")}>
-                ↺ FLIP
-              </button>
+              <button onClick={e => { e.stopPropagation(); onOpen(item); }} style={btnBase(c,"solid")}>⊕ DETAIL</button>
+              <button onClick={e => { e.stopPropagation(); setFlipped(f => !f); }} style={btnBase(c,"ghost")}>↺ FLIP</button>
             </div>
           </div>
         </div>
@@ -348,14 +328,9 @@ function FlipCard({ item, lang, index, onOpen, isDragging, tk }: {
           display:"flex", flexDirection:"column", padding:"18px 16px 16px", gap:9,
           transition:"background .5s,border-color .5s",
         }}>
-          {/* top glow line */}
           <div style={{ position:"absolute", top:0, left:"8%", right:"8%", height:2, background:`linear-gradient(90deg,transparent,${c},transparent)`, opacity:.8, borderRadius:2 }} />
           <div style={{ position:"absolute", inset:0, background:tk.cardBackGlow(c), pointerEvents:"none" }} />
-
-          {/* rune watermark */}
           <div style={{ fontSize:26, color:`${c}18`, fontFamily:"serif", textAlign:"right", position:"absolute", top:12, right:14, lineHeight:1 }}>{RUNES[index % 10]}</div>
-
-          {/* title */}
           <div style={{ paddingRight:24 }}>
             <h3 style={{ margin:0, fontSize:12, fontWeight:700, color:c, fontFamily:isTH?"'Sarabun',sans-serif":"'Space Mono',monospace", lineHeight:1.4, textShadow:`0 0 14px ${c}88`, display:"-webkit-box", WebkitLineClamp:2, WebkitBoxOrient:"vertical", overflow:"hidden" }}>
               {gl(item.title, lang)}
@@ -364,10 +339,7 @@ function FlipCard({ item, lang, index, onOpen, isDragging, tk }: {
               {gl(item.year, lang)}
             </span>
           </div>
-
           <div style={{ height:1, background:`linear-gradient(90deg,${c}66,transparent)` }} />
-
-          {/* features list */}
           <ul style={{ margin:0, padding:0, listStyle:"none", display:"flex", flexDirection:"column", gap:5, flex:1, overflow:"hidden" }}>
             {item.head.slice(0,4).map((h,i) => (
               <li key={i} style={{ display:"flex", flexDirection:"column", gap:1 }}>
@@ -380,15 +352,9 @@ function FlipCard({ item, lang, index, onOpen, isDragging, tk }: {
               </li>
             ))}
           </ul>
-
-          {/* actions */}
           <div style={{ display:"flex", gap:8, marginTop:2 }}>
-            <button onClick={e => { e.stopPropagation(); setFlipped(false); }} style={btnBase(c,"ghost")}>
-              ↩ BACK
-            </button>
-            <button onClick={e => { e.stopPropagation(); onOpen(item); }} style={btnBase(c,"solid")}>
-              ⊕ DETAIL
-            </button>
+            <button onClick={e => { e.stopPropagation(); setFlipped(false); }} style={btnBase(c,"ghost")}>↩ BACK</button>
+            <button onClick={e => { e.stopPropagation(); onOpen(item); }} style={btnBase(c,"solid")}>⊕ DETAIL</button>
           </div>
         </div>
       </div>
@@ -412,12 +378,8 @@ function Modal({ item, lang, onClose, tk }: { item: ProjectItem; lang: Lang; onC
   return (
     <div onClick={onClose} style={{ position:"fixed", inset:0, zIndex:9999, background:"rgba(2,2,12,.90)", backdropFilter:"blur(20px)", display:"flex", alignItems:"center", justifyContent:"center", padding:"24px 16px", animation:"mBg .28s ease both" }}>
       <div onClick={e => e.stopPropagation()} style={{ width:"100%", maxWidth:700, maxHeight:"88vh", borderRadius:24, background:tk.modalBg, border:`1px solid ${tk.modalBorder(c)}`, boxShadow:tk.modalShadow(c), overflow:"hidden", display:"flex", flexDirection:"column", animation:"mIn .42s cubic-bezier(.22,.68,0,1.2) both", position:"relative", transition:"background .5s" }}>
-        {/* top line */}
         <div style={{ position:"absolute", top:0, left:"5%", right:"5%", height:2, background:`linear-gradient(90deg,transparent,${c},transparent)`, borderRadius:2 }} />
-        {/* glow */}
         <div style={{ position:"absolute", top:0, left:0, right:0, height:280, background:`radial-gradient(ellipse 70% 55% at 50% 0%,${c}11 0%,transparent 70%)`, pointerEvents:"none" }} />
-
-        {/* image */}
         <div style={{ height:215, overflow:"hidden", flexShrink:0, background:"#060612", position:"relative" }}>
           <img src={item.img} alt="" style={{ width:"100%", height:"100%", objectFit:"cover", filter:"brightness(.45)" }} />
           <div style={{ position:"absolute", inset:0, background:tk.modalImgFade, transition:"background .5s" }} />
@@ -433,14 +395,11 @@ function Modal({ item, lang, onClose, tk }: { item: ProjectItem; lang: Lang; onC
             </div>
           </div>
         </div>
-
-        {/* content */}
         <div style={{ padding:"22px 26px 28px", overflow:"auto", display:"flex", flexDirection:"column", gap:14 }}>
           <h2 style={{ margin:0, fontFamily:isTH?"'Sarabun',sans-serif":"'Cinzel',serif", fontWeight:700, fontSize:"clamp(15px,2.5vw,20px)", background:tk.modalTitleGrad(c), WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text", lineHeight:1.3, letterSpacing:isTH?".01em":".03em" }}>
             {gl(item.title, lang)}
           </h2>
           <div style={{ height:1, background:`linear-gradient(90deg,${c}77,${c}22,transparent)` }} />
-
           {item.head.length > 0 ? (
             <ul style={{ margin:0, padding:0, listStyle:"none", display:"flex", flexDirection:"column", gap:12 }}>
               {item.head.map((h,i) => (
@@ -459,14 +418,13 @@ function Modal({ item, lang, onClose, tk }: { item: ProjectItem; lang: Lang; onC
               This project is currently in progress or has limited public details available.
             </p>
           )}
-
           {(item.link || item.youtube || item.github) && (
             <>
               <div style={{ height:1, background:`linear-gradient(90deg,${c}33,transparent)` }} />
               <div style={{ display:"flex", gap:10, flexWrap:"wrap" }}>
-                {item.link   && <ActionBtn href={item.link}    color={c}         label="Live Link" icon={<IcoLink />} />}
-                {item.youtube && <ActionBtn href={item.youtube} color="#ff4444"   label="Watch"     icon={<IcoYT />} />}
-                {item.github  && <ActionBtn href={item.github}  color="#e2e8f0"   label="GitHub"    icon={<IcoGH />} />}
+                {item.link    && <ActionBtn href={item.link}    color={c}       label="Live Link" icon={<IcoLink />} />}
+                {item.youtube && <ActionBtn href={item.youtube} color="#ff4444" label="Watch"     icon={<IcoYT />} />}
+                {item.github  && <ActionBtn href={item.github}  color="#e2e8f0" label="GitHub"    icon={<IcoGH />} />}
               </div>
             </>
           )}
@@ -501,73 +459,36 @@ function ArrowBtn({ dir, onClick, tk }: { dir:"left"|"right"; onClick:()=>void; 
 }
 
 // ─────────────────────────────────────────────
-// LangToggle — animated sliding pill
+// LangToggle — matches Experience page style
 // ─────────────────────────────────────────────
 function LangToggle({ lang, switchLang, tk, activeProjectColor }: {
-  lang: Lang;
-  switchLang: (l: Lang) => void;
-  tk: PTheme;
-  activeProjectColor: string;
+  lang: Lang; switchLang: (l: Lang) => void; tk: PTheme; activeProjectColor: string;
 }) {
-  const isEN = lang === "en";
   const c = activeProjectColor;
-
   return (
     <div style={{
-      display: "inline-flex",
-      alignItems: "center",
-      position: "relative",
-      background: tk.toggleWrap,
-      border: `1px solid ${tk.toggleWrapBorder}`,
-      borderRadius: 999,
-      padding: 4,
-      backdropFilter: "blur(16px)",
-      WebkitBackdropFilter: "blur(16px)",
-      boxShadow: tk.toggleWrapShadow,
-      transition: "background .5s,border-color .5s,box-shadow .5s",
-      gap: 2,
+      display:"inline-flex", alignItems:"center", gap:3,
+      background:tk.toggleWrap, border:`1px solid ${tk.toggleWrapBorder}`,
+      borderRadius:999, padding:"5px 6px",
+      backdropFilter:"blur(16px)", WebkitBackdropFilter:"blur(16px)",
+      boxShadow:tk.toggleWrapShadow,
     }}>
       {(["en","th"] as Lang[]).map((l) => {
         const active = lang === l;
         return (
-          <button
-            key={l}
-            onClick={() => switchLang(l)}
-            style={{
-              position: "relative",
-              zIndex: 1,
-              padding: "7px 28px",
-              borderRadius: 999,
-              border: active ? `1px solid ${tk.toggleActiveBorder(c)}` : "1px solid transparent",
-              background: active ? tk.toggleActiveBg(c) : "transparent",
-              color: active ? tk.toggleActiveColor : tk.toggleInactiveColor,
-              fontFamily: "'Space Mono',monospace",
-              fontSize: 11,
-              fontWeight: 700,
-              letterSpacing: ".14em",
-              cursor: "pointer",
-              boxShadow: active ? tk.toggleActiveShadow(c) : "none",
-              transform: active ? "scale(1.04)" : "scale(1)",
-              transition: "all .32s cubic-bezier(.22,.68,0,1.2)",
-            }}
-          >
-            {l.toUpperCase()}
-          </button>
+          <button key={l} onClick={() => switchLang(l)} style={{
+            fontFamily:"'Space Mono',monospace",
+            fontSize:11, fontWeight:700, letterSpacing:".14em",
+            color: active ? tk.toggleActiveColor : tk.toggleInactiveColor,
+            background: active ? tk.toggleActiveBg(c) : "transparent",
+            border: active ? `1px solid ${tk.toggleActiveBorder(c)}` : "1px solid transparent",
+            borderRadius:999, padding:"6px 18px", cursor:"pointer",
+            boxShadow: active ? tk.toggleActiveShadow(c) : "none",
+            transform: active ? "scale(1.05)" : "scale(1)",
+            transition:"all .32s cubic-bezier(.22,.68,0,1.2)",
+          }}>{l.toUpperCase()}</button>
         );
       })}
-
-      {/* sliding accent underline */}
-      <div style={{
-        position: "absolute",
-        bottom: 6,
-        left: isEN ? "calc(50% + 4px)" : "8px",
-        width: "calc(50% - 12px)",
-        height: 2,
-        borderRadius: 2,
-        background: `linear-gradient(90deg,transparent,${c},transparent)`,
-        transition: "left .35s cubic-bezier(.22,.68,0,1.2),background .4s",
-        pointerEvents: "none",
-      }} />
     </div>
   );
 }
@@ -654,7 +575,7 @@ const ProjectPage: React.FC = () => {
     <>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;900&family=Space+Mono:wght@400;700&family=Lora:ital,wght@0,600;1,600&family=Sarabun:wght@400;600;700&display=swap');
-        @keyframes scan  { 0%{top:-5%} 100%{top:105%} }
+        @keyframes scan  { 0%{transform:translateY(-100vh)} 100%{transform:translateY(100vh)} }
         @keyframes orbF  { 0%,100%{transform:translate(0,0)} 50%{transform:translate(14px,-14px)} }
         @keyframes fadeUp{ from{opacity:0;transform:translateY(22px)} to{opacity:1;transform:translateY(0)} }
         @keyframes mBg   { from{opacity:0} to{opacity:1} }
@@ -676,17 +597,17 @@ const ProjectPage: React.FC = () => {
         <div style={{ position:"absolute", width:600, height:600, top:"-20%", right:"-10%", borderRadius:"50%", filter:"blur(90px)", background:tk.orbA, animation:"orbF 16s ease-in-out infinite", pointerEvents:"none", transition:"background .5s" }} />
         <div style={{ position:"absolute", width:500, height:500, bottom:"-5%", left:"-12%", borderRadius:"50%", filter:"blur(80px)", background:tk.orbB, animation:"orbF 20s ease-in-out 5s infinite", pointerEvents:"none", transition:"background .5s" }} />
 
-        {/* Scanline */}
-        <div style={{ position:"absolute", left:0, right:0, height:2, background:`linear-gradient(90deg,transparent,${tk.scanLine},transparent)`, animation:"scan 11s linear infinite", pointerEvents:"none", zIndex:2, transition:"background .5s", opacity: isDark ? 1 : 0.5 }} />
+        {/* Scanline — GPU transform, no jank ✅ */}
+        <div style={{ position:"absolute", top:0, left:0, right:0, height:2, background:`linear-gradient(90deg,transparent,${tk.scanLine},transparent)`, animation:"scan 11s linear infinite", pointerEvents:"none", zIndex:2, transition:"background .5s", opacity:isDark?1:0.5, willChange:"transform" }} />
 
-        {/* Star dots — galaxy only */}
+        {/* Star dots — Moon only, purple palette ✅ */}
         {tk.showDots && Array.from({ length:14 }, (_,i) => {
-          const colors = ["#a78bfa","#67e8f9","#86efac","#fda4af","#fcd34d"];
+          const colors = ["#a78bfa","#c084fc","#818cf8","#e879f9","#ddd6fe"];
           const col = colors[i%5];
           return <div key={i} style={{ position:"absolute", left:`${(i*71.3)%100}%`, top:`${(i*43.7)%100}%`, width:(i%2)+1, height:(i%2)+1, borderRadius:"50%", background:col, boxShadow:`0 0 ${(i%2+1)*4}px ${col}`, animation:`orbF ${5+i%6}s ease-in-out ${(i*.3)%5}s infinite`, pointerEvents:"none" }} />;
         })}
 
-        {/* ── Title ── */}
+        {/* Title */}
         <div ref={titleRef} style={{ textAlign:"center", marginBottom:44, padding:"0 8%", position:"relative", zIndex:3, opacity:titleVis?1:0, transform:titleVis?"none":"translateY(24px)", transition:"opacity .7s ease,transform .7s cubic-bezier(.22,.68,0,1.2)" }}>
           <div style={{ display:"flex", alignItems:"center", justifyContent:"center", gap:12, marginBottom:10 }}>
             <div style={{ height:1, width:36, background:`linear-gradient(90deg,transparent,${tk.eyebrowLine})` }} />
@@ -694,13 +615,10 @@ const ProjectPage: React.FC = () => {
             <div style={{ height:1, width:36, background:`linear-gradient(90deg,${tk.eyebrowLine},transparent)` }} />
           </div>
           <h1 style={{
-            fontFamily: tk.titleFont,
-            fontStyle: isDark ? "normal" : "italic",
-            fontSize: isMobile ? "clamp(26px,8vw,38px)" : "clamp(32px,4.5vw,52px)",
-            fontWeight:900, letterSpacing:".08em",
-            color: tk.titleColor,
-            textShadow: tk.titleShadow,
-            lineHeight:1.1, marginBottom:8,
+            fontFamily:tk.titleFont, fontStyle:isDark?"normal":"italic",
+            fontSize:isMobile?"clamp(26px,8vw,38px)":"clamp(32px,4.5vw,52px)",
+            fontWeight:900, letterSpacing:".08em", color:tk.titleColor,
+            textShadow:tk.titleShadow, lineHeight:1.1, marginBottom:8,
             transition:"color .5s,text-shadow .5s",
           }}>
             {lang==="en" ? "Projects" : "ผลงาน"}
@@ -711,7 +629,7 @@ const ProjectPage: React.FC = () => {
           </p>
         </div>
 
-        {/* ── Carousel ── */}
+        {/* Carousel */}
         <div style={{ position:"relative", zIndex:3 }}>
           <div style={{ position:"absolute", left:0, top:0, bottom:0, width:72, background:tk.fadeLeft, pointerEvents:"none", zIndex:4, transition:"background .5s" }} />
           <div style={{ position:"absolute", right:0, top:0, bottom:0, width:72, background:tk.fadeRight, pointerEvents:"none", zIndex:4, transition:"background .5s" }} />
@@ -737,19 +655,29 @@ const ProjectPage: React.FC = () => {
           <div style={{ display:"flex", justifyContent:"center", gap:5, marginTop:4 }}>
             {projects.map((p,i) => (
               <div key={i} onClick={() => scrollTo(i)} style={{
-                width: i===activeIdx ? 22 : 6, height:6, borderRadius:3,
-                background: i===activeIdx ? (p.color || tk.eyebrow) : tk.dotInactive,
+                width:i===activeIdx?22:6, height:6, borderRadius:3,
+                background:i===activeIdx?(p.color||tk.eyebrow):tk.dotInactive,
                 cursor:"pointer",
-                boxShadow: i===activeIdx ? `0 0 10px ${p.color || tk.eyebrow}77` : "none",
+                boxShadow:i===activeIdx?`0 0 10px ${p.color||tk.eyebrow}77`:"none",
                 transition:"all .35s cubic-bezier(.22,.68,0,1.2)",
               }} />
             ))}
           </div>
         </div>
 
-        {/* ── Lang toggle — below carousel ── */}
+        {/* Lang toggle */}
         <div style={{ display:"flex", justifyContent:"center", marginTop:32, position:"relative", zIndex:3 }}>
-          <LangToggle lang={lang} switchLang={switchLang} tk={tk} activeProjectColor={activeColor} />
+          <div style={{ display:"flex", flexDirection:"column", alignItems:"center", gap:12 }}>
+            <div style={{ display:"flex", alignItems:"center", gap:14 }}>
+              <div style={{ height:1, width:60, background:`linear-gradient(90deg,transparent,${tk.eyebrowLine})` }} />
+              <span style={{ fontFamily:"'Space Mono',monospace", fontSize:9, letterSpacing:".22em", color:isDark?"rgba(167,139,250,0.38)":"rgba(45,106,79,0.35)" }}>LANGUAGE</span>
+              <div style={{ height:1, width:60, background:`linear-gradient(90deg,${tk.eyebrowLine},transparent)` }} />
+            </div>
+            <LangToggle lang={lang} switchLang={switchLang} tk={tk} activeProjectColor={activeColor} />
+            <p style={{ fontFamily:"'Space Mono',monospace", fontSize:9, letterSpacing:".16em", color:isDark?"rgba(167,139,250,0.32)":"rgba(45,106,79,0.30)", margin:0 }}>
+              {lang==="th" ? "กำลังแสดง: ภาษาไทย" : "Currently showing: English"}
+            </p>
+          </div>
         </div>
 
         {/* Bottom fade */}

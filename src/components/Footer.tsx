@@ -1,5 +1,5 @@
 import React from "react";
-import { useTheme, SUN, MOON } from "../components/themeContext";
+import { useTheme, SUN, MOON } from "./themeContext";
 
 interface FooterProps {
   recordCount?: number;
@@ -46,26 +46,33 @@ const Footer: React.FC<FooterProps> = ({ recordCount = 0 }) => {
         }}/>
 
         {/* RETURN link */}
-        <a
-          href="/#profile"
+        <button
           className="footer-return"
+          onClick={() => {
+            const el = document.getElementById("profile");
+            if (el) el.scrollIntoView({ behavior: "smooth" });
+            window.history.pushState(null, "", "#profile");
+          }}
           style={{
             display: "flex",
             alignItems: "center",
             gap: 10,
             color: tk.footerReturn,
-            textDecoration: "none",
+            background: "transparent",
+            border: "none",
+            cursor: "pointer",
             fontFamily: "'Cinzel', serif",
             fontSize: 13,
             fontWeight: 500,
             letterSpacing: "0.15em",
             opacity: 0.85,
+            padding: 0,
             transition: "opacity .25s ease, color .4s ease",
           }}
         >
           <span className="footer-arrow" style={{ fontSize: 16 }}>←</span>
           RETURN
-        </a>
+        </button>
 
         {/* center dot — decorative */}
         <div style={{
@@ -87,7 +94,7 @@ const Footer: React.FC<FooterProps> = ({ recordCount = 0 }) => {
             transition: "color .4s ease",
           }}
         >
-          {recordCount > 0 ? `${recordCount} · ` : ""}V. 3.0.0
+          {recordCount > 0 ? `${recordCount} · ` : ""}V. 3.1.0
         </div>
       </div>
     </>
