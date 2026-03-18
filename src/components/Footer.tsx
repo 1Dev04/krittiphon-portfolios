@@ -94,7 +94,7 @@ const Footer: React.FC<FooterProps> = ({ recordCount = 0 }) => {
             transition: "color .4s ease",
           }}
         >
-          {recordCount > 0 ? `${recordCount} · ` : ""}V. 3.1.0
+          {recordCount > 0 ? `${recordCount} · ` : ""}V. 3.4.0
         </div>
       </div>
     </>

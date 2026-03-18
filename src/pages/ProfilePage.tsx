@@ -638,7 +638,7 @@ export default function ProfilePage() {
               backdropFilter:"blur(10px)",width:"fit-content",
               transition:"background .5s,border-color .5s",
             }}>
-              {(["th","en"] as const).map(l=>(
+              {(["en","th"] as const).map(l=>(
                 <button key={l} onClick={()=>switchLang(l)} style={{
                   padding:"5px 18px",borderRadius:999,cursor:"pointer",
                   fontFamily:"'Inter',sans-serif",fontSize:11,fontWeight:700,letterSpacing:".08em",
