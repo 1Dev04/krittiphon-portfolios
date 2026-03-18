@@ -849,7 +849,7 @@ export default function FeatureProjectPage() {
                     }}
                   >
                     <img
-                      src="https://res.cloudinary.com/dag73dhpl/image/upload/v1773814291/image-removebg-preview_fzx9e6.png"
+                      src="https://res.cloudinary.com/dag73dhpl/image/upload/v1773817546/image-removebg-preview_n5i6gx.png"
                       alt="ABCat mascot — tap to visit app"
                       style={{ width: 90, display: "block" }}
                     />
