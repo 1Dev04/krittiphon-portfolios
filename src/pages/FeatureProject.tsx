@@ -776,7 +776,7 @@ export default function FeatureProjectPage() {
             {/* Cat mascot (desktop only, properly positioned) */}
             {!isMobile && (
               <a
-                href="https://abcat-shop-gp1pqmkv1-devmos-projects.vercel.app/"
+                href="https://abcat-shop.netlify.app/"
                 target="_blank"
                 rel="noopener noreferrer"
                 title="Visit ABCat Shop →"
@@ -827,7 +827,7 @@ export default function FeatureProjectPage() {
               {isMobile && (
                 <div style={{ display: "flex", justifyContent: "center", marginBottom: 10 }}>
                   <a
-                    href="https://abcat-shop-gp1pqmkv1-devmos-projects.vercel.app/"
+                    href="https://abcat-shop.netlify.app/"
                     target="_blank"
                     rel="noopener noreferrer"
                     title="Visit ABCat Shop →"
