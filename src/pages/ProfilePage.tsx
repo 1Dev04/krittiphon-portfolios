@@ -87,12 +87,12 @@ const CONTENT = {
   en:{
     eyebrow:"Portfolio · 2026",
     title:"Profile",
-    body:"Full Stack Developer with a strong foundation in game, web, and mobile development. I build innovative, efficient applications across diverse technology stacks — constantly seeking new challenges to grow and deliver meaningful impact.",
+    body:"I am a Full Stack Developer with experience building web, mobile, and enterprise-level systems. I have worked on an SMS Marketing platform, contributing across backend, frontend, API development, and DevOps workflows. I have hands-on experience designing production-ready systems, including scalable APIs, database management, and CI/CD pipelines for continuous deployment. I have also developed AI-integrated projects, such as an eCommerce platform with smart sizing and image processing features. As a recent graduate, I am eager to apply my skills, continue learning, and contribute to building impactful, production-grade systems.",
   },
   th:{
     eyebrow:"พอร์ตโฟลิโอ · 2026",
     title:"ประวัติโดยย่อ",
-    body:"นักพัฒนา Full Stack ที่มีพื้นฐานแข็งแกร่งด้านเกม เว็บ และแอปมือถือ สร้างแอปพลิเคชันที่สร้างสรรค์และมีประสิทธิภาพหลากหลาย stack — แสวงหาความท้าทายใหม่เพื่อเติบโตและสร้างผลกระทบที่มีความหมาย",
+    body:"ผมเป็นนักพัฒนา Full Stack ที่มีประสบการณ์ในการพัฒนา Web, Mobile และระบบระดับองค์กร โดยเคยทำงานในทีมพัฒนา SMS Marketing Platform ซึ่งครอบคลุมทั้ง Backend, Frontend, API และ DevOps ผมมีประสบการณ์ในการออกแบบระบบที่รองรับการใช้งานจริง เช่น การพัฒนา API ที่มีประสิทธิภาพ การจัดการฐานข้อมูล และการทำ CI/CD เพื่อให้ระบบสามารถ deploy ได้อย่างต่อเนื่องนอกจากนี้ ผมยังพัฒนาโปรเจกต์ที่ผสาน AI เช่น eCommerce ที่มีระบบ Smart Sizing และการประมวลผลภาพ ในฐานะนักศึกษาจบใหม่ ผมพร้อมเรียนรู้ พัฒนา และนำความสามารถไปสร้างระบบที่มีคุณค่าในระดับ production",
   },
 };
 
