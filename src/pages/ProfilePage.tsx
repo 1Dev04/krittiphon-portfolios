@@ -87,12 +87,12 @@ const CONTENT = {
   en:{
     eyebrow:"Portfolio · 2026",
     title:"Profile",
-    body:"I am a Full Stack Developer with experience building web, mobile, and enterprise-level systems. I have worked on an SMS Marketing platform, contributing across backend, frontend, API development, and DevOps workflows. I have hands-on experience designing production-ready systems, including scalable APIs, database management, and CI/CD pipelines for continuous deployment. I have also developed AI-integrated projects, such as an eCommerce platform with smart sizing and image processing features. As a recent graduate, I am eager to apply my skills, continue learning, and contribute to building impactful, production-grade systems.",
+    body:"I am a Full Stack Developer with experience building game, web, mobile, and enterprise-level systems. I have worked on an SMS Marketing platform, contributing across backend, frontend, API development, and DevOps workflows. I have hands-on experience designing production-ready systems, including scalable APIs, database management, and CI/CD pipelines for continuous deployment. I have also developed AI-integrated projects, such as an eCommerce platform with smart sizing and image processing features. As a recent graduate, I am eager to apply my skills, continue learning, and contribute to building impactful, production-grade systems.",
   },
   th:{
     eyebrow:"พอร์ตโฟลิโอ · 2026",
     title:"ประวัติโดยย่อ",
-    body:"ฉันเป็นนักพัฒนา Full Stack ที่มีประสบการณ์ในการสร้างระบบเว็บ โมบายล์ และระบบระดับองค์กร ฉันเคยทำงานในแพลตฟอร์มการตลาด SMS โดยมีส่วนร่วมในด้านแบ็กเอนด์ ฟรอนต์เอนด์ การพัฒนา API และเวิร์กโฟลว์ DevOps ฉันมีประสบการณ์ตรงในการออกแบบระบบที่พร้อมใช้งานจริง รวมถึง API ที่ปรับขนาดได้ การจัดการฐานข้อมูล และไปป์ไลน์ CI/CD สำหรับการปรับใช้แบบต่อเนื่อง นอกจากนี้ฉันยังพัฒนาโครงการที่ผสานรวม AI เช่น แพลตฟอร์มอีคอมเมิร์ซที่มีคุณสมบัติการปรับขนาดอัจฉริยะและการประมวลผลภาพ ในฐานะบัณฑิตจบใหม่ ฉันกระตือรือร้นที่จะใช้ทักษะของฉัน เรียนรู้เพิ่มเติม และมีส่วนร่วมในการสร้างระบบที่มีประสิทธิภาพและพร้อมใช้งานจริง",
+    body:"ผมเป็นนักพัฒนา Full Stack ที่มีประสบการณ์ในการสร้างเกม เว็บ โมบายล์ และระบบระดับองค์กร ผมเคยทำงานในแพลตฟอร์มการตลาด SMS โดยมีส่วนร่วมในด้าน Backend, Frontend, การพัฒนา API และเวิร์กโฟลว์ DevOps ผมมีประสบการณ์ตรงในการออกแบบระบบที่พร้อมใช้งานจริง รวมถึง API ที่ปรับขนาดได้ การจัดการฐานข้อมูล และไปป์ไลน์ CI/CD สำหรับการใช้งานอย่างต่อเนื่อง ผมยังเคยพัฒนาโครงการที่ผสานรวม AI เช่น แพลตฟอร์มอีคอมเมิร์ซที่มีฟีเจอร์การปรับขนาดอัจฉริยะและการประมวลผลภาพ ในฐานะบัณฑิตจบใหม่ ผมกระตือรือร้นที่จะใช้ทักษะของตนเอง เรียนรู้เพิ่มเติม และมีส่วนร่วมในการสร้างระบบที่มีประสิทธิภาพและใช้งานได้จริง",
   },
 };
 
