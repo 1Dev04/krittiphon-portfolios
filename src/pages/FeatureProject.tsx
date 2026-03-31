@@ -164,7 +164,7 @@ const ABCSHOP = {
   tag_th: "โปรเจกต์ Senior",
   desc_en: "ABCat Shop is a Full-Stack Mobile Application built with Flutter + AI that recommends cat clothing sizes. It uses YOLO for cat detection and GPT-4.1 mini / Gemini 2.5 Flash for size analysis — covering Frontend (Flutter), Backend (FastAPI), and DevOps (Jenkins + Render).",
   desc_th: "ABCat Shop คือ Full-Stack Mobile Application พัฒนาด้วย Flutter + AI ที่ช่วยแนะนำขนาดเสื้อผ้าสำหรับแมว โดยใช้ YOLO สำหรับ Detect แมว และ GPT-4.1 mini / Gemini 2.5 Flash สำหรับ Analysis ขนาด ครบวงจรตั้งแต่ Frontend (Flutter) ถึง Backend (FastAPI) และ DevOps (Jenkins + Render)",
-  planningImg: "https://res.cloudinary.com/dag73dhpl/image/upload/v1773725640/%E0%B8%9C%E0%B8%B9%E0%B9%89%E0%B8%9E%E0%B8%B1%E0%B8%92%E0%B8%99%E0%B8%B2_1_efrywh.png",
+  planningImg: "https://res.cloudinary.com/dag73dhpl/image/upload/v1774935454/%E0%B8%9C%E0%B8%B9%E0%B9%89%E0%B8%9E%E0%B8%B1%E0%B8%92%E0%B8%99%E0%B8%B2_lfc7xo.png",
   youtubeUrl: "https://youtu.be/nYeDC6I-XfQ",
   stats: [
     { value: "70+", label_en: "Dev Days", label_th: "วันพัฒนา", sub_en: "Jan – Mar 2026", sub_th: "ม.ค. – มี.ค. 2569" },
