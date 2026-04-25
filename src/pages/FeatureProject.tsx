@@ -162,8 +162,8 @@ const ABCSHOP = {
   icon: "🐱",
   tag_en: "SENIOR PROJECT",
   tag_th: "โปรเจกต์ Senior",
-  desc_en: "ABCat Shop is a Full-Stack Mobile Application built with Flutter + AI that recommends cat clothing sizes. It uses YOLO for cat detection and GPT-4.1 mini / Gemini 2.5 Flash for size analysis — covering Frontend (Flutter), Backend (FastAPI), and DevOps (Jenkins + Render).",
-  desc_th: "ABCat Shop คือ Full-Stack Mobile Application พัฒนาด้วย Flutter + AI ที่ช่วยแนะนำขนาดเสื้อผ้าสำหรับแมว โดยใช้ YOLO สำหรับ Detect แมว และ GPT-4.1 mini / Gemini 2.5 Flash สำหรับ Analysis ขนาด ครบวงจรตั้งแต่ Frontend (Flutter) ถึง Backend (FastAPI) และ DevOps (Jenkins + Render)",
+  desc_en: "Developed an AI pipeline for cat size recommendation: initially used YOLO for detection but switched due to time constraints. Tried Gemini 2.5 Flash (free tier) but faced rate limits, then moved to GPT-4.1 mini for more stable and scalable detection and analysis.",
+  desc_th: "พัฒนาไปป์ไลน์ AI สำหรับแนะนำขนาดแมว: เริ่มแรกใช้ YOLO สำหรับการตรวจจับ แต่เปลี่ยนมาใช้ตัวอื่นเนื่องจากข้อจำกัดด้านเวลา ลองใช้ Gemini 2.5 Flash (เวอร์ชันฟรี) แต่พบข้อจำกัดด้านอัตราการใช้งาน จึงเปลี่ยนมาใช้ GPT-4.1 mini เพื่อการตรวจจับและการวิเคราะห์ที่เสถียรและปรับขนาดได้ดีกว่า",
    planningImg_en: "https://res.cloudinary.com/dag73dhpl/image/upload/v1775974809/%E0%B8%9C%E0%B8%B9%E0%B9%89%E0%B8%9E%E0%B8%B1%E0%B8%92%E0%B8%99%E0%B8%B2_3_h6ixzp.png",
   planningImg_th: "https://res.cloudinary.com/dag73dhpl/image/upload/v1775975888/%E0%B8%9C%E0%B8%B9%E0%B9%89%E0%B8%9E%E0%B8%B1%E0%B8%92%E0%B8%99%E0%B8%B2_5_irq5ar.png",
   youtubeUrl: "https://youtu.be/nYeDC6I-XfQ",
@@ -182,9 +182,12 @@ const ABCSHOP = {
     { label: "OpenAI API", cat: "API", color: "#22c55e" },
     { label: "FastAPI", cat: "Backend", color: "#34d399" },
     { label: "PostgreSQL", cat: "Database", color: "#38bdf8" },
+    { label:"DBeaver",         cat:"Universal DB", color:"#84cc16" },
     { label: "Cloudinary", cat: "Storage", color: "#60a5fa" },
     { label: "Jenkins", cat: "DevOps", color: "#ef4444" },
     { label: "Render", cat: "Deploy", color: "#a78bfa" },
+
+    { label: "Podman", cat: "Container", color: "#38bdf8" },
     { label: "Firebase", cat: "Auth", color: "#fbbf24" },
     { label: "Google AI Studio", cat: "API", color: "#34d399" },
     { label: "Git", cat: "Tools", color: "#f97316" },
@@ -988,8 +991,8 @@ export default function FeatureProjectPage() {
                     {t("Architecture:", "สถาปัตยกรรม:")}
                   </strong>{" "}
                   {t(
-                    "Flutter · FastAPI + Python · PostgreSQL + Cloudinary · Firebase (Auth) · Jenkins (CI/CD) · Render · GPT-4.1 mini + Gemini 2.5 Flash for cat detection & analysis.",
-                    "Flutter · FastAPI + Python · PostgreSQL + Cloudinary · Firebase · Jenkins + Render · GPT-4.1 mini + Gemini 2.5 Flash สำหรับ Detect & Analysis แมว",
+                    "Architecture: Flutter (Frontend) · FastAPI (Python Backend) · PostgreSQL · Cloudinary · Firebase Auth · Jenkins (CI/CD) · Render · AI pipeline using GPT-4.1 mini and Gemini 2.5 Flash for cat image validation and size analysis.",
+                    "สถาปัตยกรรม: Flutter (ส่วนหน้า) · FastAPI (ส่วนหลัง Python) · PostgreSQL · Cloudinary · Firebase Auth · Jenkins (CI/CD) · Render · ระบบประมวลผล AI โดยใช้ GPT-4.1 mini และ Gemini 2.5 Flash สำหรับตรวจสอบความถูกต้องและวิเคราะห์ขนาดของภาพแมว",
                   )}
                 </p>
               </div>

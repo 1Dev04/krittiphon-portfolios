@@ -205,6 +205,8 @@ const CLICKNEXT = {
     { label:"Bootstrap",       cat:"Frontend", color:"#8b5cf6" },
     { label:"MySQL",           cat:"Database", color:"#f59e0b" },
     { label:"MongoDB",         cat:"Database", color:"#84cc16" },
+    { label:"Postman",         cat:"Testing",  color:"#f59e0b"},
+    { label:"Jenkin",          cat:"DevOps",   color:"#0020d4ff"},
     { label:"REST API",        cat:"API",      color:"#06b6d4" },
     { label:"Microsoft OAuth", cat:"Auth",     color:"#0078d4" },
     { label:"2FA",             cat:"Auth",     color:"#f43f5e" },

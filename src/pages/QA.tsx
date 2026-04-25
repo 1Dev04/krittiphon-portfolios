@@ -89,11 +89,10 @@ interface QATheme {
   imgTag: string;
   imgTagBg: string;
   // timeline card
-   headingColor: string;
+  headingColor: string;
   cardYear: string;
   taskNormal: string;
   techCat: string;
- 
 }
 
 interface FAQ {
@@ -113,49 +112,75 @@ const DEFAULT_FAQS: FAQ[] = [
   {
     question_en: "What technologies do you specialise in?",
     question_th: "คุณเชี่ยวชาญเทคโนโลยีอะไรบ้าง?",
-    answer_en: "Primarily Flutter, Python, FastAPI, and PostgreSQL for full-stack mobile development.",
-    answer_th: "หลักๆ คือ Flutter, Python, FastAPI และ PostgreSQL สำหรับ Full-stack Mobile",
-    answer2_en: "Also experienced with AI/ML pipelines, Docker, Firebase, and cloud infrastructure.",
-    answer2_th: "รวมถึง AI/ML pipelines, Docker, Firebase และ Cloud Infrastructure ด้วย",
+    answer_en: "I specialise in full-stack development using Flutter, FastAPI, and PostgreSQL, with hands-on experience in building production-ready mobile applications.",
+    answer_th: "ผมเน้น Full-stack โดยใช้ Flutter, FastAPI และ PostgreSQL พร้อมประสบการณ์ทำแอปจริงระดับ production",
+    answer2_en: "I also work with AI integration, CI/CD pipelines, and containerized deployment.",
+    answer2_th: "รวมถึงการใช้งาน AI, CI/CD และระบบ container สำหรับ deploy",
   },
+
   {
-    question_en: "Are you open to freelance work?",
-    question_th: "รับงาน Freelance ไหม?",
-    answer_en: "Yes — feel free to reach out via the contact section.",
-    answer_th: "รับครับ — ติดต่อได้ที่ช่อง Contact เลย",
+    question_en: "What was your most impactful project?",
+    question_th: "โปรเจกต์ที่มีผลกับคุณมากที่สุดคืออะไร?",
+    answer_en: "ABCat Shop — an AI-powered mobile application for cat clothing size recommendation.",
+    answer_th: "ABCat Shop — แอปมือถือที่ใช้ AI แนะนำขนาดเสื้อผ้าสำหรับแมว",
+    answer2_en: "It includes an AI pipeline, backend APIs, CI/CD automation, and cloud deployment.",
+    answer2_th: "มีทั้ง AI pipeline, Backend API, CI/CD และระบบ Deploy บน Cloud",
   },
+
   {
-    question_en: "How did you get into software development?",
-    question_th: "เริ่มต้นเรียนพัฒนาซอฟต์แวร์ได้ยังไง?",
-    answer_en: "Started with a C programming course, then progressively moved into backend and frontend.",
-    answer_th: "เริ่มจากเรียนภาษา C แล้วค่อยๆ ขยับไปทำ Backend และ Frontend",
-    answer2_en: "Senior project accelerated the learning curve significantly.",
-    answer2_th: "โปรเจกต์ Senior ช่วย Learning Curve ได้มากมาย",
+    question_en: "How did you design your AI system?",
+    question_th: "ออกแบบระบบ AI ยังไง?",
+    answer_en: "I built a multi-stage AI pipeline: image validation followed by size analysis.",
+    answer_th: "ผมออกแบบเป็น AI pipeline แบบหลายขั้นตอน: ตรวจสอบภาพ → วิเคราะห์ขนาด",
+    answer2_en: "I evaluated YOLO, Gemini, and GPT-4.1 mini, selecting models based on performance, cost, and scalability.",
+    answer2_th: "มีการทดลอง YOLO, Gemini และ GPT-4.1 mini แล้วเลือกตาม performance, cost และ scalability",
   },
+
   {
-    question_en: "What was your favourite project?",
-    question_th: "โปรเจกต์ที่ชอบที่สุดคืออะไร?",
-    answer_en: "ABCat Shop — integrating YOLO detection with GPT-4.1 mini for cat sizing was a completely new paradigm.",
-    answer_th: "ABCat Shop — การใช้ YOLO ร่วมกับ GPT-4.1 mini วัดขนาดแมวถือเป็น Paradigm ใหม่เลย",
+    question_en: "Do you have real-world experience?",
+    question_th: "มีประสบการณ์ทำงานจริงไหม?",
+    answer_en: "Yes, I worked as a Full-Stack Developer Intern at ClickNext.",
+    answer_th: "มีครับ ผมเคยเป็น Full-Stack Developer Intern ที่ ClickNext",
+    answer2_en: "I developed internal systems, APIs, and participated in deployment workflows.",
+    answer2_th: "ทำทั้งระบบภายใน, API และมีส่วนร่วมใน workflow การ deploy",
   },
+
   {
-    question_en: "What AI models have you worked with?",
-    question_th: "เคยใช้ AI Models อะไรบ้าง?",
-    answer_en: "YOLO v8 for object detection, Gemini 2.5 Flash and GPT-4.1 mini for vision analysis.",
-    answer_th: "YOLO v8 สำหรับ Object Detection, Gemini 2.5 Flash และ GPT-4.1 mini สำหรับ Vision",
-    answer2_en: "Also experimented with Google AI Studio and OpenAI API for various tasks.",
-    answer2_th: "ยังลองใช้ Google AI Studio และ OpenAI API สำหรับงานหลายประเภทด้วย",
+    question_en: "What kind of backend systems have you built?",
+    question_th: "เคยสร้างระบบ Backend แบบไหนบ้าง?",
+    answer_en: "I built RESTful APIs using FastAPI, including authentication, data validation, and structured responses.",
+    answer_th: "ผมสร้าง RESTful API ด้วย FastAPI มีทั้ง auth, validation และ response ที่เป็นระบบ",
+    answer2_en: "I also worked on system monitoring tools and backend services during my internship.",
+    answer2_th: "รวมถึงระบบ monitor และ backend service ตอนฝึกงาน",
   },
+
   {
-    question_en: "What is your development workflow?",
-    question_th: "Workflow การพัฒนาของคุณเป็นอย่างไร?",
-    answer_en: "Agile-inspired: plan → design → implement → test → deploy.",
-    answer_th: "แบบ Agile: วางแผน → ออกแบบ → พัฒนา → ทดสอบ → Deploy",
-    answer2_en: "CI/CD via Jenkins, version control with Git, deployment on Render.",
-    answer2_th: "CI/CD ด้วย Jenkins, Version Control ด้วย Git, Deploy บน Render",
+    question_en: "How do you handle deployment and DevOps?",
+    question_th: "จัดการเรื่อง Deploy และ DevOps ยังไง?",
+    answer_en: "I use Podman and Jenkins to automate build and deployment pipelines.",
+    answer_th: "ผมใช้ Podman และ Jenkins ทำระบบ build และ deploy อัตโนมัติ",
+    answer2_en: "I deploy applications on platforms like Render and Vercel with CI/CD workflows.",
+    answer2_th: "Deploy บน Render และ Vercel พร้อม CI/CD",
+  },
+
+  {
+    question_en: "What challenges have you faced?",
+    question_th: "เคยเจอปัญหาอะไรบ้าง?",
+    answer_en: "One major challenge was balancing AI performance, cost, and rate limits.",
+    answer_th: "ปัญหาหลักคือการบาลานซ์ performance, cost และ rate limit ของ AI",
+    answer2_en: "I solved it by switching models and designing fallback strategies.",
+    answer2_th: "แก้โดยเปลี่ยน model และออกแบบ fallback strategy",
+  },
+
+  {
+    question_en: "Are you open to work opportunities?",
+    question_th: "เปิดรับโอกาสทำงานไหม?",
+    answer_en: "Yes, I am open to full-time and freelance opportunities.",
+    answer_th: "เปิดรับทั้งงานประจำและ freelance ครับ",
+    answer2_en: "Feel free to contact me via the contact section.",
+    answer2_th: "สามารถติดต่อได้ผ่านหน้า Contact",
   },
 ];
-
 
 /* ══════════════════════════════════════════════════════
    ☀️  SUN — Natural Green Throne
