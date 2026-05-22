@@ -60,7 +60,7 @@ const ROLES = ["Full Stack Developer", "Game Developer", "Web Developer", "Mobil
 const SOCIALS = [
   { href:"https://github.com/1Dev04",                                    Icon:GitHub,    color:"#c9d1d9", label:"GitHub"    },
   { href:"https://www.youtube.com/@UR1MOSS",                             Icon:YouTube,   color:"#ff4444", label:"YouTube"   },
-  { href:"https://www.instagram.com/1devmoz/",                           Icon:Instagram, color:"#e1306c", label:"Instagram" },
+  { href:"https://www.instagram.com/1dev.ceo",                           Icon:Instagram, color:"#e1306c", label:"Instagram" },
   { href:"https://www.facebook.com/krittiphon.yoonaitham.9",             Icon:Facebook,  color:"#1877f2", label:"Facebook"  },
   { href:"https://www.linkedin.com/in/krittiphon-yoonaitham-a291482b1/", Icon:LinkedIn,  color:"#0a66c2", label:"LinkedIn"  },
 ];
