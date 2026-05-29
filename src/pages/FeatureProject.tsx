@@ -155,18 +155,19 @@ const MOON_FP: FpTheme = {
 
 const ABCSHOP = {
   name: "ABCat Shop",
-  role_en: "Senior Project — Flutter + AI",
+  role_en: "Capstone project — Flutter + AI",
   role_th: "โปรเจกต์จบการศึกษา — Flutter + AI",
   period_en: "January – March 2026",
   period_th: "มกราคม – มีนาคม 2569",
   icon: "🐱",
-  tag_en: "SENIOR PROJECT",
-  tag_th: "โปรเจกต์ Senior",
-  desc_en: "Developed an AI pipeline for cat size recommendation: initially used YOLO for detection but switched due to time constraints. Tried Gemini 2.5 Flash (free tier) but faced rate limits, then moved to GPT-4.1 mini for more stable and scalable detection and analysis.",
-  desc_th: "พัฒนาไปป์ไลน์ AI สำหรับแนะนำขนาดแมว: เริ่มแรกใช้ YOLO สำหรับการตรวจจับ แต่เปลี่ยนมาใช้ตัวอื่นเนื่องจากข้อจำกัดด้านเวลา ลองใช้ Gemini 2.5 Flash (เวอร์ชันฟรี) แต่พบข้อจำกัดด้านอัตราการใช้งาน จึงเปลี่ยนมาใช้ GPT-4.1 mini เพื่อการตรวจจับและการวิเคราะห์ที่เสถียรและปรับขนาดได้ดีกว่า",
+  tag_en: " Capstone Project",
+  tag_th: "โปรเจกต์จบ",
+  desc_en: "Developed an AI pipeline for cat size recommendation: initially used YOLO for detection but switched due to time constraints. Tried Gemini 2.5 Flash (free tier) but faced rate limits, then moved to GPT-4.1 mini for more stable and scalable detection and analysis. ",
+  desc_th: "พัฒนาไปป์ไลน์ AI สำหรับแนะนำขนาดแมว: เริ่มแรกใช้ YOLO สำหรับการตรวจจับ แต่เปลี่ยนมาใช้ตัวอื่นเนื่องจากข้อจำกัดด้านเวลา ลองใช้ Gemini 2.5 Flash (เวอร์ชันฟรี) แต่พบข้อจำกัดด้านอัตราการใช้งาน จึงเปลี่ยนมาใช้ GPT-4.1 mini เพื่อการตรวจจับและการวิเคราะห์ที่เสถียรและปรับขนาดได้ดีกว่า  ",
    planningImg_en: "https://res.cloudinary.com/dag73dhpl/image/upload/v1775974809/%E0%B8%9C%E0%B8%B9%E0%B9%89%E0%B8%9E%E0%B8%B1%E0%B8%92%E0%B8%99%E0%B8%B2_3_h6ixzp.png",
   planningImg_th: "https://res.cloudinary.com/dag73dhpl/image/upload/v1775975888/%E0%B8%9C%E0%B8%B9%E0%B9%89%E0%B8%9E%E0%B8%B1%E0%B8%92%E0%B8%99%E0%B8%B2_5_irq5ar.png",
   youtubeUrl: "https://youtu.be/nYeDC6I-XfQ",
+  linkDesignAIImage:"https://abcat-brand.netlify.app",
   stats: [
     { value: "70+", label_en: "Dev Days", label_th: "วันพัฒนา", sub_en: "Jan – Mar 2026", sub_th: "ม.ค. – มี.ค. 2569" },
     { value: "12", label_en: "App Pages", label_th: "หน้าแอป", sub_en: "Home, Shop, Meow Size…", sub_th: "Home, Shop, Basket, Meow Size ฯลฯ" },
@@ -768,7 +769,9 @@ export default function FeatureProjectPage() {
                     fontWeight: 700, letterSpacing: ".1em", whiteSpace: "nowrap",
                   }}>VIDEO</span>
                 </a>
+              
               </div>
+              
             )}
           </div>
 
@@ -867,9 +870,36 @@ export default function FeatureProjectPage() {
                 letterSpacing: ".01em", transition: "color .5s",
               }}>
                 {t(ABCSHOP.desc_en, ABCSHOP.desc_th)}
+                
+                
               </p>
+              <p style={{
+                fontFamily: "'Sarabun',sans-serif",
+                fontSize: isMobile ? 12.5 : 14,
+                lineHeight: 1.9, color: tk.imgCaption, textAlign: "center",
+                letterSpacing: ".01em", transition: "color .5s",
+              }}>
+             
+                <a href={(ABCSHOP.linkDesignAIImage)} target="_blank" rel="noopener noreferrer"
+                  style={{
+                    display: "flex", alignItems: "center", gap: 6, padding: "6px 16px", borderRadius: 999,
+                    background: "rgba(0, 238, 255, 0.12)", border: "1.5px solid rgba(0, 221, 255, 0.35)",
+                    textDecoration: "none", transition: "all .25s ease", width: 253
+                  }}
+                  onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.background = "rgba(0, 85, 255, 0.22)"; (e.currentTarget as HTMLAnchorElement).style.transform = "scale(1.05)"; }}
+                  onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.background = "rgba(0, 251, 255, 0.12)"; (e.currentTarget as HTMLAnchorElement).style.transform = "scale(1)"; }}>
+                  
+                  <span style={{
+                    fontFamily: "'Space Mono',monospace", fontSize: 10, color: "#1e9999ff",
+                    fontWeight: 700, letterSpacing: ".1em", whiteSpace: "nowrap"
+                  }}>AI Artist & Pet Product Designe</span>
+                </a>
+              </p>
+              
             </div>
           </div>
+
+          
 
           {/* ── STATS ──────────────────────────────────────────────────── */}
           <div style={{
@@ -1002,6 +1032,7 @@ export default function FeatureProjectPage() {
           {/* ── TIMELINE ───────────────────────────────────────────────── */}
           <div style={{ marginTop: sectionGap }}>
             <SectionHeader icon="🗓" label={t(`TIMELINE · ${ABCSHOP.name}`, `ไทม์ไลน์ · ${ABCSHOP.name}`)} tk={tk} isMobile={isMobile} />
+            
             <div style={{ position: "relative" }}>
               {!isMobile && (
                 <div style={{
